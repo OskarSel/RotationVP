@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile — Rotation</title>
+  <meta name="description" content="Your Rotation profile: level, XP, completed lessons, achievements and settings.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="profile">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="navbar">
+    <div class="wrap navbar__inner">
+      <a href="index.html" class="navbar__brand" aria-label="Rotation — home page">
+        <svg class="navbar__brand-mark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+          <circle cx="15" cy="15" r="12.5" stroke="#E8A33D" stroke-width="2"/>
+          <path d="M15 2.5c-5 4-5 21 0 25M4 10.5c5 3 17 3 22 0M4 19.5c5-3 17-3 22 0" stroke="#E8A33D" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        Rotation
+      </a>
+      <button class="navbar__toggle" aria-expanded="false" aria-controls="navbar-links" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__links" id="navbar-links">
+        <li><a href="index.html" data-page="home">Home</a></li>
+        <li><a href="learn.html" data-page="learn">Learn</a></li>
+        <li><a href="dashboard.html" data-page="dashboard">Progress</a></li>
+        <li><a href="profile.html" data-page="profile">Profile</a></li>
+        <li class="navbar__link--login"><a href="login.html">Log in</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="dashboard.html" class="btn btn--ghost-light btn--sm">Progress</a>
+        <a href="learn.html" class="btn btn--primary btn--sm">Continue learning</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumbs">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <span aria-current="page">Profile</span>
+      </nav>
+    </div>
+
+    <section class="section section--tight" id="profile-root">
+      <div class="wrap">
+
+        <div class="profile-header" style="margin-bottom: var(--sp-8);">
+          <div class="avatar" id="profile-initial" aria-hidden="true">U</div>
+          <div>
+            <h1 id="profile-username" style="font-size: var(--fs-600);">User</h1>
+            <p class="profile-level">
+              <svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true"><path d="M12 3l2.4 5.1 5.6.6-4.2 3.8 1.2 5.5L12 15l-5 3 1.2-5.5-4.2-3.8 5.6-.6L12 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+              <span id="profile-level">Level 1</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="stat-grid" style="margin-bottom: var(--sp-8);">
+          <div class="stat-tile stat-tile--accent">
+            <div class="stat-tile__label">Experience</div>
+            <div class="stat-tile__value" id="profile-xp">0 XP</div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-tile__label">Completed lessons</div>
+            <div class="stat-tile__value" id="profile-lessons">0</div>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-bottom: var(--sp-5);">
+          <h2 style="font-size: var(--fs-500);">Achievements</h2>
+        </div>
+        <div class="achievement-grid" id="achievement-grid" style="margin-bottom: var(--sp-8);" aria-label="Achievement list"></div>
+
+        <div class="section-head" style="margin-bottom: var(--sp-4);">
+          <h2 style="font-size: var(--fs-500);">Profile settings</h2>
+        </div>
+
+        <div class="lesson-panel">
+          <form id="username-form">
+            <div class="field">
+              <label for="username-input">Username</label>
+              <input type="text" id="username-input" name="username" maxlength="24" autocomplete="nickname">
+            </div>
+            <button type="submit" class="btn btn--dark btn--sm">Save name</button>
+          </form>
+
+          <div class="settings-row" style="margin-top: var(--sp-6); padding-top: var(--sp-6); border-top: 1px solid var(--color-chalk-dim);">
+            <div>
+              <div class="settings-row__label">Dark mode</div>
+              <div class="settings-row__desc">Optional, switches the interface theme.</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="dark-mode-toggle" aria-label="Toggle dark mode">
+              <span class="switch__track" aria-hidden="true"></span>
+            </label>
+          </div>
+
+          <div class="settings-row">
+            <div>
+              <div class="settings-row__label">Reset progress</div>
+              <div class="settings-row__desc">Deletes all saved learning progress from this device.</div>
+            </div>
+            <button class="btn btn--ghost btn--sm" id="reset-progress-btn" type="button">Reset</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-bottom">
+      <span>&copy; 2026 Rotation. Educational project.</span>
+      <a href="learn.html">Back to learning</a>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/lessons.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

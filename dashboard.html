@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your progress — Rotation</title>
+  <meta name="description" content="Progress dashboard: course completion percentage, XP, level, learning streak and achievements.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="dashboard">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="navbar">
+    <div class="wrap navbar__inner">
+      <a href="index.html" class="navbar__brand" aria-label="Rotation — home page">
+        <svg class="navbar__brand-mark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+          <circle cx="15" cy="15" r="12.5" stroke="#E8A33D" stroke-width="2"/>
+          <path d="M15 2.5c-5 4-5 21 0 25M4 10.5c5 3 17 3 22 0M4 19.5c5-3 17-3 22 0" stroke="#E8A33D" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        Rotation
+      </a>
+      <button class="navbar__toggle" aria-expanded="false" aria-controls="navbar-links" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__links" id="navbar-links">
+        <li><a href="index.html" data-page="home">Home</a></li>
+        <li><a href="learn.html" data-page="learn">Learn</a></li>
+        <li><a href="dashboard.html" data-page="dashboard">Progress</a></li>
+        <li><a href="profile.html" data-page="profile">Profile</a></li>
+        <li class="navbar__link--login"><a href="login.html">Log in</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="profile.html" class="btn btn--ghost-light btn--sm">Profile</a>
+        <a href="learn.html" class="btn btn--primary btn--sm">Continue learning</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumbs">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <span aria-current="page">Progress</span>
+      </nav>
+    </div>
+
+    <section class="section section--tight" id="dashboard-root">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Your dashboard</p>
+          <h1 style="font-size: var(--fs-700);">Learning progress</h1>
+        </div>
+
+        <!-- CONTINUE LEARNING -->
+        <div class="continue-panel" id="continue-panel" style="margin-bottom: var(--sp-7);">
+          <div>
+            <p class="continue-panel__eyebrow">Continue where you left off</p>
+            <p id="continue-chapter" style="font-family: var(--font-display); font-weight: 600; color: rgba(239,238,234,0.7);">Chapter 1</p>
+            <p class="continue-panel__title" id="continue-lesson">Lesson 1</p>
+          </div>
+          <a class="btn btn--primary" id="continue-link" href="lesson.html?chapter=1&amp;lesson=1">Continue learning</a>
+        </div>
+
+        <!-- STATS -->
+        <div class="stat-grid" style="margin-bottom: var(--sp-7);">
+          <div class="stat-tile stat-tile--accent">
+            <div class="stat-tile__label">Course completion</div>
+            <div class="stat-tile__value" id="stat-overall">0<small>%</small></div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-tile__label">Completed lessons</div>
+            <div class="stat-tile__value" id="stat-lessons">0<small>/80</small></div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-tile__label">Started chapters</div>
+            <div class="stat-tile__value" id="stat-chapters">0<small>/8</small></div>
+          </div>
+          <div class="stat-tile">
+            <div class="stat-tile__label">Learning streak</div>
+            <div class="stat-tile__value" id="stat-streak">0<small> days</small></div>
+          </div>
+        </div>
+
+        <!-- OVERALL PROGRESS BAR -->
+        <div class="lesson-panel" style="margin-bottom: var(--sp-7);">
+          <h2 style="font-size: var(--fs-400); margin-bottom: var(--sp-4);">Full course</h2>
+          <div class="progress-bar" role="img" aria-label="Overall course progress">
+            <div class="progress-bar__fill" id="overall-progress-fill" style="width:0%"></div>
+          </div>
+        </div>
+
+        <!-- XP / LEVEL -->
+        <div class="lesson-panel" style="margin-bottom: var(--sp-7);">
+          <div class="cluster" style="justify-content: space-between; margin-bottom: var(--sp-4);">
+            <h2 style="font-size: var(--fs-400);" id="dash-level">Level 1</h2>
+            <span class="text-muted" id="dash-xp">0 XP</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-bar__fill" id="level-progress-fill" style="width:0%"></div>
+          </div>
+          <p class="text-muted" style="font-size: var(--fs-100); margin-top: var(--sp-3);" id="dash-xp-remaining">150 XP to level 2</p>
+        </div>
+
+        <!-- ACHIEVEMENTS -->
+        <div class="section-head" style="margin-bottom: var(--sp-5);">
+          <h2 style="font-size: var(--fs-500);">Achievements</h2>
+        </div>
+        <div class="achievement-grid" id="achievement-grid" aria-label="Achievement list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-bottom">
+      <span>&copy; 2026 Rotation. Educational project.</span>
+      <a href="learn.html">Back to learning</a>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/lessons.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

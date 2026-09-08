@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log in — Rotation</title>
+  <meta name="description" content="Log in to Rotation to save your learning progress to your account.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="login">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="auth-shell" id="main">
+    <div class="auth-side">
+      <div class="auth-side__content">
+        <svg viewBox="0 0 30 30" fill="none" width="34" aria-hidden="true" style="margin-bottom: var(--sp-6);">
+          <circle cx="15" cy="15" r="12.5" stroke="#E8A33D" stroke-width="2"/>
+          <path d="M15 2.5c-5 4-5 21 0 25M4 10.5c5 3 17 3 22 0M4 19.5c5-3 17-3 22 0" stroke="#E8A33D" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <h2 style="max-width: 16ch;">Pick up where you left off.</h2>
+        <p style="color: rgba(239,238,234,0.72); margin-top: var(--sp-4); max-width: 34ch;">An account lets you sync your progress across devices — for now, logging in is optional.</p>
+      </div>
+    </div>
+
+    <div class="auth-form-side">
+      <div class="auth-card">
+        <a href="index.html" class="auth-card__brand">
+          <svg viewBox="0 0 30 30" fill="none" width="26" aria-hidden="true">
+            <circle cx="15" cy="15" r="12.5" stroke="#E8A33D" stroke-width="2"/>
+            <path d="M15 2.5c-5 4-5 21 0 25M4 10.5c5 3 17 3 22 0M4 19.5c5-3 17-3 22 0" stroke="#E8A33D" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          Rotation
+        </a>
+
+        <h1 style="font-size: var(--fs-600); margin-bottom: var(--sp-2);">Log in</h1>
+        <p class="text-muted" style="margin-bottom: var(--sp-7);">Good to see you back on the court.</p>
+
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="login-email">Email address</label>
+            <input type="email" id="login-email" name="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="password" autocomplete="current-password" required>
+          </div>
+          <div class="field--check">
+            <input type="checkbox" id="remember-me" name="remember">
+            <label for="remember-me">Remember me</label>
+          </div>
+          <button type="submit" class="btn btn--dark btn--full">Log in</button>
+        </form>
+
+        <div class="auth-divider">or</div>
+        <a href="learn.html" class="btn btn--ghost btn--full">Continue without an account</a>
+
+        <p class="auth-footer-link">Don’t have an account? <a href="register.html">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // No real authentication at this stage — the form redirects
+    // to the learning dashboard so the flow can be tested end to end.
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      window.location.href = 'dashboard.html';
+    });
+  </script>
+</body>
+</html>
