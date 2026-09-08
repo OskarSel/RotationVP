@@ -73,6 +73,11 @@ function renderChapterGrid() {
     const pct = Math.round((done / chapter.lessons.length) * 100);
     const locked = status === 'locked';
 
+    // Lesson counts shown here exclude the chapter test on purpose — it's a
+    // separate milestone, not one of the "lessons" (see chapter.html).
+    const realLessons = chapter.lessons.filter((l) => !l.isTest);
+    const realDone = realLessons.filter((l) => ProgressStore.isLessonComplete(chapter.id, l.id)).length;
+
     const badge =
       status === 'completed' ? '<span class="badge badge--completed">Completed</span>' :
       status === 'started'   ? '<span class="badge badge--current">Started</span>' :
@@ -94,9 +99,9 @@ function renderChapterGrid() {
         <div>
           <h3 class="chapter-card__title" id="chapter-${chapter.id}-title">${chapter.title}</h3>
           <p class="chapter-card__meta">
-            <span>${chapter.lessons.length} lessons</span>
+            <span>${realLessons.length} lessons</span>
             <span aria-hidden="true">&middot;</span>
-            <span>${done}/${chapter.lessons.length} completed</span>
+            <span>${realDone}/${realLessons.length} completed</span>
           </p>
         </div>
         <div class="progress-row" role="img" aria-label="Chapter progress: ${pct}%">
@@ -150,8 +155,15 @@ function renderChapterPage() {
     { label: chapter.title },
   ]);
 
-  pathEl.innerHTML = chapter.lessons
+  // The chapter test is a separate milestone, not a numbered lesson — it's
+  // rendered in its own section below, never mixed into this list.
+  const realLessons = chapter.lessons.filter((l) => !l.isTest);
+  const testLesson = chapter.lessons.find((l) => l.isTest);
+  let realLessonIndex = 0;
+
+  pathEl.innerHTML = realLessons
     .map((lesson) => {
+      realLessonIndex++;
       const status = getLessonStatus(chapterId, lesson.id);
       const locked = status === 'locked';
       const href = `lesson.html?chapter=${chapterId}&lesson=${lesson.id}`;
@@ -160,7 +172,7 @@ function renderChapterPage() {
           ? '<svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
           : status === 'locked'
           ? '<svg viewBox="0 0 24 24" fill="none" width="14" height="14" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 018 0v3" stroke="currentColor" stroke-width="2"/></svg>'
-          : String(lesson.id).padStart(2, '0');
+          : String(realLessonIndex).padStart(2, '0');
 
       const inner = `
         <div class="lesson-node__dot" aria-hidden="true">${icon}</div>
@@ -178,6 +190,48 @@ function renderChapterPage() {
         : `<li class="lesson-node lesson-node--${status}"><a class="lesson-node__hit" href="${href}">${inner}</a></li>`;
     })
     .join('');
+
+  renderChapterTestSection(chapterId, testLesson);
+}
+
+/** Renders the chapter test as its own card, kept out of the lesson list so
+ *  it never reads as "just another lesson" (and its own page shows no
+ *  lesson text — see renderLessonTheory). */
+function renderChapterTestSection(chapterId, testLesson) {
+  const section = document.getElementById('chapter-test-section');
+  if (!section) return;
+
+  if (!testLesson) {
+    section.innerHTML = '';
+    return;
+  }
+
+  const status = getLessonStatus(chapterId, testLesson.id);
+  const locked = status === 'locked';
+  const href = `lesson.html?chapter=${chapterId}&lesson=${testLesson.id}`;
+  const ctaLabel = status === 'completed' ? 'Review test' : 'Start test';
+
+  section.innerHTML = `
+    <p class="eyebrow">Chapter test</p>
+    <article class="chapter-card chapter-card--${status === 'current' ? 'active' : status}">
+      <div class="chapter-card__top">
+        <h3 class="chapter-card__title">${testLesson.title}</h3>
+        <span class="badge badge--${status}">${STATUS_LABEL[status]}</span>
+      </div>
+      <p class="chapter-card__meta">
+        <span>${testLesson.quiz.length} questions</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>${testLesson.durationMin} min</span>
+      </p>
+      <div class="chapter-card__footer">
+        ${
+          locked
+            ? `<button class="btn btn--ghost btn--sm" disabled aria-disabled="true">Locked — finish all lessons above first</button>`
+            : `<a class="btn btn--dark btn--sm" href="${href}">${ctaLabel}</a>`
+        }
+      </div>
+    </article>
+  `;
 }
 
 /* ---------------------------------------------------------------------- */
@@ -201,8 +255,12 @@ function initLessonPage() {
   const { chapter, lesson } = found;
   ProgressStore.setLastLesson(chapterId, lessonId);
 
+  const realLessons = chapter.lessons.filter((l) => !l.isTest);
+
   document.title = `${lesson.title} — ${chapter.title} — Rotation`;
-  document.getElementById('lesson-number').textContent = `Lesson ${lesson.id} of ${chapter.lessons.length}`;
+  document.getElementById('lesson-number').textContent = lesson.isTest
+    ? 'Chapter test'
+    : `Lesson ${lesson.id} of ${realLessons.length}`;
   document.getElementById('lesson-title').textContent = lesson.title;
 
   updateLessonProgressBar(chapter);
@@ -220,7 +278,35 @@ function initLessonPage() {
   renderLessonTheory(lesson);
   toggleAnimationPanel(lesson);
   initQuiz(lesson);
+  initQuizGate(lesson);
   initLessonCompletion(chapter, lesson);
+}
+
+/** Keeps the quiz hidden until the reader continues past the introduction
+ *  (theory + animation panels are hidden at that point, not just scrolled
+ *  past), so the quiz is never a scroll away from the answer text. Test
+ *  lessons have no introduction to gate behind, so their quiz is shown
+ *  immediately. */
+function initQuizGate(lesson) {
+  const quizPanel = document.getElementById('quiz-panel');
+  if (!quizPanel) return;
+
+  if (lesson.isTest) {
+    quizPanel.hidden = false;
+    return;
+  }
+
+  const continueBtn = document.getElementById('continue-to-quiz-btn');
+  if (!continueBtn) return;
+
+  continueBtn.addEventListener('click', () => {
+    const theoryPanel = document.getElementById('theory-panel');
+    const animationPanel = document.getElementById('animation-panel');
+    if (theoryPanel) theoryPanel.hidden = true;
+    if (animationPanel) animationPanel.hidden = true;
+    quizPanel.hidden = false;
+    quizPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 }
 
 /** Fills the "Introduction" panel from lesson.theory / lesson.keyTakeaway.
@@ -410,13 +496,14 @@ function initLessonCompletion(chapter, lesson) {
     const isLastInChapter = lesson.id >= chapter.lessons.length;
     const nextChapter = isLastInChapter ? getChapter(chapter.id + 1) : chapter;
     const nextLessonId = isLastInChapter ? 1 : lesson.id + 1;
+    const nextIsTest = !isLastInChapter && chapter.lessons.find((l) => l.id === nextLessonId)?.isTest;
 
     if (isLastInChapter && !nextChapter) {
       nextLessonBtn.textContent = 'Back to chapters';
       nextLessonBtn.href = 'learn.html';
     } else {
       nextLessonBtn.href = `lesson.html?chapter=${nextChapter.id}&lesson=${nextLessonId}`;
-      nextLessonBtn.textContent = isLastInChapter ? 'Next chapter' : 'Next lesson';
+      nextLessonBtn.textContent = isLastInChapter ? 'Next chapter' : nextIsTest ? 'Take the chapter test' : 'Next lesson';
     }
   }
 }

@@ -57,7 +57,6 @@ const ProgressStore = (() => {
       lastActiveDate: todayISO(),
       username: 'User',
       theme: 'light',
-      seeded: false,
     };
   }
 
@@ -151,18 +150,6 @@ const ProgressStore = (() => {
     setTheme(theme) {
       const state = load();
       state.theme = theme === 'dark' ? 'dark' : 'light';
-      save(state);
-    },
-
-    /** First-run sample-progress flag. Lives here so nothing outside this
-     *  module has to touch localStorage directly. */
-    isSeeded() {
-      return Boolean(load().seeded);
-    },
-
-    markSeeded() {
-      const state = load();
-      state.seeded = true;
       save(state);
     },
 

@@ -69,6 +69,9 @@
             <p>This is where the educational content for this lesson will go — rules, a description of an on-court situation, or tactical context. At this stage of the project, placeholder text is displayed.</p>
           </div>
           <div id="takeaway-content"></div>
+          <div class="lesson-actions" style="margin-bottom: 0;">
+            <button class="btn btn--primary" id="continue-to-quiz-btn" type="button">Continue to quiz</button>
+          </div>
         </section>
 
         <!-- ANIMATION (hidden by js/lessons.js for lessons without a visualization) -->
@@ -93,8 +96,10 @@
           <p class="explainer-box" style="margin-top: var(--sp-3);">Space for a later explanation of what is shown in the visualization above — step by step, in simple terms.</p>
         </section>
 
-        <!-- QUIZ (filled by js/lessons.js) -->
-        <section class="lesson-panel">
+        <!-- QUIZ (filled by js/lessons.js) — stays hidden until the reader
+             continues past the introduction, so it's never just a scroll
+             away from the answer text. -->
+        <section class="lesson-panel" id="quiz-panel" hidden>
           <h2>Test yourself</h2>
           <div id="quiz-root"></div>
         </section>

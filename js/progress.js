@@ -2,27 +2,11 @@
  * progress.js
  * ---------------------------------------------------------------------------
  * Populates dashboard.html and profile.html from ProgressStore + CHAPTERS.
- * Sample/placeholder numbers only appear when the user has no saved
- * progress yet (see ensureSampleProgress).
  */
-
-/** First-run only: seeds a small amount of sample progress so the dashboard
- *  isn't completely empty on a fresh visit. Never overwrites real progress. */
-function ensureSampleProgress() {
-  const state = ProgressStore.getState();
-  if (ProgressStore.isSeeded() || state.completedLessons.length > 0) return;
-
-  ProgressStore.markLessonComplete(1, 1);
-  ProgressStore.markLessonComplete(1, 2);
-  ProgressStore.markLessonComplete(1, 3);
-  ProgressStore.markSeeded();
-}
 
 function renderDashboard() {
   const root = document.getElementById('dashboard-root');
   if (!root) return;
-
-  ensureSampleProgress();
 
   const state = ProgressStore.getState();
   const overallPct = ProgressStore.getOverallPercent();
@@ -108,7 +92,6 @@ function initProfilePage() {
   const root = document.getElementById('profile-root');
   if (!root) return;
 
-  ensureSampleProgress();
   renderProfile();
 
   const nameInput = document.getElementById('username-input');
