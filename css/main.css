@@ -18,6 +18,10 @@
   --color-green-dim: #DCEAE1;  /* completed surface on light bg */
   --color-grey: #8A8F98;       /* locked / muted */
   --color-grey-light: #C8C5BC; /* borders on light bg */
+  --color-chrome-text: #EFEEEA; /* fixed light text for permanently-dark chrome
+                                    (navbar, hero, footer, etc.) — intentionally
+                                    NOT redefined in the dark theme below, since
+                                    those surfaces stay dark in both themes. */
 
   /* ---- Type ---- */
   --font-display: 'Big Shoulders', sans-serif;
@@ -69,8 +73,8 @@
 :root[data-theme="dark"] h3,
 :root[data-theme="dark"] h4 { color: #F5F4EF; }
 :root[data-theme="dark"] .lede,
-:root[data-theme="dark"] .step p,
-:root[data-theme="dark"] .feature-card p,
+:root[data-theme="dark"] .plan-step__body p,
+:root[data-theme="dark"] .bento-card p,
 :root[data-theme="dark"] .chapter-card__meta { color: #B7BAC4; }
 
 /* ---- Reset ---- */
@@ -158,7 +162,7 @@ p { max-width: 62ch; }
 }
 
 .text-muted { color: var(--color-grey); }
-.text-on-dark { color: var(--color-chalk); }
+.text-on-dark { color: var(--color-chrome-text); }
 .text-on-dark .lede,
 .text-on-dark p { color: rgba(239, 238, 234, 0.78); }
 
