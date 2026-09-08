@@ -619,6 +619,29 @@
 .quiz-option.is-correct .quiz-option__letter { border-color: var(--color-green); background: var(--color-green); color: #fff; }
 .quiz-option.is-incorrect { border-color: #C4483A; background: #F7E2DE; }
 
+.quiz-progress {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-100);
+  color: var(--color-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--sp-3);
+}
+.quiz-explanation {
+  font-size: var(--fs-100);
+  color: var(--color-court);
+  padding: var(--sp-2) var(--sp-5) 0;
+  margin-top: calc(-1 * var(--sp-2));
+  margin-bottom: var(--sp-2);
+}
+.quiz-score {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-400);
+  color: var(--color-ink);
+}
+
 /* ---- Lesson complete screen ---- */
 .complete-screen {
   text-align: left;

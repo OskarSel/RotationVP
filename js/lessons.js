@@ -217,8 +217,163 @@ function initLessonPage() {
   const backLink = document.getElementById('back-to-chapter');
   if (backLink) backLink.href = `chapter.html?chapter=${chapter.id}`;
 
-  initQuizDemo();
+  renderLessonTheory(lesson);
+  toggleAnimationPanel(lesson);
+  initQuiz(lesson);
   initLessonCompletion(chapter, lesson);
+}
+
+/** Fills the "Introduction" panel from lesson.theory / lesson.keyTakeaway.
+ *  Chapters without written content (theory: undefined) keep the existing
+ *  placeholder markup already in lesson.html untouched. Test lessons (no
+ *  theory at all) hide the panel entirely. */
+function renderLessonTheory(lesson) {
+  const panel = document.getElementById('theory-panel');
+  const contentEl = document.getElementById('theory-content');
+  const takeawayEl = document.getElementById('takeaway-content');
+  if (!panel || !contentEl) return;
+
+  if (lesson.isTest) {
+    panel.hidden = true;
+    return;
+  }
+  panel.hidden = false;
+
+  if (Array.isArray(lesson.theory) && lesson.theory.length) {
+    contentEl.innerHTML = lesson.theory.map((p) => `<p>${p}</p>`).join('');
+  }
+
+  if (takeawayEl) {
+    takeawayEl.innerHTML = lesson.keyTakeaway
+      ? `<h3 style="margin-top: var(--sp-7); font-size: var(--fs-400);">Key takeaway</h3><p class="explainer-box" style="margin-top: var(--sp-3);">${lesson.keyTakeaway}</p>`
+      : '';
+  }
+}
+
+/** Shows/hides the "Visualization" panel. Defaults to shown (matches the
+ *  existing placeholder behavior) unless a lesson explicitly opts out via
+ *  showAnimation: false. */
+function toggleAnimationPanel(lesson) {
+  const panel = document.getElementById('animation-panel');
+  if (!panel) return;
+  panel.hidden = lesson.showAnimation === false;
+}
+
+/** Placeholder quiz used for any lesson without written quiz content yet
+ *  (Chapters 2–8) — identical text/behavior to the original static demo. */
+const PLACEHOLDER_QUIZ = [
+  {
+    question: 'This is an example placeholder question for this lesson?',
+    answers: [
+      { text: 'Example answer A', correct: false },
+      { text: 'Example answer B', correct: true },
+      { text: 'Example answer C', correct: false },
+      { text: 'Example answer D', correct: false },
+    ],
+  },
+];
+
+/** Renders a (possibly multi-question) quiz from lesson.quiz into #quiz-root,
+ *  one question at a time, with per-answer explanations and a running score. */
+function initQuiz(lesson) {
+  const root = document.getElementById('quiz-root');
+  if (!root) return;
+
+  const questions = Array.isArray(lesson.quiz) && lesson.quiz.length ? lesson.quiz : PLACEHOLDER_QUIZ;
+  const isMulti = questions.length > 1;
+  let index = 0;
+  let score = 0;
+
+  renderQuestion();
+
+  function renderQuestion() {
+    const q = questions[index];
+    const letters = ['A', 'B', 'C', 'D'];
+    let checked = false;
+    let selected = null;
+
+    root.innerHTML = `
+      ${isMulti ? `<p class="quiz-progress">Question ${index + 1} of ${questions.length}</p>` : ''}
+      <p class="quiz-question">${q.question}</p>
+      <div class="quiz-options" role="group" aria-label="Answer choices">
+        ${q.answers
+          .map(
+            (a, i) => `
+          <button class="quiz-option" type="button" data-index="${i}" data-correct="${a.correct}" aria-pressed="false">
+            <span class="quiz-option__letter" aria-hidden="true">${letters[i]}</span>
+            <span>${a.text}</span>
+          </button>`
+          )
+          .join('')}
+      </div>
+      <p class="quiz-feedback" role="status" style="margin-bottom: var(--sp-5); font-weight: 600;" hidden></p>
+      <button class="btn btn--dark quiz-check-btn" type="button" disabled>Check</button>
+    `;
+
+    const options = root.querySelectorAll('.quiz-option');
+    const checkBtn = root.querySelector('.quiz-check-btn');
+    const feedback = root.querySelector('.quiz-feedback');
+
+    options.forEach((opt) => {
+      opt.addEventListener('click', () => {
+        if (checked) return;
+        options.forEach((o) => o.setAttribute('aria-pressed', 'false'));
+        opt.setAttribute('aria-pressed', 'true');
+        selected = opt;
+        checkBtn.disabled = false;
+      });
+    });
+
+    checkBtn.addEventListener('click', () => {
+      if (!checked) {
+        if (!selected) return;
+        checked = true;
+
+        const isCorrect = selected.dataset.correct === 'true';
+        if (isCorrect) score++;
+
+        const hasExplanations = q.answers.some((a) => a.explanation);
+
+        options.forEach((o) => {
+          const a = q.answers[Number(o.dataset.index)];
+          if (a.correct) o.classList.add('is-correct');
+          else if (o === selected) o.classList.add('is-incorrect');
+
+          if (hasExplanations && a.explanation) {
+            const expl = document.createElement('p');
+            expl.className = 'quiz-explanation';
+            expl.textContent = a.explanation;
+            o.insertAdjacentElement('afterend', expl);
+          }
+        });
+
+        if (!hasExplanations) {
+          feedback.textContent = isCorrect
+            ? 'Correct! That is the right answer (example content).'
+            : 'Not quite — check the highlighted correct answer (example content).';
+          feedback.hidden = false;
+        }
+
+        if (isMulti) {
+          const isLast = index >= questions.length - 1;
+          checkBtn.textContent = isLast ? 'See results' : 'Next question';
+        } else {
+          checkBtn.disabled = true;
+        }
+      } else {
+        index++;
+        if (index >= questions.length) {
+          renderSummary();
+        } else {
+          renderQuestion();
+        }
+      }
+    });
+  }
+
+  function renderSummary() {
+    root.innerHTML = `<p class="quiz-score">You scored ${score} / ${questions.length} on this ${lesson.isTest ? 'chapter test' : 'lesson'}.</p>`;
+  }
 }
 
 /** Chapter completion shown in the lesson header — actual completed lessons,
@@ -230,41 +385,6 @@ function updateLessonProgressBar(chapter) {
   const label = document.getElementById('lesson-progress-pct');
   if (fill) fill.style.width = `${pct}%`;
   if (label) label.textContent = `${pct}%`;
-}
-
-/** Lightweight demo interaction for the placeholder quiz block. */
-function initQuizDemo() {
-  const options = document.querySelectorAll('.quiz-option');
-  const checkBtn = document.getElementById('quiz-check');
-  const feedback = document.getElementById('quiz-feedback');
-  if (!options.length || !checkBtn) return;
-
-  let selected = null;
-
-  options.forEach((opt) => {
-    opt.addEventListener('click', () => {
-      options.forEach((o) => o.setAttribute('aria-pressed', 'false'));
-      opt.setAttribute('aria-pressed', 'true');
-      selected = opt;
-      checkBtn.disabled = false;
-      feedback.textContent = '';
-      options.forEach((o) => o.classList.remove('is-correct', 'is-incorrect'));
-    });
-  });
-
-  checkBtn.addEventListener('click', () => {
-    if (!selected) return;
-    const isCorrect = selected.dataset.correct === 'true';
-    selected.classList.add(isCorrect ? 'is-correct' : 'is-incorrect');
-    if (!isCorrect) {
-      const correctOpt = Array.from(options).find((o) => o.dataset.correct === 'true');
-      if (correctOpt) correctOpt.classList.add('is-correct');
-    }
-    feedback.textContent = isCorrect
-      ? 'Correct! That is the right answer (example content).'
-      : 'Not quite — check the highlighted correct answer (example content).';
-    feedback.hidden = false;
-  });
 }
 
 /** Wires the "Next" → completion screen → "Next lesson" flow. */
