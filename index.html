@@ -47,10 +47,12 @@
     <section class="hero">
       <div class="hero__court" aria-hidden="true">
         <svg viewBox="0 0 900 700" preserveAspectRatio="xMaxYMid slice" class="court-line-draw">
-          <path d="M900 40 L900 660 L520 660 L520 40 Z" stroke="rgba(232,163,61,0.35)" stroke-width="2" fill="none"/>
-          <path d="M700 40 L700 660" stroke="rgba(239,238,234,0.18)" stroke-width="2" fill="none"/>
-          <path d="M620 40 L620 660 M780 40 L780 660" stroke="rgba(239,238,234,0.1)" stroke-width="1.5" fill="none"/>
-          <circle cx="700" cy="350" r="7" fill="#E8A33D"/>
+          <path d="M900 60 L900 640 L480 640 L480 60 Z" stroke="rgba(232,163,61,0.45)" stroke-width="2.5" fill="none"/>
+          <path d="M690 60 L690 640" stroke="rgba(232,163,61,0.28)" stroke-width="2" fill="none"/>
+          <path d="M900 350 L480 350" stroke="rgba(239,238,234,0.14)" stroke-width="1.5" fill="none"/>
+          <path d="M480 640 L690 350" stroke="rgba(239,238,234,0.16)" stroke-width="1.5" fill="none"/>
+          <circle cx="690" cy="350" r="9" fill="#E8A33D"/>
+          <circle cx="480" cy="640" r="4" fill="rgba(232,163,61,0.5)"/>
         </svg>
       </div>
       <div class="wrap hero__inner">
@@ -87,24 +89,24 @@
           <p class="eyebrow">How it works</p>
           <h2>Three steps to understand the game</h2>
         </div>
-        <div class="steps">
-          <div class="step">
-            <span class="step__num" aria-hidden="true">01</span>
-            <div>
+        <div class="plan">
+          <div class="plan-step">
+            <span class="plan-step__index" aria-hidden="true">01</span>
+            <div class="plan-step__body">
               <h3>Choose a chapter</h3>
               <p>The material is divided into chapters arranged in a logical order — from the basics to tactics.</p>
             </div>
           </div>
-          <div class="step">
-            <span class="step__num" aria-hidden="true">02</span>
-            <div>
+          <div class="plan-step plan-step--accent">
+            <span class="plan-step__index" aria-hidden="true">02</span>
+            <div class="plan-step__body">
               <h3>Complete the lessons</h3>
               <p>Each lesson combines a short explanation, a visualization and a question that checks your understanding.</p>
             </div>
           </div>
-          <div class="step">
-            <span class="step__num" aria-hidden="true">03</span>
-            <div>
+          <div class="plan-step">
+            <span class="plan-step__index" aria-hidden="true">03</span>
+            <div class="plan-step__body">
               <h3>Track your progress</h3>
               <p>Earn XP, build a learning streak and return where you left off.</p>
             </div>
@@ -122,43 +124,43 @@
           <p class="eyebrow">Platform features</p>
           <h2>Built to make learning stick</h2>
         </div>
-        <div class="feature-grid">
-          <article class="feature-card">
+        <div class="bento-grid">
+          <article class="bento-card bento-card--dark bento-card--a">
             <div class="feature-card__icon">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </div>
             <h3>Lesson path</h3>
             <p>Structured chapters and lessons guide you step by step, so you always know what comes next.</p>
           </article>
-          <article class="feature-card">
+          <article class="bento-card bento-card--b">
             <div class="feature-card__icon">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M4 10h16" stroke="currentColor" stroke-width="2"/></svg>
             </div>
             <h3>Visualizations</h3>
             <p>Space for future 2D and 3D animations showing rotations and positioning on the court.</p>
           </article>
-          <article class="feature-card">
+          <article class="bento-card bento-card--c">
             <div class="feature-card__icon">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
             </div>
             <h3>Short quizzes</h3>
             <p>After each lesson, check your understanding with one quick question.</p>
           </article>
-          <article class="feature-card">
+          <article class="bento-card bento-card--wide bento-card--d">
             <div class="feature-card__icon">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/></svg>
             </div>
             <h3>Progress system</h3>
             <p>XP, levels and a learning streak show how much you have learned and how much remains.</p>
           </article>
-          <article class="feature-card">
+          <article class="bento-card bento-card--wide bento-card--e">
             <div class="feature-card__icon">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M3 9h18" stroke="currentColor" stroke-width="2"/></svg>
             </div>
             <h3>Works everywhere</h3>
             <p>Phone, tablet or computer — the interface adapts to the screen you are learning on.</p>
           </article>
-          <article class="feature-card">
+          <article class="bento-card bento-card--f">
             <div class="feature-card__icon">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
             </div>
@@ -176,30 +178,30 @@
           <p class="eyebrow">Learning path</p>
           <h2>Eight chapters, one game</h2>
         </div>
-        <div class="path-preview" role="list" aria-label="Course chapter preview">
-          <div class="path-chip" role="listitem">
-            <div class="path-chip__num">01</div>
-            <div class="path-chip__title">Chapter 1</div>
+        <div class="track" role="list" aria-label="Course chapter preview">
+          <div class="track-node track-node--lg" role="listitem">
+            <span class="track-node__num">01</span>
+            <span class="track-node__title">Volleyball Basics</span>
           </div>
-          <div class="path-chip" role="listitem">
-            <div class="path-chip__num">02</div>
-            <div class="path-chip__title">Chapter 2</div>
+          <div class="track-node track-node--md" role="listitem">
+            <span class="track-node__num">02</span>
+            <span class="track-node__title">Chapter 2</span>
           </div>
-          <div class="path-chip" role="listitem">
-            <div class="path-chip__num">03</div>
-            <div class="path-chip__title">Chapter 3</div>
+          <div class="track-node track-node--md" role="listitem">
+            <span class="track-node__num">03</span>
+            <span class="track-node__title">Chapter 3</span>
           </div>
-          <div class="path-chip path-chip--locked" role="listitem">
-            <div class="path-chip__num">04</div>
-            <div class="path-chip__title">Chapter 4</div>
+          <div class="track-node track-node--sm track-node--locked" role="listitem">
+            <span class="track-node__num">04</span>
+            <span class="track-node__title">Chapter 4</span>
           </div>
-          <div class="path-chip path-chip--locked" role="listitem">
-            <div class="path-chip__num">05</div>
-            <div class="path-chip__title">Chapter 5</div>
+          <div class="track-node track-node--sm track-node--locked" role="listitem">
+            <span class="track-node__num">05</span>
+            <span class="track-node__title">Chapter 5</span>
           </div>
-          <div class="path-chip path-chip--locked" role="listitem">
-            <div class="path-chip__num">06</div>
-            <div class="path-chip__title">Chapter 6</div>
+          <div class="track-node track-node--sm track-node--locked" role="listitem">
+            <span class="track-node__num">06</span>
+            <span class="track-node__title">Chapter 6</span>
           </div>
         </div>
         <p style="margin-top: var(--sp-5)"><a class="back-link" href="learn.html">View all chapters
@@ -212,11 +214,17 @@
     <section class="section">
       <div class="wrap">
         <div class="cta-band">
-          <div>
+          <svg class="cta-band__court" viewBox="0 0 300 300" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">
+            <rect x="150" y="20" width="130" height="260" fill="rgba(232,163,61,0.06)" stroke="rgba(232,163,61,0.55)" stroke-width="2.5"/>
+            <path d="M215 20 L215 280" stroke="rgba(232,163,61,0.4)" stroke-width="2" fill="none"/>
+            <circle cx="215" cy="150" r="8" fill="var(--color-gold)"/>
+          </svg>
+          <div class="cta-band__copy text-on-dark">
+            <p class="eyebrow">Ready when you are</p>
             <h2>Ready for your first serve?</h2>
-            <p style="color: rgba(20,33,61,0.75); margin-top: var(--sp-2);">Your first lesson takes less than 6 minutes — no account required.</p>
+            <p class="lede" style="margin-top: var(--sp-2);">Your first lesson takes less than 6 minutes — no account required.</p>
           </div>
-          <a href="learn.html" class="btn btn--dark">Start learning</a>
+          <a href="learn.html" class="btn btn--primary cta-band__btn">Start learning</a>
         </div>
       </div>
     </section>
