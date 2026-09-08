@@ -92,6 +92,7 @@
   .bento-card--d { grid-area: d; }
   .bento-card--e { grid-area: e; }
   .chapter-grid { grid-template-columns: repeat(3, 1fr); }
+  #chapter-grid .chapter-card:first-child { grid-column: span 2; }
   .footer-grid { grid-template-columns: repeat(4, 1fr); }
   .stat-grid { grid-template-columns: repeat(4, 1fr); }
   .achievement-grid { grid-template-columns: repeat(6, 1fr); }

@@ -746,9 +746,14 @@
   font-variant-numeric: tabular-nums;
 }
 .stat-tile__value small { font-family: var(--font-body); font-weight: 500; font-size: var(--fs-300); color: var(--color-grey); }
-.stat-tile--accent { background: var(--color-court); border-color: var(--color-court); }
+.stat-tile--accent {
+  background: var(--color-court);
+  border-color: var(--color-court);
+  grid-column: 1 / -1;
+  padding: var(--sp-6);
+}
 .stat-tile--accent .stat-tile__label { color: rgba(239, 238, 234, 0.6); }
-.stat-tile--accent .stat-tile__value { color: var(--color-gold); }
+.stat-tile--accent .stat-tile__value { color: var(--color-gold); font-size: var(--fs-700); }
 
 .continue-panel {
   display: flex;
