@@ -10,8 +10,15 @@
 /* Unlock rules                                                           */
 /* ---------------------------------------------------------------------- */
 
+/** DEV-ONLY SWITCH: while true, every chapter and lesson is playable
+ *  regardless of saved progress, so new content can be previewed/tested
+ *  without grinding through everything before it in order. Set back to
+ *  false to restore normal progressive locking once the course is done. */
+const DEV_UNLOCK_ALL = true;
+
 /** A chapter is unlocked if it's the first one, or the previous one is fully complete. */
 function isChapterUnlocked(chapterId) {
+  if (DEV_UNLOCK_ALL) return true;
   if (Number(chapterId) === 1) return true;
   const prev = getChapter(Number(chapterId) - 1);
   if (!prev) return true;
@@ -41,6 +48,7 @@ function firstIncompleteLessonIndex(chapterId) {
 function getLessonStatus(chapterId, lessonId) {
   if (!isChapterUnlocked(chapterId)) return 'locked';
   if (ProgressStore.isLessonComplete(chapterId, lessonId)) return 'completed';
+  if (DEV_UNLOCK_ALL) return 'available';
 
   const frontier = firstIncompleteLessonIndex(chapterId);
   const chapter = getChapter(chapterId);
