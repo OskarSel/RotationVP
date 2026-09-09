@@ -277,6 +277,7 @@ function initLessonPage() {
 
   renderLessonTheory(lesson);
   toggleAnimationPanel(lesson);
+  renderCourtAnimation(lesson);
   initQuiz(lesson);
   initQuizGate(lesson);
   initLessonCompletion(chapter, lesson);

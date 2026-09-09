@@ -636,6 +636,40 @@
   border-radius: var(--radius-full);
 }
 .media-controls__time { font-size: var(--fs-100); color: rgba(239, 238, 234, 0.7); font-variant-numeric: tabular-nums; }
+.media-controls__voice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-100);
+  color: rgba(239, 238, 234, 0.7);
+  cursor: pointer;
+  white-space: nowrap;
+  margin-left: auto;
+}
+.media-controls__voice input { width: 16px; height: 16px; accent-color: var(--color-gold); }
+
+/* ---- Court diagram (real lesson animations) ---- */
+.court-svg { width: 100%; height: 100%; }
+.court-outline { fill: none; stroke: rgba(239, 238, 234, 0.3); stroke-width: 1; }
+.court-net { stroke: var(--color-gold); stroke-width: 1.6; }
+.court-attack-line { stroke: rgba(239, 238, 234, 0.25); stroke-width: 0.6; stroke-dasharray: 2 2; }
+.court-guide { stroke: rgba(232, 163, 61, 0.45); stroke-width: 0.6; stroke-dasharray: 1.5 1.5; fill: none; }
+.court-guide--ball { stroke: rgba(239, 238, 234, 0.35); }
+#court-arrowhead path { fill: rgba(232, 163, 61, 0.6); }
+.court-dot { transition: transform 1.6s var(--ease); }
+.court-dot circle { fill: rgba(239, 238, 234, 0.18); }
+.court-dot text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 3.6px;
+  fill: rgba(239, 238, 234, 0.75);
+  text-anchor: middle;
+  pointer-events: none;
+}
+.court-dot--active circle { fill: var(--color-gold); }
+.court-dot--active text { fill: var(--color-feedback-ink); font-size: 4.2px; }
+.court-ball { transition: transform 1.6s var(--ease); }
+.court-ball circle { fill: #fff; }
 
 .explainer-box {
   border-left: 3px solid var(--color-gold);
