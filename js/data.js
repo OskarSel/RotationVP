@@ -1890,7 +1890,7 @@ const CHAPTER_2_LESSONS = [
       activeZones: [1],
       labels: { 1: "SV" },
       motions: { 1: { dx: 0, dy: 2 } },
-      ball: { path: [{ x: 82, y: 70 }, { x: 38, y: 4 }, { x: 20, y: -12 }] },
+      ball: { path: [{ x: 82, y: 70 }, { x: 20, y: -14 }] },
     },
     quiz: [
       {
