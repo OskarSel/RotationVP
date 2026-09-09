@@ -23,6 +23,10 @@ const COURT_ZONES = {
   1: { x: 82, y: 76 },
 };
 
+const DOT_LEG_MS = 1900;
+const BALL_LEG_MS = 1300;
+const BALL_LEG_GAP_MS = 200;
+
 /** True if the browser can speak text out loud. */
 function canNarrate() {
   return typeof window !== 'undefined' && 'speechSynthesis' in window;
@@ -69,24 +73,26 @@ function renderCourtAnimation(lesson) {
     }
 
     dots += `
-      <g class="court-dot${isActive ? ' court-dot--active' : ''}" data-zone="${zone}" style="transform: translate(0px,0px);" data-dx="${motion ? motion.dx : 0}" data-dy="${motion ? motion.dy : 0}">
+      <g class="court-dot${isActive ? ' court-dot--active' : ''}" data-zone="${zone}" style="transform: translate(0px,0px); transition-duration: ${DOT_LEG_MS}ms;" data-dx="${motion ? motion.dx : 0}" data-dy="${motion ? motion.dy : 0}">
         <circle cx="${pos.x}" cy="${pos.y}" r="${isActive ? 7 : 4.5}"/>
         <text x="${pos.x}" y="${pos.y}" dy="0.35em">${label}</text>
       </g>`;
   });
 
+  // Ball path: an array of 2+ waypoints, e.g. pass -> set -> attack away.
+  // Stored on the element as JSON so the click handler can step through it.
   let ballGuide = '';
   let ballDot = '';
-  if (scene.ball) {
-    const { from, to } = scene.ball;
-    const dx = to.x - from.x;
-    const dy = to.y - from.y;
-    ballGuide = `<line class="court-guide court-guide--ball" x1="${from.x}" y1="${from.y}" x2="${to.x}" y2="${to.y}" marker-end="url(#court-arrowhead)"/>`;
-    ballDot = `<g class="court-ball" style="transform: translate(0px,0px);" data-dx="${dx}" data-dy="${dy}"><circle cx="${from.x}" cy="${from.y}" r="2.6"/></g>`;
+  const ballPath = scene.ball && scene.ball.path;
+  if (ballPath && ballPath.length > 1) {
+    const start = ballPath[0];
+    const points = ballPath.map((p) => `${p.x},${p.y}`).join(' ');
+    ballGuide = `<polyline class="court-guide court-guide--ball" points="${points}" marker-end="url(#court-arrowhead)"/>`;
+    ballDot = `<g class="court-ball" style="transform: translate(0px,0px);" data-path='${JSON.stringify(ballPath)}'><circle cx="${start.x}" cy="${start.y}" r="2.6"/></g>`;
   }
 
   stage.innerHTML = `
-    <svg class="court-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Top-down diagram of a volleyball court half showing player positions">
+    <svg class="court-svg" viewBox="0 -14 100 114" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Top-down diagram of a volleyball court half showing player positions">
       <defs>
         <marker id="court-arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 Z"/>
@@ -122,36 +128,78 @@ function renderCourtAnimation(lesson) {
   }
   const voiceCheckbox = voiceToggle ? voiceToggle.querySelector('input') : null;
 
+  /** Steps a ball <g> through its waypoint path one leg at a time. */
+  function animateBall(ballEl) {
+    const path = JSON.parse(ballEl.dataset.path);
+    const start = path[0];
+    let i = 1;
+
+    ballEl.style.transitionDuration = `${BALL_LEG_MS}ms`;
+
+    function nextLeg() {
+      if (i >= path.length) return;
+      const point = path[i];
+      const dx = point.x - start.x;
+      const dy = point.y - start.y;
+      i += 1;
+      setTimeout(() => {
+        ballEl.style.transform = `translate(${dx}px, ${dy}px)`;
+      }, i === 2 ? 0 : BALL_LEG_GAP_MS);
+    }
+
+    ballEl.addEventListener('transitionend', () => {
+      if (i < path.length) setTimeout(nextLeg, BALL_LEG_GAP_MS);
+    });
+
+    nextLeg();
+  }
+
   let played = false;
   if (playBtn) {
     playBtn.addEventListener('click', () => {
-      const movers = stage.querySelectorAll('.court-dot, .court-ball');
+      const dotMovers = stage.querySelectorAll('.court-dot');
+      const ballEl = stage.querySelector('.court-ball');
 
       if (played) {
         // Reset instantly (no transition), then replay on the next frame.
-        movers.forEach((el) => {
+        const all = [...dotMovers, ...(ballEl ? [ballEl] : [])];
+        all.forEach((el) => {
           el.style.transition = 'none';
           el.style.transform = 'translate(0px,0px)';
         });
         // Force reflow so the reset actually applies before re-animating.
         // eslint-disable-next-line no-unused-expressions
         stage.offsetHeight;
-        movers.forEach((el) => { el.style.transition = ''; });
+        all.forEach((el) => { el.style.transition = ''; });
       }
-
-      requestAnimationFrame(() => {
-        movers.forEach((el) => {
-          const dx = Number(el.dataset.dx) || 0;
-          const dy = Number(el.dataset.dy) || 0;
-          el.style.transform = `translate(${dx}px, ${dy}px)`;
-        });
-      });
-
-      played = true;
 
       if (voiceCheckbox && voiceCheckbox.checked) {
+        // Kick off narration a beat ahead of the visual motion — speech
+        // synthesis has its own startup latency, so this keeps the two
+        // feeling roughly in sync instead of the voice trailing behind.
         speak(scene.caption);
+        setTimeout(() => {
+          requestAnimationFrame(() => {
+            dotMovers.forEach((el) => {
+              const dx = Number(el.dataset.dx) || 0;
+              const dy = Number(el.dataset.dy) || 0;
+              el.style.transform = `translate(${dx}px, ${dy}px)`;
+            });
+            if (ballEl) animateBall(ballEl);
+          });
+        }, 220);
+      } else {
+        requestAnimationFrame(() => {
+          dotMovers.forEach((el) => {
+            const dx = Number(el.dataset.dx) || 0;
+            const dy = Number(el.dataset.dy) || 0;
+            el.style.transform = `translate(${dx}px, ${dy}px)`;
+          });
+          if (ballEl) animateBall(ballEl);
+        });
       }
+
+      played = true;
     });
   }
 }

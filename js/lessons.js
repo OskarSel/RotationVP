@@ -399,6 +399,8 @@ function initQuiz(lesson) {
   function setNextEnabled(enabled) {
     const nextBtn = document.getElementById('lesson-next');
     if (nextBtn) nextBtn.disabled = !enabled;
+    const hint = document.getElementById('lesson-next-hint');
+    if (hint) hint.hidden = enabled;
   }
 
   function renderQuestion() {

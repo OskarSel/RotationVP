@@ -1316,11 +1316,11 @@ const CHAPTER_2_LESSONS = [
     showAnimation: true,
     isTest: false,
     animation: {
-      caption: "The Outside Hitter (OH), lined up in Zone 4, attacks a set delivered from the setter near the net, approaching and jumping close to the left antenna.",
+      caption: "The setter delivers the ball to the Outside Hitter (OH) near the left antenna, who approaches, jumps, and attacks it back over the net.",
       activeZones: [4],
       labels: { 4: "OH" },
       motions: { 4: { dx: 0, dy: -16 } },
-      ball: { from: { x: 50, y: 24 }, to: { x: 18, y: 8 } },
+      ball: { path: [{ x: 50, y: 24 }, { x: 18, y: 8 }, { x: 30, y: -10 }] },
     },
     quiz: [
       {
@@ -1430,11 +1430,11 @@ const CHAPTER_2_LESSONS = [
     showAnimation: true,
     isTest: false,
     animation: {
-      caption: "The Opposite Hitter (OP), lined up in Zone 2, mirrors the Outside Hitter on the right side, attacking a set near the right antenna.",
+      caption: "The setter delivers the ball to the Opposite Hitter (OP) near the right antenna, who approaches, jumps, and attacks it back over the net.",
       activeZones: [2],
       labels: { 2: "OP" },
       motions: { 2: { dx: 0, dy: -16 } },
-      ball: { from: { x: 50, y: 24 }, to: { x: 82, y: 8 } },
+      ball: { path: [{ x: 50, y: 24 }, { x: 82, y: 8 }, { x: 70, y: -10 }] },
     },
     quiz: [
       {
@@ -1544,11 +1544,11 @@ const CHAPTER_2_LESSONS = [
     showAnimation: true,
     isTest: false,
     animation: {
-      caption: "The Libero (L), in Zone 6, moves to dig a hard-driven serve arriving from the back corner and controls it into a clean pass.",
+      caption: "The Libero (L), in Zone 6, moves to dig a hard-driven ball arriving over the net, then controls it forward into a clean pass toward the setter.",
       activeZones: [6],
       labels: { 6: "L" },
       motions: { 6: { dx: -8, dy: -4 } },
-      ball: { from: { x: 90, y: 100 }, to: { x: 42, y: 72 } },
+      ball: { path: [{ x: 80, y: -8 }, { x: 42, y: 70 }, { x: 55, y: 38 }] },
     },
     quiz: [
       {
@@ -1658,11 +1658,11 @@ const CHAPTER_2_LESSONS = [
     showAnimation: true,
     isTest: false,
     animation: {
-      caption: "The Setter (S) starts in Zone 1 for serve-receive, then sprints to the net to set the ball that a teammate has passed.",
+      caption: "The Setter (S) starts in Zone 1 for serve-receive, sprints to the net, and sets the passed ball onward to a hitter near the left antenna.",
       activeZones: [1],
       labels: { 1: "S" },
       motions: { 1: { dx: -32, dy: -52 } },
-      ball: { from: { x: 30, y: 85 }, to: { x: 50, y: 24 } },
+      ball: { path: [{ x: 30, y: 85 }, { x: 50, y: 24 }, { x: 18, y: 12 }] },
     },
     quiz: [
       {
@@ -1890,7 +1890,7 @@ const CHAPTER_2_LESSONS = [
       activeZones: [1],
       labels: { 1: "SV" },
       motions: { 1: { dx: 0, dy: 2 } },
-      ball: { from: { x: 82, y: 70 }, to: { x: 38, y: 4 } },
+      ball: { path: [{ x: 82, y: 70 }, { x: 38, y: 4 }, { x: 20, y: -12 }] },
     },
     quiz: [
       {
@@ -2000,11 +2000,11 @@ const CHAPTER_2_LESSONS = [
     showAnimation: true,
     isTest: false,
     animation: {
-      caption: "The Defensive Specialist (DS), in Zone 5, shifts across to dig an angled attack and keep the rally alive.",
+      caption: "The Defensive Specialist (DS), in Zone 5, shifts across to dig an angled attack arriving over the net and keep the rally alive.",
       activeZones: [5],
       labels: { 5: "DS" },
       motions: { 5: { dx: 10, dy: -6 } },
-      ball: { from: { x: 60, y: 100 }, to: { x: 26, y: 70 } },
+      ball: { path: [{ x: 62, y: -8 }, { x: 26, y: 68 }, { x: 45, y: 40 }] },
     },
     quiz: [
       {
@@ -2121,7 +2121,7 @@ const CHAPTER_2_LESSONS = [
         3: { dx: 0, dy: -6 },
         4: { dx: 0, dy: -6 },
       },
-      ball: { from: { x: 50, y: -4 }, to: { x: 50, y: 14 } },
+      ball: { path: [{ x: 50, y: -8 }, { x: 50, y: 14 }, { x: 32, y: -10 }] },
     },
     quiz: [
       {
@@ -2238,7 +2238,7 @@ const CHAPTER_2_LESSONS = [
         6: { dx: 0, dy: 6 },
         5: { dx: 0, dy: 6 },
       },
-      ball: { from: { x: 50, y: -4 }, to: { x: 50, y: 70 } },
+      ball: { path: [{ x: 50, y: -8 }, { x: 50, y: 70 }] },
     },
     quiz: [
       {

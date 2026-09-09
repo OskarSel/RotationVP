@@ -656,7 +656,7 @@
 .court-guide { stroke: rgba(232, 163, 61, 0.45); stroke-width: 0.6; stroke-dasharray: 1.5 1.5; fill: none; }
 .court-guide--ball { stroke: rgba(239, 238, 234, 0.35); }
 #court-arrowhead path { fill: rgba(232, 163, 61, 0.6); }
-.court-dot { transition: transform 1.6s var(--ease); }
+.court-dot { transition: transform 1.9s var(--ease); }
 .court-dot circle { fill: rgba(239, 238, 234, 0.18); }
 .court-dot text {
   font-family: var(--font-display);
@@ -668,7 +668,7 @@
 }
 .court-dot--active circle { fill: var(--color-gold); }
 .court-dot--active text { fill: var(--color-feedback-ink); font-size: 4.2px; }
-.court-ball { transition: transform 1.6s var(--ease); }
+.court-ball { transition: transform 1.3s var(--ease); }
 .court-ball circle { fill: #fff; }
 
 .explainer-box {
