@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     case 'profile':
       initProfilePage();
       break;
+    case 'shop':
+      initShopPage();
+      break;
     default:
       break;
   }

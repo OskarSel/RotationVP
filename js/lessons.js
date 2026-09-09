@@ -534,8 +534,18 @@ function initLessonCompletion(chapter, lesson) {
 
   if (nextBtn && completeScreen && lessonBody) {
     nextBtn.addEventListener('click', () => {
-      const state = ProgressStore.markLessonComplete(chapter.id, lesson.id);
+      const state = ProgressStore.markLessonComplete(chapter.id, lesson.id, lesson.isTest);
       if (xpEarnedEl) xpEarnedEl.textContent = `${state.xp}`;
+
+      const coinsRow = document.getElementById('coins-earned-row');
+      if (coinsRow) {
+        coinsRow.hidden = !lesson.isTest;
+        if (lesson.isTest) {
+          setText('coins-earned', `${state.coins}`);
+          setText('coins-earned-delta', `+${ProgressStore.getCoinsPerTestPass()}`);
+        }
+      }
+
       updateLessonProgressBar(chapter);
       lessonBody.hidden = true;
       completeScreen.hidden = false;

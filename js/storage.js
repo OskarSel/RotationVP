@@ -15,6 +15,7 @@ const ProgressStore = (() => {
 
   const XP_PER_LESSON = 20;
   const XP_PER_LEVEL = 150;
+  const COINS_PER_TEST_PASS = 100;
 
   /** @returns {object} the full progress record, creating a default one if needed. */
   function load() {
@@ -57,7 +58,9 @@ const ProgressStore = (() => {
       lastActiveDate: todayISO(),
       username: 'User',
       theme: 'light',
-      avatar: 'initials', // 'initials' | 'volleyball' | 'spiker' — see AVATAR_DEFS in progress.js
+      avatar: 'initials', // see AVATAR_DEFS in progress.js for every valid id
+      coins: 0,
+      unlockedAvatars: [], // ids of shop-wheel avatars won so far (see WHEEL_PRIZES in shop.js)
     };
   }
 
@@ -89,18 +92,24 @@ const ProgressStore = (() => {
       return load().completedLessons.length;
     },
 
-    /** Marks a lesson complete, awards XP, updates streak + last lesson. Idempotent. */
-    markLessonComplete(chapterId, lessonId) {
+    /** Marks a lesson complete, awards XP (and coins if it's a passed chapter
+     *  test), updates streak + last lesson. Idempotent. */
+    markLessonComplete(chapterId, lessonId, isTest) {
       const state = load();
       const k = key(chapterId, lessonId);
       if (!state.completedLessons.includes(k)) {
         state.completedLessons.push(k);
         state.xp += XP_PER_LESSON;
+        if (isTest) state.coins = (state.coins || 0) + COINS_PER_TEST_PASS;
       }
       state.lastLesson = { chapterId: Number(chapterId), lessonId: Number(lessonId) };
       this._touchStreak(state);
       save(state);
       return state;
+    },
+
+    getCoinsPerTestPass() {
+      return COINS_PER_TEST_PASS;
     },
 
     setLastLesson(chapterId, lessonId) {
@@ -172,6 +181,44 @@ const ProgressStore = (() => {
       const state = load();
       state.avatar = avatarId;
       save(state);
+    },
+
+    getCoins() {
+      return load().coins || 0;
+    },
+
+    addCoins(amount) {
+      const state = load();
+      state.coins = (state.coins || 0) + amount;
+      save(state);
+      return state.coins;
+    },
+
+    /** Spends coins if there are enough; returns false (no-op) otherwise. */
+    spendCoins(amount) {
+      const state = load();
+      if ((state.coins || 0) < amount) return false;
+      state.coins -= amount;
+      save(state);
+      return true;
+    },
+
+    getUnlockedAvatars() {
+      return load().unlockedAvatars.slice();
+    },
+
+    isAvatarUnlocked(avatarId) {
+      return load().unlockedAvatars.includes(avatarId);
+    },
+
+    /** Records a shop-wheel avatar win. Idempotent. */
+    unlockAvatar(avatarId) {
+      const state = load();
+      if (!state.unlockedAvatars.includes(avatarId)) {
+        state.unlockedAvatars.push(avatarId);
+        save(state);
+      }
+      return state;
     },
 
     /** Overall course completion, 0–100 (rounded). */

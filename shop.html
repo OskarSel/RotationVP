@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — Rotation</title>
+  <meta name="description" content="Spend coins earned from chapter tests on the Rotation prize wheel for collectible profile pictures.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="shop">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="navbar">
+    <div class="wrap navbar__inner">
+      <a href="index.html" class="navbar__brand" aria-label="Rotation — home page">
+        <svg class="navbar__brand-mark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+          <circle cx="15" cy="15" r="12.5" stroke="#E8A33D" stroke-width="2"/>
+          <path d="M15 2.5c-5 4-5 21 0 25M4 10.5c5 3 17 3 22 0M4 19.5c5-3 17-3 22 0" stroke="#E8A33D" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        Rotation
+      </a>
+      <button class="navbar__toggle" aria-expanded="false" aria-controls="navbar-links" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__links" id="navbar-links">
+        <li><a href="index.html" data-page="home">Home</a></li>
+        <li><a href="learn.html" data-page="learn">Learn</a></li>
+        <li><a href="dashboard.html" data-page="dashboard">Progress</a></li>
+        <li><a href="shop.html" data-page="shop">Shop</a></li>
+        <li><a href="profile.html" data-page="profile">Profile</a></li>
+        <li class="navbar__link--login"><a href="login.html">Log in</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="dashboard.html" class="btn btn--ghost-light btn--sm">Progress</a>
+        <a href="learn.html" class="btn btn--primary btn--sm">Continue learning</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumbs">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <span aria-current="page">Shop</span>
+      </nav>
+    </div>
+
+    <section class="section section--tight" id="shop-root">
+      <div class="wrap">
+
+        <div class="section-head" style="margin-bottom: var(--sp-2);">
+          <h1 style="font-size: var(--fs-600);">Shop</h1>
+        </div>
+        <p class="text-muted" style="margin-bottom: var(--sp-6); max-width: 56ch;">
+          Pass a chapter test at 70% or higher to earn coins, then spend them here on the prize
+          wheel for collectible profile pictures — five commons, four rares, two epics and one
+          legendary.
+        </p>
+
+        <div class="stat-tile stat-tile--accent" style="margin-bottom: var(--sp-7);">
+          <div class="stat-tile__label">Your balance</div>
+          <div class="stat-tile__value" id="shop-coins">0<small> coins</small></div>
+        </div>
+
+        <div class="wheel-panel">
+          <div class="wheel-wrap">
+            <div class="wheel-pointer" aria-hidden="true"></div>
+            <svg id="wheel-svg" viewBox="0 0 280 280" width="280" height="280" aria-hidden="true"></svg>
+          </div>
+          <div class="wheel-panel__side">
+            <button class="btn btn--primary" id="spin-btn" type="button" disabled>Spin — 100 coins</button>
+            <p class="text-muted" style="font-size: var(--fs-100); margin-top: var(--sp-3);">
+              Odds: 55% common · 35% rare · 9% epic · 1% legendary.
+              Already own the result? You'll get 50 coins back instead.
+            </p>
+            <div class="spin-result" id="spin-result" hidden></div>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top: var(--sp-8); margin-bottom: var(--sp-5);">
+          <h2 style="font-size: var(--fs-500);">Your collection</h2>
+        </div>
+        <p class="text-muted" style="font-size: var(--fs-200); margin-bottom: var(--sp-5);">Tap an unlocked picture to equip it on your profile.</p>
+        <div class="avatar-picker-grid" id="avatar-grid" aria-label="Profile picture options"></div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-bottom">
+      <span>&copy; 2026 Rotation. Educational project.</span>
+      <a href="learn.html">Back to learning</a>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/shop.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

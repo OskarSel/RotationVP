@@ -68,8 +68,20 @@ function isChapterTestPassed(chapterId) {
   return ProgressStore.isLessonComplete(chapterId, test.id);
 }
 
-/** Reward avatars, unlocked by passing a chapter test at 70%+. 'initials' is
- *  always available as the default. */
+/** Turns a raw icon markup string into a face() function producing a sized,
+ *  classed SVG — every avatar icon needs explicit width/height or it can
+ *  collapse to nothing inside the flex-centered avatar circle in real
+ *  browsers (element presence in the DOM is not the same as a visible size). */
+function iconFace(inner, viewBoxSize) {
+  return () => `
+      <svg class="avatar-face-icon" viewBox="0 0 ${viewBoxSize} ${viewBoxSize}" width="${viewBoxSize}" height="${viewBoxSize}" fill="none" aria-hidden="true">
+        ${inner}
+      </svg>`;
+}
+
+/** Reward avatars. 'initials' is always available; 'volleyball' and 'spiker'
+ *  unlock by passing a chapter test at 70%+; everything with a `rarity` is a
+ *  shop-wheel prize unlocked via ProgressStore.unlockAvatar (see shop.js). */
 const AVATAR_DEFS = [
   {
     id: 'initials',
@@ -83,25 +95,140 @@ const AVATAR_DEFS = [
     label: 'Volleyball',
     hint: 'Pass the Chapter 1 test (70%+) to unlock.',
     unlocked: () => isChapterTestPassed(1),
-    face: () => `
-      <svg class="avatar-face-icon" viewBox="0 0 30 30" width="30" height="30" fill="none" aria-hidden="true">
-        <circle cx="15" cy="15" r="12.5" stroke="currentColor" stroke-width="2"/>
-        <path d="M15 2.5c-5 4-5 21 0 25M4 10.5c5 3 17 3 22 0M4 19.5c5-3 17-3 22 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-      </svg>`,
+    face: iconFace(`<circle cx="15" cy="15" r="12.5" stroke="currentColor" stroke-width="2"/>
+        <path d="M15 2.5c-5 4-5 21 0 25M4 10.5c5 3 17 3 22 0M4 19.5c5-3 17-3 22 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>`, 30),
   },
   {
     id: 'spiker',
     label: 'Spiker',
     hint: 'Pass the Chapter 2 test (70%+) to unlock.',
     unlocked: () => isChapterTestPassed(2),
-    face: () => `
-      <svg class="avatar-face-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true">
-        <circle cx="13" cy="3.4" r="1.8" fill="currentColor"/>
+    face: iconFace(`<circle cx="13" cy="3.4" r="1.8" fill="currentColor"/>
         <path d="M13 5.6v6.4M13 8.5l-4 2M13 8.5l5.5-4.5M9 12l-3 7M13 12l3 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="19.5" cy="2.5" r="1.6" stroke="currentColor" stroke-width="1.3"/>
-      </svg>`,
+        <circle cx="19.5" cy="2.5" r="1.6" stroke="currentColor" stroke-width="1.3"/>`, 24),
+  },
+
+  // ---- Shop wheel prizes -------------------------------------------------
+  // Common (55% total, 11% each)
+  {
+    id: 'serve-ace', label: 'Serve Ace', rarity: 'common',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('serve-ace'),
+    face: iconFace(`<circle cx="7" cy="17" r="3.2" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M9.5 14.5L18 6M18 6h-4M18 6v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`, 24),
+  },
+  {
+    id: 'first-dig', label: 'First Dig', rarity: 'common',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('first-dig'),
+    face: iconFace(`<circle cx="12" cy="6" r="2.6" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M6 18l6-6 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`, 24),
+  },
+  {
+    id: 'bump-pass', label: 'Bump Pass', rarity: 'common',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('bump-pass'),
+    face: iconFace(`<circle cx="12" cy="15" r="3" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M12 10.5V4M9 7l3-3 3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`, 24),
+  },
+  {
+    id: 'home-court', label: 'Home Court', rarity: 'common',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('home-court'),
+    face: iconFace(`<rect x="3" y="5" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M12 5v14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M9 12h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>`, 24),
+  },
+  {
+    id: 'kneepads', label: 'Rookie Kneepads', rarity: 'common',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('kneepads'),
+    face: iconFace(`<rect x="4.5" y="6" width="6.5" height="12" rx="3" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="13" y="6" width="6.5" height="12" rx="3" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M4.5 12h6.5M13 12h6.5" stroke="currentColor" stroke-width="1.2"/>`, 24),
+  },
+
+  // Rare (35% total, 8.75% each)
+  {
+    id: 'setters-hands', label: "Setter's Hands", rarity: 'rare',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('setters-hands'),
+    face: iconFace(`<circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M7 15l1.2-2M9.5 15.5l.8-2.3M12 16v-2.4M14.5 15.5l-.8-2.3M17 15l-1.2-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`, 24),
+  },
+  {
+    id: 'ace-streak', label: 'Ace Streak', rarity: 'rare',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('ace-streak'),
+    face: iconFace(`<circle cx="6" cy="18" r="1.8" stroke="currentColor" stroke-width="1.4"/>
+        <circle cx="12" cy="12" r="1.8" stroke="currentColor" stroke-width="1.4"/>
+        <circle cx="18" cy="6" r="1.8" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 16.5l2.5-3M14 10.5l2.5-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>`, 24),
+  },
+  {
+    id: 'libero-dig', label: 'Libero Dig', rarity: 'rare',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('libero-dig'),
+    face: iconFace(`<circle cx="18" cy="5" r="1.7" fill="currentColor"/>
+        <path d="M16.8 6.3L6 11L3 15.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M6 11l3 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="3" cy="15.5" r="1.5" stroke="currentColor" stroke-width="1.3"/>`, 24),
+  },
+  {
+    id: 'match-point', label: 'Match Point', rarity: 'rare',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('match-point'),
+    face: iconFace(`<path d="M6 4v16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M6 4h9l-2.5 3L15 10H6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M17 15l1.2 2.4 2.6.4-1.9 1.8.4 2.6-2.3-1.2-2.3 1.2.4-2.6-1.9-1.8 2.6-.4z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>`, 24),
+  },
+
+  // Epic (9% total, 4.5% each)
+  {
+    id: 'triple-block', label: 'Triple Block', rarity: 'epic',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('triple-block'),
+    face: iconFace(`<path d="M3 20V10M12 20V6M21 20V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M3 10l-1.6 2.6M3 10l1.6 2.6M12 6l-1.7 2.8M12 6l1.7 2.8M21 10l-1.6 2.6M21 10l1.6 2.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M1 20h22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>`, 24),
+  },
+  {
+    id: 'perfect-rotation', label: 'Perfect Rotation', rarity: 'epic',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('perfect-rotation'),
+    face: iconFace(`<path d="M12 4a8 8 0 1 1-6.9 3.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M4.2 5.5l.9 2.4 2.4-.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="4" r="1.3" fill="currentColor"/><circle cx="18" cy="7" r="1.3" fill="currentColor"/>
+        <circle cx="20" cy="13" r="1.3" fill="currentColor"/><circle cx="17" cy="19" r="1.3" fill="currentColor"/>
+        <circle cx="11" cy="20.5" r="1.3" fill="currentColor"/><circle cx="6" cy="16" r="1.3" fill="currentColor"/>`, 24),
+  },
+
+  // Legendary (1% total)
+  {
+    id: 'championship-spike', label: 'Championship Spike', rarity: 'legendary',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('championship-spike'),
+    face: iconFace(`<circle cx="12.5" cy="3.6" r="1.6" fill="currentColor"/>
+        <path d="M12.2 5.2v4.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M12.2 6.3l4.3-3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M12.4 7.4l-3 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M12.5 9.5l-2.3 5.8M12.5 9.5l3 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="18.3" cy="1.6" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M16.6 3l-1.6 1.4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+        <path d="M2 21h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M6 21v-6.5M6 15h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>`, 24),
   },
 ];
+
+/** Shop-wheel prize pool with per-item win chance (%). Must sum to 100. */
+const WHEEL_PRIZES = AVATAR_DEFS
+  .filter((a) => a.rarity)
+  .map((a) => ({
+    id: a.id,
+    label: a.label,
+    rarity: a.rarity,
+    chance: { common: 11, rare: 8.75, epic: 4.5, legendary: 1 }[a.rarity],
+  }));
 
 function getAvatarDef(avatarId) {
   return AVATAR_DEFS.find((a) => a.id === avatarId) || AVATAR_DEFS[0];
@@ -127,11 +254,13 @@ function renderAvatarPicker() {
         type="button"
         class="avatar-option${unlocked ? '' : ' avatar-option--locked'}"
         data-avatar-id="${a.id}"
+        ${a.rarity ? `data-rarity="${a.rarity}"` : ''}
         aria-pressed="${selected}"
         ${unlocked ? '' : 'disabled'}
       >
         <span class="avatar-option__face">${a.id === 'initials' ? a.face(ProgressStore.getUsername()) : a.face()}</span>
         <span class="avatar-option__label">${a.label}</span>
+        ${a.rarity ? `<span class="avatar-option__rarity">${a.rarity}</span>` : ''}
         <span class="avatar-option__hint">${unlocked ? (selected ? 'Selected' : 'Tap to select') : a.hint}</span>
       </button>
     `;
@@ -227,6 +356,7 @@ function renderProfile() {
   setText('profile-level', `Level ${level}`);
   setText('profile-xp', `${xp} XP`);
   setText('profile-lessons', `${completedLessons}`);
+  setText('profile-coins', `${ProgressStore.getCoins()}`);
   renderAvatarFace(document.getElementById('profile-avatar-face'), state.avatar, state.username);
 
   renderAchievements(completedLessons, ProgressStore.getStreakDays());

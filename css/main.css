@@ -18,6 +18,11 @@
   --color-green-dim: #DCEAE1;  /* completed surface on light bg */
   --color-grey: #8A8F98;       /* locked / muted */
   --color-grey-light: #C8C5BC; /* borders on light bg */
+  --rarity-common: #9CA3AF;    /* shop-wheel prize rarity accents (fixed in both themes) */
+  --rarity-rare: #4C8DFF;
+  --rarity-epic: #A855F7;
+  --rarity-legendary: #E8A33D;
+
   --color-chrome-text: #EFEEEA; /* fixed light text for permanently-dark chrome
                                     (navbar, hero, footer, etc.) — intentionally
                                     NOT redefined in the dark theme below, since
