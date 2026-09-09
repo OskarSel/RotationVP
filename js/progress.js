@@ -84,7 +84,7 @@ const AVATAR_DEFS = [
     hint: 'Pass the Chapter 1 test (70%+) to unlock.',
     unlocked: () => isChapterTestPassed(1),
     face: () => `
-      <svg viewBox="0 0 30 30" fill="none" aria-hidden="true">
+      <svg class="avatar-face-icon" viewBox="0 0 30 30" width="30" height="30" fill="none" aria-hidden="true">
         <circle cx="15" cy="15" r="12.5" stroke="currentColor" stroke-width="2"/>
         <path d="M15 2.5c-5 4-5 21 0 25M4 10.5c5 3 17 3 22 0M4 19.5c5-3 17-3 22 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
       </svg>`,
@@ -95,7 +95,7 @@ const AVATAR_DEFS = [
     hint: 'Pass the Chapter 2 test (70%+) to unlock.',
     unlocked: () => isChapterTestPassed(2),
     face: () => `
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <svg class="avatar-face-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true">
         <circle cx="13" cy="3.4" r="1.8" fill="currentColor"/>
         <path d="M13 5.6v6.4M13 8.5l-4 2M13 8.5l5.5-4.5M9 12l-3 7M13 12l3 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         <circle cx="19.5" cy="2.5" r="1.6" stroke="currentColor" stroke-width="1.3"/>
