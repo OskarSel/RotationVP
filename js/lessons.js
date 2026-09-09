@@ -359,6 +359,17 @@ const PLACEHOLDER_QUIZ = [
   },
 ];
 
+/** Returns a shuffled copy of an array (Fisher-Yates), so the correct answer
+ *  isn't always in the same position every time a question is shown. */
+function shuffle(arr) {
+  const copy = arr.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
 /** Renders a (possibly multi-question) quiz from lesson.quiz into #quiz-root,
  *  one question at a time, with per-answer explanations and a running score. */
 /** A quiz must be answered at least this well to count as passed. */
@@ -383,6 +394,7 @@ function initQuiz(lesson) {
 
   function renderQuestion() {
     const q = questions[index];
+    const answers = shuffle(q.answers);
     const letters = ['A', 'B', 'C', 'D'];
     let checked = false;
     let selected = null;
@@ -391,7 +403,7 @@ function initQuiz(lesson) {
       ${isMulti ? `<p class="quiz-progress">Question ${index + 1} of ${questions.length}</p>` : ''}
       <p class="quiz-question">${q.question}</p>
       <div class="quiz-options" role="group" aria-label="Answer choices">
-        ${q.answers
+        ${answers
           .map(
             (a, i) => `
           <button class="quiz-option" type="button" data-index="${i}" data-correct="${a.correct}" aria-pressed="false">
@@ -427,10 +439,10 @@ function initQuiz(lesson) {
         const isCorrect = selected.dataset.correct === 'true';
         if (isCorrect) score++;
 
-        const hasExplanations = q.answers.some((a) => a.explanation);
+        const hasExplanations = answers.some((a) => a.explanation);
 
         options.forEach((o) => {
-          const a = q.answers[Number(o.dataset.index)];
+          const a = answers[Number(o.dataset.index)];
           if (a.correct) o.classList.add('is-correct');
           else if (o === selected) o.classList.add('is-incorrect');
 

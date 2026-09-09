@@ -144,7 +144,7 @@ p { max-width: 62ch; }
 
 .lede {
   font-size: var(--fs-400);
-  color: var(--color-court);
+  color: var(--color-ink);
   max-width: 46ch;
 }
 
