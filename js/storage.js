@@ -57,6 +57,7 @@ const ProgressStore = (() => {
       lastActiveDate: todayISO(),
       username: 'User',
       theme: 'light',
+      avatar: 'initials', // 'initials' | 'volleyball' | 'spiker' — see AVATAR_DEFS in progress.js
     };
   }
 
@@ -160,6 +161,16 @@ const ProgressStore = (() => {
     setUsername(name) {
       const state = load();
       state.username = name;
+      save(state);
+    },
+
+    getAvatar() {
+      return load().avatar || 'initials';
+    },
+
+    setAvatar(avatarId) {
+      const state = load();
+      state.avatar = avatarId;
       save(state);
     },
 

@@ -58,6 +58,94 @@ function renderContinuePanel(state) {
   }
 }
 
+/** Whether the given chapter's chapter-test lesson has been passed (the only
+ *  way a test lesson can be marked complete is by scoring >= QUIZ_PASS_RATIO). */
+function isChapterTestPassed(chapterId) {
+  const chapter = getChapter(chapterId);
+  if (!chapter) return false;
+  const test = chapter.lessons.find((l) => l.isTest);
+  if (!test) return false;
+  return ProgressStore.isLessonComplete(chapterId, test.id);
+}
+
+/** Reward avatars, unlocked by passing a chapter test at 70%+. 'initials' is
+ *  always available as the default. */
+const AVATAR_DEFS = [
+  {
+    id: 'initials',
+    label: 'Initials',
+    hint: 'Always available.',
+    unlocked: () => true,
+    face: (username) => (username || 'U').charAt(0).toUpperCase(),
+  },
+  {
+    id: 'volleyball',
+    label: 'Volleyball',
+    hint: 'Pass the Chapter 1 test (70%+) to unlock.',
+    unlocked: () => isChapterTestPassed(1),
+    face: () => `
+      <svg viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <circle cx="15" cy="15" r="12.5" stroke="currentColor" stroke-width="2"/>
+        <path d="M15 2.5c-5 4-5 21 0 25M4 10.5c5 3 17 3 22 0M4 19.5c5-3 17-3 22 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>`,
+  },
+  {
+    id: 'spiker',
+    label: 'Spiker',
+    hint: 'Pass the Chapter 2 test (70%+) to unlock.',
+    unlocked: () => isChapterTestPassed(2),
+    face: () => `
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="13" cy="3.4" r="1.8" fill="currentColor"/>
+        <path d="M13 5.6v6.4M13 8.5l-4 2M13 8.5l5.5-4.5M9 12l-3 7M13 12l3 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="19.5" cy="2.5" r="1.6" stroke="currentColor" stroke-width="1.3"/>
+      </svg>`,
+  },
+];
+
+function getAvatarDef(avatarId) {
+  return AVATAR_DEFS.find((a) => a.id === avatarId) || AVATAR_DEFS[0];
+}
+
+function renderAvatarFace(el, avatarId, username) {
+  if (!el) return;
+  const def = getAvatarDef(avatarId);
+  el.innerHTML = def.id === 'initials' ? def.face(username) : def.face();
+}
+
+function renderAvatarPicker() {
+  const grid = document.getElementById('avatar-grid');
+  if (!grid) return;
+
+  const currentAvatar = ProgressStore.getAvatar();
+
+  grid.innerHTML = AVATAR_DEFS.map((a) => {
+    const unlocked = a.unlocked();
+    const selected = a.id === currentAvatar;
+    return `
+      <button
+        type="button"
+        class="avatar-option${unlocked ? '' : ' avatar-option--locked'}"
+        data-avatar-id="${a.id}"
+        aria-pressed="${selected}"
+        ${unlocked ? '' : 'disabled'}
+      >
+        <span class="avatar-option__face">${a.id === 'initials' ? a.face(ProgressStore.getUsername()) : a.face()}</span>
+        <span class="avatar-option__label">${a.label}</span>
+        <span class="avatar-option__hint">${unlocked ? (selected ? 'Selected' : 'Tap to select') : a.hint}</span>
+      </button>
+    `;
+  }).join('');
+
+  grid.querySelectorAll('.avatar-option').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+      ProgressStore.setAvatar(btn.dataset.avatarId);
+      renderProfile();
+    });
+  });
+}
+
 const ACHIEVEMENTS = [
   { id: 'first-lesson', title: 'First serve', threshold: (c) => c.lessons >= 1 },
   { id: 'five-lessons', title: '5 lessons', threshold: (c) => c.lessons >= 5 },
@@ -139,9 +227,10 @@ function renderProfile() {
   setText('profile-level', `Level ${level}`);
   setText('profile-xp', `${xp} XP`);
   setText('profile-lessons', `${completedLessons}`);
-  setText('profile-initial', state.username.charAt(0).toUpperCase());
+  renderAvatarFace(document.getElementById('profile-avatar-face'), state.avatar, state.username);
 
   renderAchievements(completedLessons, ProgressStore.getStreakDays());
+  renderAvatarPicker();
 
   const nameInput = document.getElementById('username-input');
   if (nameInput) nameInput.value = state.username;
