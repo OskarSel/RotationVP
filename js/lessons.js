@@ -361,6 +361,9 @@ const PLACEHOLDER_QUIZ = [
 
 /** Renders a (possibly multi-question) quiz from lesson.quiz into #quiz-root,
  *  one question at a time, with per-answer explanations and a running score. */
+/** A quiz must be answered at least this well to count as passed. */
+const QUIZ_PASS_RATIO = 0.7;
+
 function initQuiz(lesson) {
   const root = document.getElementById('quiz-root');
   if (!root) return;
@@ -370,7 +373,13 @@ function initQuiz(lesson) {
   let index = 0;
   let score = 0;
 
+  setNextEnabled(false);
   renderQuestion();
+
+  function setNextEnabled(enabled) {
+    const nextBtn = document.getElementById('lesson-next');
+    if (nextBtn) nextBtn.disabled = !enabled;
+  }
 
   function renderQuestion() {
     const q = questions[index];
@@ -440,12 +449,8 @@ function initQuiz(lesson) {
           feedback.hidden = false;
         }
 
-        if (isMulti) {
-          const isLast = index >= questions.length - 1;
-          checkBtn.textContent = isLast ? 'See results' : 'Next question';
-        } else {
-          checkBtn.disabled = true;
-        }
+        const isLast = index >= questions.length - 1;
+        checkBtn.textContent = isLast ? 'See results' : 'Next question';
       } else {
         index++;
         if (index >= questions.length) {
@@ -458,7 +463,30 @@ function initQuiz(lesson) {
   }
 
   function renderSummary() {
-    root.innerHTML = `<p class="quiz-score">You scored ${score} / ${questions.length} on this ${lesson.isTest ? 'chapter test' : 'lesson'}.</p>`;
+    const pct = Math.round((score / questions.length) * 100);
+    const passed = score / questions.length >= QUIZ_PASS_RATIO;
+    const passNeeded = Math.ceil(questions.length * QUIZ_PASS_RATIO);
+    const label = lesson.isTest ? 'chapter test' : 'quiz';
+
+    root.innerHTML = `
+      <p class="quiz-score">${passed ? 'Passed!' : 'Not passed'} — you scored ${score} / ${questions.length} (${pct}%) on this ${label}.</p>
+      ${
+        passed
+          ? `<p class="quiz-result-note">Nice work — use the Next button below to continue.</p>`
+          : `<p class="quiz-result-note">You need at least ${passNeeded} / ${questions.length} (${Math.round(QUIZ_PASS_RATIO * 100)}%) to pass. Give it another go.</p>
+             <button class="btn btn--dark quiz-retry-btn" type="button">Retry ${label}</button>`
+      }
+    `;
+
+    setNextEnabled(passed);
+
+    if (!passed) {
+      root.querySelector('.quiz-retry-btn').addEventListener('click', () => {
+        index = 0;
+        score = 0;
+        renderQuestion();
+      });
+    }
   }
 }
 

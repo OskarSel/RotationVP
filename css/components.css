@@ -674,11 +674,12 @@
   flex-shrink: 0;
 }
 .quiz-option:hover { border-color: var(--color-ink); }
-.quiz-option[aria-pressed="true"] { border-color: var(--color-gold); background: #FBEAD2; }
-.quiz-option[aria-pressed="true"] .quiz-option__letter { border-color: var(--color-gold); background: var(--color-gold); }
-.quiz-option.is-correct { border-color: var(--color-green); background: var(--color-green-dim); }
+.quiz-option[aria-pressed="true"] { border-color: var(--color-gold); background: #FBEAD2; color: var(--color-feedback-ink); }
+.quiz-option[aria-pressed="true"] .quiz-option__letter { border-color: var(--color-gold); background: var(--color-gold); color: var(--color-feedback-ink); }
+.quiz-option.is-correct { border-color: var(--color-green); background: var(--color-green-dim); color: var(--color-feedback-ink); }
 .quiz-option.is-correct .quiz-option__letter { border-color: var(--color-green); background: var(--color-green); color: #fff; }
-.quiz-option.is-incorrect { border-color: #C4483A; background: #F7E2DE; }
+.quiz-option.is-incorrect { border-color: #C4483A; background: #F7E2DE; color: var(--color-feedback-ink); }
+.quiz-option.is-incorrect .quiz-option__letter { color: var(--color-feedback-ink); }
 
 .quiz-progress {
   font-family: var(--font-display);
@@ -691,7 +692,8 @@
 }
 .quiz-explanation {
   font-size: var(--fs-100);
-  color: var(--color-court);
+  color: var(--color-ink);
+  opacity: 0.75;
   padding: var(--sp-2) var(--sp-5) 0;
   margin-top: calc(-1 * var(--sp-2));
   margin-bottom: var(--sp-2);
@@ -701,6 +703,12 @@
   font-weight: 700;
   font-size: var(--fs-400);
   color: var(--color-ink);
+  margin-bottom: var(--sp-3);
+}
+.quiz-result-note {
+  color: var(--color-ink);
+  opacity: 0.75;
+  margin-bottom: var(--sp-5);
 }
 
 /* ---- Lesson complete screen ---- */

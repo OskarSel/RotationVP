@@ -22,6 +22,10 @@
                                     (navbar, hero, footer, etc.) — intentionally
                                     NOT redefined in the dark theme below, since
                                     those surfaces stay dark in both themes. */
+  --color-feedback-ink: #14213D; /* fixed dark text for the quiz answer
+                                     highlight states (selected/correct/
+                                     incorrect), which use fixed-light
+                                     backgrounds in both themes. */
 
   /* ---- Type ---- */
   --font-display: 'Big Shoulders', sans-serif;
