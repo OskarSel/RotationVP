@@ -534,6 +534,7 @@ function initLessonCompletion(chapter, lesson) {
 
   if (nextBtn && completeScreen && lessonBody) {
     nextBtn.addEventListener('click', () => {
+      const wasAlreadyComplete = ProgressStore.isLessonComplete(chapter.id, lesson.id);
       const state = ProgressStore.markLessonComplete(chapter.id, lesson.id, lesson.isTest);
       if (xpEarnedEl) xpEarnedEl.textContent = `${state.xp}`;
 
@@ -542,7 +543,14 @@ function initLessonCompletion(chapter, lesson) {
         coinsRow.hidden = !lesson.isTest;
         if (lesson.isTest) {
           setText('coins-earned', `${state.coins}`);
-          setText('coins-earned-delta', `+${ProgressStore.getCoinsPerTestPass()}`);
+          setText(
+            'coins-earned-delta',
+            wasAlreadyComplete ? 'Already earned' : `+${ProgressStore.getCoinsPerTestPass()}`
+          );
+          setText(
+            'coins-earned-delta-label',
+            wasAlreadyComplete ? 'retaking a test gives no extra coins' : 'coins for passing this test'
+          );
         }
       }
 

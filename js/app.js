@@ -11,8 +11,11 @@
 // is in place before first paint and the page doesn't flash light-then-dark.
 document.documentElement.dataset.theme = ProgressStore.getTheme();
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   initNavigation();
+  await ProgressStore.syncOnBoot();
+  applyAuthNav();
+  document.documentElement.dataset.theme = ProgressStore.getTheme();
 
   const page = document.body.dataset.page;
 

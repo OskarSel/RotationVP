@@ -1090,5 +1090,15 @@
   font-size: var(--fs-100);
 }
 .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--color-grey-light); }
+.auth-error {
+  background: #FBEAEA;
+  border: 1px solid #E8A3A3;
+  color: #8A1F1F;
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-200);
+  margin-bottom: var(--sp-5);
+}
+.auth-error[hidden] { display: none; }
 .auth-footer-link { text-align: center; margin-top: var(--sp-6); font-size: var(--fs-200); color: var(--color-ink); }
 .auth-footer-link a { font-weight: 700; color: var(--color-ink); text-decoration: underline; text-underline-offset: 3px; }

@@ -4,18 +4,48 @@
  * Every read/write of user progress goes through the `ProgressStore` object
  * below. Nothing else in the app should call `localStorage` directly.
  *
- * This keeps a clean seam for the future: to move to Firebase/Supabase,
- * reimplement the methods on ProgressStore (ideally as async functions,
- * updating call sites to `await` them) without touching lessons.js,
- * progress.js or any page script that consumes this API.
+ * Local-first + background sync: localStorage stays the synchronous source
+ * of truth that every existing call site already relies on (unchanged), but
+ * whenever the account is logged in, `save()` also schedules a debounced
+ * PUT of the whole state to the server (server.js + /api/progress). Login,
+ * register and logout are the only async methods here — every pre-existing
+ * synchronous method (markLessonComplete, setAvatar, etc.) keeps working
+ * exactly as before, logged in or not.
  */
 
 const ProgressStore = (() => {
   const STORAGE_KEY = 'rotacja:progress:v1';
+  const SYNC_DEBOUNCE_MS = 800;
 
   const XP_PER_LESSON = 20;
   const XP_PER_LEVEL = 150;
   const COINS_PER_TEST_PASS = 100;
+
+  let syncTimer = null;
+
+  /** Pushes the given state to the server soon, coalescing rapid-fire saves
+   *  into a single request. No-op while logged out. */
+  function scheduleServerSync(state) {
+    if (!state.account) return;
+    if (syncTimer) clearTimeout(syncTimer);
+    syncTimer = setTimeout(() => {
+      syncTimer = null;
+      fetch('/api/progress', {
+        method: 'PUT',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ progress: stripAccount(state) }),
+      }).catch((err) => console.warn('ProgressStore: background sync failed.', err));
+    }, SYNC_DEBOUNCE_MS);
+  }
+
+  /** `account` is client-side session info, not part of the progress blob
+   *  the server stores (the server already knows who the caller is from
+   *  the session cookie). */
+  function stripAccount(state) {
+    const { account, ...rest } = state;
+    return rest;
+  }
 
   /** @returns {object} the full progress record, creating a default one if needed. */
   function load() {
@@ -47,6 +77,7 @@ const ProgressStore = (() => {
     } catch (err) {
       console.warn('ProgressStore: failed to save progress.', err);
     }
+    scheduleServerSync(state);
   }
 
   function defaultState() {
@@ -61,6 +92,7 @@ const ProgressStore = (() => {
       avatar: 'initials', // see AVATAR_DEFS in progress.js for every valid id
       coins: 0,
       unlockedAvatars: [], // ids of shop-wheel avatars won so far (see WHEEL_PRIZES in shop.js)
+      account: null, // { id, email, username } once logged in, else null
     };
   }
 
@@ -229,6 +261,88 @@ const ProgressStore = (() => {
 
     resetProgress() {
       save(defaultState());
+    },
+
+    isLoggedIn() {
+      return !!load().account;
+    },
+
+    getAccount() {
+      return load().account;
+    },
+
+    /** Creates an account, claiming whatever progress is currently on this
+     *  device as its starting state. Throws with a user-facing message on
+     *  failure (bad input, email taken, network error). */
+    async register(email, password, username) {
+      const localProgress = stripAccount(load());
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, username, localProgress }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error || 'Registration failed.');
+      const state = { ...defaultState(), ...body.progress, account: body.user };
+      save(state);
+      return state;
+    },
+
+    /** Logs in and overwrites local progress with the server's copy — once
+     *  an account exists, the server is the authoritative copy. Throws with
+     *  a user-facing message on failure. */
+    async login(email, password) {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error || 'Login failed.');
+      const state = { ...defaultState(), ...body.progress, account: body.user };
+      save(state);
+      return state;
+    },
+
+    /** Logs out and returns to guest mode. Progress already on this device
+     *  stays right where it is — it just stops syncing to the account. */
+    async logout() {
+      try {
+        await fetch('/api/auth/logout', { method: 'POST', credentials: 'same-origin' });
+      } catch (err) {
+        console.warn('ProgressStore: logout request failed.', err);
+      }
+      const state = load();
+      state.account = null;
+      save(state);
+    },
+
+    /** Call once on page load: confirms the session cookie (if any) is
+     *  still valid and pulls the latest server progress. Safe to call as a
+     *  guest — it just quietly no-ops (a normal 401, not an error). */
+    async syncOnBoot() {
+      let res;
+      try {
+        res = await fetch('/api/auth/me', { credentials: 'same-origin' });
+      } catch (err) {
+        console.warn('ProgressStore: boot sync unreachable, staying offline.', err);
+        return;
+      }
+      if (!res.ok) {
+        // Not logged in (or session expired) — make sure local state agrees.
+        const state = load();
+        if (state.account) {
+          state.account = null;
+          save(state);
+        }
+        return;
+      }
+      const body = await res.json().catch(() => null);
+      if (!body) return;
+      const state = { ...defaultState(), ...body.progress, account: body.user };
+      save(state);
     },
   };
 })();

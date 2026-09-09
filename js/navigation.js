@@ -42,6 +42,32 @@ function markActiveNavLink() {
 }
 
 /**
+ * Swaps every "Log in" link (desktop navbar__actions button + mobile menu
+ * item) for a "Log out" action when ProgressStore has an active account.
+ * Call after ProgressStore.syncOnBoot() resolves, so the account state is
+ * current.
+ */
+function applyAuthNav() {
+  const account = ProgressStore.getAccount();
+  document.querySelectorAll('[data-auth-link]').forEach((link) => {
+    if (account) {
+      link.textContent = 'Log out';
+      link.href = '#';
+      link.addEventListener('click', handleLogoutClick);
+    } else {
+      link.textContent = 'Log in';
+      link.href = 'login.html';
+    }
+  });
+}
+
+async function handleLogoutClick(e) {
+  e.preventDefault();
+  await ProgressStore.logout();
+  window.location.href = 'index.html';
+}
+
+/**
  * Builds a breadcrumb trail into any element with [data-breadcrumb].
  * `items` is an array of { label, href } — href omitted on the last item.
  */

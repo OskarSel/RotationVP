@@ -1,0 +1,13 @@
+{
+  "name": "rotation-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Zero-dependency Node backend for Rotation: email/password auth + per-user progress sync.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}
