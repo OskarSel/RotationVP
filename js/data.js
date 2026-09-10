@@ -2726,6 +2726,2748 @@ const CHAPTER_2_TEST = {
   ],
 };
 
+/* ---------------------------------------------------------------------- */
+/* Chapter 3 — Rotations (real content)                                    */
+/* ---------------------------------------------------------------------- */
+
+const CHAPTER_3_LESSONS = [
+  {
+    id: 1,
+    title: "The Six Court Positions",
+    summary: "The six numbered zones every player rotates through, and the front-row/back-row split.",
+    durationMin: 7,
+    theory: [
+      "Every volleyball team has six players on court at once, and each of them stands in one of six numbered zones. These zones aren't random — they form a fixed map of the court that every team, at every level, uses the same way, which is exactly why officials, coaches and players can all talk about 'Zone 4' or 'Zone 1' and mean the same spot.",
+      "Zones 2, 3 and 4 sit in the front row, closest to the net: Zone 4 on the left (from the server's perspective), Zone 3 in the middle, and Zone 2 on the right. Zones 5, 6 and 1 make up the back row, further from the net: Zone 5 on the back left, Zone 6 in the back middle, and Zone 1 on the back right — which is also where the serve is hit from.",
+      "This front-row/back-row split isn't just geography — it decides what a player is legally allowed to do at that moment. Front-row players may block and attack the ball above net height from anywhere, while back-row players may never block and can only attack above net height if they jump from behind the 3 m attack line.",
+      "A player's zone is not a fixed job assignment — it's a snapshot of where their rotation has placed them right now. The same player will pass through all six zones over the course of a set, spending part of the set in the front row and part in the back row, which is exactly what the next lessons in this chapter build on.",
+      "Getting comfortable naming the six zones by number, and instantly knowing whether a given zone is front row or back row, is the single most useful habit for understanding everything else about rotations — nearly every rule in this chapter is stated in terms of these zone numbers.",
+    ],
+    keyTakeaway: "The court is divided into six numbered zones — 4, 3, 2 in the front row and 5, 6, 1 in the back row — and every rule about what a player may do depends on which of these zones they're currently standing in.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "The six zones of the court: the front row (Zones 4, 3, 2) sits closest to the net, and the back row (Zones 5, 6, 1) sits deeper, further from the net.",
+      activeZones: [4, 3, 2, 5, 6, 1],
+      labels: { 4: "4", 3: "3", 2: "2", 5: "5", 6: "6", 1: "1" },
+      motions: {
+        4: { dx: 0, dy: -4 },
+        3: { dx: 0, dy: -4 },
+        2: { dx: 0, dy: -4 },
+        5: { dx: 0, dy: 4 },
+        6: { dx: 0, dy: 4 },
+        1: { dx: 0, dy: 4 },
+      },
+      ball: null,
+    },
+    quiz: [
+      {
+        question: "How many numbered zones does a volleyball court's rotation system use?",
+        answers: [
+          { text: "Six", correct: true, explanation: "Correct — one zone for each of the six players on court." },
+          { text: "Four", correct: false, explanation: "Four would leave two players without a numbered position." },
+          { text: "Eight", correct: false, explanation: "Eight is more zones than there are players on court." },
+          { text: "Five", correct: false, explanation: "Five doesn't match the six players a team fields." },
+        ],
+      },
+      {
+        question: "Which zones make up the front row?",
+        answers: [
+          { text: "Zones 4, 3 and 2", correct: true, explanation: "Correct — these three zones sit closest to the net." },
+          { text: "Zones 5, 6 and 1", correct: false, explanation: "Those three zones make up the back row instead." },
+          { text: "Zones 1, 2 and 3", correct: false, explanation: "This mixes a back-row zone (1) with front-row zones." },
+          { text: "Zones 3, 4 and 5", correct: false, explanation: "This mixes front-row zones with a back-row zone (5)." },
+        ],
+      },
+      {
+        question: "Which zone is in the back-right, and also where serves are hit from?",
+        answers: [
+          { text: "Zone 1", correct: true, explanation: "Correct — Zone 1 is the back-right zone and the serving position." },
+          { text: "Zone 4", correct: false, explanation: "Zone 4 is the front-left zone, not where serves are hit from." },
+          { text: "Zone 6", correct: false, explanation: "Zone 6 is the back-middle zone." },
+          { text: "Zone 2", correct: false, explanation: "Zone 2 is the front-right zone." },
+        ],
+      },
+      {
+        question: "Which zone sits in the middle of the front row?",
+        answers: [
+          { text: "Zone 3", correct: true, explanation: "Correct — Zone 3 is the front-middle zone, right at the net." },
+          { text: "Zone 6", correct: false, explanation: "Zone 6 is the back-middle zone, not the front row." },
+          { text: "Zone 2", correct: false, explanation: "Zone 2 is on the front-right, not the middle." },
+          { text: "Zone 4", correct: false, explanation: "Zone 4 is on the front-left, not the middle." },
+        ],
+      },
+      {
+        question: "What determines whether a player may legally block at a given moment?",
+        answers: [
+          { text: "Whether they are currently in a front-row zone", correct: true, explanation: "Correct — blocking is a front-row-only privilege." },
+          { text: "How tall the player is", correct: false, explanation: "Height isn't what the rule is based on — court position is." },
+          { text: "Which zone they started the set in", correct: false, explanation: "It's their current zone that matters, not where they began the set." },
+          { text: "Whether they are the team captain", correct: false, explanation: "Team leadership has no bearing on this rule." },
+        ],
+      },
+      {
+        question: "Is a player's zone a fixed job for the whole set?",
+        answers: [
+          { text: "No — rotation moves every player through all six zones over the set", correct: true, explanation: "Correct — a zone is a snapshot of the current moment, not a fixed assignment." },
+          { text: "Yes, each player stays in one zone the entire set", correct: false, explanation: "Rotation continually moves players between zones." },
+          { text: "Yes, but only for the setter", correct: false, explanation: "Every player, including the setter, moves through all six zones." },
+          { text: "No, but only front-row players change zones", correct: false, explanation: "Back-row players rotate through zones too." },
+        ],
+      },
+      {
+        question: "Which zones make up the back row?",
+        answers: [
+          { text: "Zones 5, 6 and 1", correct: true, explanation: "Correct — these three zones sit furthest from the net." },
+          { text: "Zones 2, 3 and 4", correct: false, explanation: "Those three zones make up the front row instead." },
+          { text: "Zones 1, 2 and 6", correct: false, explanation: "This mixes a front-row zone (2) with back-row zones." },
+          { text: "Zones 4, 5 and 6", correct: false, explanation: "This mixes a front-row zone (4) with back-row zones." },
+        ],
+      },
+      {
+        question: "Which zone is on the front-left of the court?",
+        answers: [
+          { text: "Zone 4", correct: true, explanation: "Correct — Zone 4 is the front-left zone." },
+          { text: "Zone 5", correct: false, explanation: "Zone 5 is the back-left zone, not the front row." },
+          { text: "Zone 2", correct: false, explanation: "Zone 2 is on the front-right, the opposite side." },
+          { text: "Zone 1", correct: false, explanation: "Zone 1 is the back-right zone." },
+        ],
+      },
+      {
+        question: "Why do all teams use the same six zone numbers?",
+        answers: [
+          { text: "So players, coaches and officials can all refer to the same spot on court the same way", correct: true, explanation: "Correct — it's a shared, standard reference system." },
+          { text: "Because the rules require exactly six players to have exactly six favorite numbers", correct: false, explanation: "The numbering is about shared communication, not personal preference." },
+          { text: "Because zone numbers change every match", correct: false, explanation: "The zone map is fixed and doesn't change match to match." },
+          { text: "Because only the referee needs to know the zone numbers", correct: false, explanation: "Players and coaches rely on this shared system constantly, not just officials." },
+        ],
+      },
+      {
+        question: "Which zone is on the back-left of the court?",
+        answers: [
+          { text: "Zone 5", correct: true, explanation: "Correct — Zone 5 is the back-left zone." },
+          { text: "Zone 4", correct: false, explanation: "Zone 4 is the front-left zone, not the back row." },
+          { text: "Zone 1", correct: false, explanation: "Zone 1 is the back-right zone, the opposite side." },
+          { text: "Zone 6", correct: false, explanation: "Zone 6 is the back-middle zone." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Rotation Order",
+    summary: "The fixed clockwise order every team's players move through as they rotate.",
+    durationMin: 7,
+    theory: [
+      "Rotation follows one fixed direction: clockwise through the six zones, in the order 1 → 2 → 3 → 4 → 5 → 6 → 1. Every team, in every match, rotates in exactly this order — there's no variation, no team-specific pattern, and no choice involved once a rotation is triggered.",
+      "In practice, that means the player currently in Zone 1 moves to Zone 2, the player in Zone 2 moves to Zone 3, the player in Zone 3 moves to Zone 4, the player in Zone 4 moves to Zone 5, the player in Zone 5 moves to Zone 6, and the player in Zone 6 moves all the way around to Zone 1.",
+      "All six players move at the same time, as a single unit — nobody rotates alone, and nobody skips a step. Whatever order the six players were standing in before the rotation, that same relative order is preserved; the whole formation simply shifts one zone around the circle.",
+      "It helps to picture the six zones as positions on a clock face wrapped around the court: 1 and 2 on the right, 3 at the top-middle near the net, 4 and 5 on the left, and 6 at the bottom-middle. Moving 'clockwise' through that circle is exactly the 1-2-3-4-5-6-1 order described above.",
+      "Because the rotation order never changes, a team's starting lineup — which player begins in which zone — determines every single rotation for the rest of that set. Coaches choose a starting lineup specifically because they know exactly how it will cycle through all six positions.",
+    ],
+    keyTakeaway: "Rotation always moves every player one zone in the same fixed direction — 1 to 2, 2 to 3, 3 to 4, 4 to 5, 5 to 6, and 6 back to 1 — with the whole team shifting together.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "When a team rotates, every player shifts one zone clockwise at the same time: 1 to 2, 2 to 3, 3 to 4, 4 to 5, 5 to 6, and 6 back to 1.",
+      activeZones: [1, 2, 3, 4, 5, 6],
+      labels: { 1: "1", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6" },
+      motions: {
+        1: { dx: 0, dy: -52 },
+        2: { dx: -32, dy: 0 },
+        3: { dx: -32, dy: 0 },
+        4: { dx: 0, dy: 52 },
+        5: { dx: 32, dy: 0 },
+        6: { dx: 32, dy: 0 },
+      },
+      ball: null,
+    },
+    quiz: [
+      {
+        question: "In which direction do players rotate through the zones?",
+        answers: [
+          { text: "Clockwise: 1 to 2, 2 to 3, 3 to 4, 4 to 5, 5 to 6, 6 to 1", correct: true, explanation: "Correct — this fixed order never changes." },
+          { text: "Counter-clockwise: 1 to 6, 6 to 5, and so on", correct: false, explanation: "That reverses the actual, fixed rotation direction." },
+          { text: "Whichever direction the coach calls that rally", correct: false, explanation: "The direction is fixed by rule, not chosen per rally." },
+          { text: "Randomly assigned each time a team rotates", correct: false, explanation: "Rotation always follows the same fixed clockwise order." },
+        ],
+      },
+      {
+        question: "When a team rotates, which player moves into Zone 1?",
+        answers: [
+          { text: "The player who was in Zone 6", correct: true, explanation: "Correct — Zone 6 rotates into Zone 1." },
+          { text: "The player who was in Zone 2", correct: false, explanation: "Zone 2 rotates forward into Zone 3, not back into Zone 1." },
+          { text: "The player who was already in Zone 1", correct: false, explanation: "That player moves on to Zone 2 during a rotation." },
+          { text: "The player who was in Zone 4", correct: false, explanation: "Zone 4 rotates into Zone 5, not Zone 1." },
+        ],
+      },
+      {
+        question: "How many players move during a single team rotation?",
+        answers: [
+          { text: "All six", correct: true, explanation: "Correct — the entire team shifts together, all at once." },
+          { text: "Only the front-row players", correct: false, explanation: "Back-row players rotate too, not just the front row." },
+          { text: "Only one, chosen by the coach", correct: false, explanation: "Rotation moves every player, not a single chosen one." },
+          { text: "Only the player about to serve", correct: false, explanation: "The whole team shifts, not just the new server." },
+        ],
+      },
+      {
+        question: "Does a rotation ever skip a zone?",
+        answers: [
+          { text: "No, each player always moves exactly one zone over", correct: true, explanation: "Correct — rotation always advances by exactly one zone." },
+          { text: "Yes, players can skip ahead two zones at once", correct: false, explanation: "A rotation always moves players exactly one zone, never two." },
+          { text: "Yes, if the team is losing", correct: false, explanation: "The score doesn't change how far a rotation moves players." },
+          { text: "Only during the deciding set", correct: false, explanation: "The one-zone rule is the same in every set." },
+        ],
+      },
+      {
+        question: "What happens to the player who was in Zone 5 during a rotation?",
+        answers: [
+          { text: "They move to Zone 6", correct: true, explanation: "Correct — this follows the fixed clockwise order." },
+          { text: "They move to Zone 4", correct: false, explanation: "That would be moving backward, against the rotation direction." },
+          { text: "They stay in Zone 5", correct: false, explanation: "Every player moves during a rotation, including whoever is in Zone 5." },
+          { text: "They move to Zone 1", correct: false, explanation: "Zone 5 moves to Zone 6 first, not directly to Zone 1." },
+        ],
+      },
+      {
+        question: "Why is it useful to picture the zones as a clock face around the court?",
+        answers: [
+          { text: "Because it makes the fixed clockwise rotation direction easy to visualize", correct: true, explanation: "Correct — the clock-face image matches the real rotation path." },
+          { text: "Because the referee uses an actual clock during rotations", correct: false, explanation: "No clock is involved — it's just a helpful way to picture the direction." },
+          { text: "Because rotations are timed to the game clock", correct: false, explanation: "Volleyball rotations aren't tied to any kind of timer." },
+          { text: "Because zone numbers change based on the time of day", correct: false, explanation: "Zone numbers are fixed and never change." },
+        ],
+      },
+      {
+        question: "Does rotation ever change the relative order of the six players?",
+        answers: [
+          { text: "No — their order relative to each other stays the same, only the zones shift", correct: true, explanation: "Correct — the whole formation shifts together, preserving relative order." },
+          { text: "Yes, players can swap places with any teammate during a rotation", correct: false, explanation: "Rotation shifts everyone by one zone — it isn't a free swap." },
+          { text: "Yes, the coach can reorder players before each rotation", correct: false, explanation: "The rotation order is fixed once the set's lineup is set." },
+          { text: "Yes, but only for the setter", correct: false, explanation: "No player, including the setter, changes the fixed rotation order." },
+        ],
+      },
+      {
+        question: "What decides how a team's rotation plays out for the rest of a set?",
+        answers: [
+          { text: "The starting lineup — which player begins in which zone", correct: true, explanation: "Correct — the fixed order means the starting lineup determines everything after it." },
+          { text: "A new coin toss before each rotation", correct: false, explanation: "There's no repeated coin toss — only the starting lineup matters." },
+          { text: "Whichever team is currently ahead on the scoreboard", correct: false, explanation: "The score doesn't affect the rotation order at all." },
+          { text: "A vote among the six players", correct: false, explanation: "Rotation order is fixed by rule, not decided by player vote." },
+        ],
+      },
+      {
+        question: "If the player in Zone 3 rotates, which zone do they move to?",
+        answers: [
+          { text: "Zone 4", correct: true, explanation: "Correct — this follows the fixed clockwise order." },
+          { text: "Zone 2", correct: false, explanation: "That would be moving backward, against the rotation direction." },
+          { text: "Zone 6", correct: false, explanation: "Zone 3 moves to Zone 4 next, not straight to Zone 6." },
+          { text: "Zone 1", correct: false, explanation: "Zone 3 is several steps away from Zone 1 in the rotation order." },
+        ],
+      },
+      {
+        question: "Is the clockwise rotation order the same for every team in every match?",
+        answers: [
+          { text: "Yes, it's a fixed rule with no variation between teams", correct: true, explanation: "Correct — every team rotates the same fixed way." },
+          { text: "No, each team can choose their own rotation direction", correct: false, explanation: "The direction is fixed by rule, not a team choice." },
+          { text: "No, it depends on which side of the net a team is on", correct: false, explanation: "Court side doesn't change the fixed rotation direction." },
+          { text: "No, it changes between indoor and beach volleyball", correct: false, explanation: "This lesson covers indoor volleyball's fixed clockwise rule specifically." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "When Does a Team Rotate?",
+    summary: "The exact trigger that causes a rotation, and the situations where nothing rotates at all.",
+    durationMin: 7,
+    theory: [
+      "A team rotates in exactly one situation: when they win the serve back from the opponent. This moment — going from not serving to serving — is called a side-out, and it's the only trigger for a rotation. The team that just won the right to serve rotates one position clockwise before their player serves.",
+      "If the team that is currently serving wins the rally, the point is scored, but nothing rotates. The same player serves again, and the whole team stays exactly where it was for the next rally. Winning your own serve extends your turn — it doesn't advance the rotation.",
+      "This means a single player can serve many times in a row during a hot streak, as long as their team keeps winning rallies. The rotation only turns over once that streak ends and the ball goes back to the other team, who then rotates before serving themselves.",
+      "It's worth separating two things that happen on every rally: scoring a point and rotating. Under rally-point scoring, a point is scored on every single rally regardless of who served — but rotation only happens on the specific rallies where the serve changes hands.",
+      "A simple way to check yourself: ask 'did the team that's about to serve just win the ball away from the other team?' If yes, that team rotates first. If a team is simply continuing to serve because they won their own serve, there is no rotation to think about at all.",
+    ],
+    keyTakeaway: "A team rotates only on a side-out — when they win the serve away from the opponent — and rotates before that next serve. Winning your own serve scores a point but triggers no rotation at all.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "The player in Zone 1 serves. If the serving team wins the rally, nobody rotates and the same player serves again — rotation only happens on a side-out.",
+      activeZones: [1],
+      labels: { 1: "S" },
+      motions: {},
+      ball: { path: [{ x: 82, y: 70 }, { x: 20, y: -14 }] },
+    },
+    quiz: [
+      {
+        question: "What is the one trigger that causes a team to rotate?",
+        answers: [
+          { text: "Winning the serve back from the opponent (a side-out)", correct: true, explanation: "Correct — rotation only happens on a side-out." },
+          { text: "Scoring any point, regardless of who served", correct: false, explanation: "Scoring alone doesn't trigger a rotation — only winning back the serve does." },
+          { text: "The end of every three rallies", correct: false, explanation: "Rotation isn't tied to a fixed rally count." },
+          { text: "A timeout being called", correct: false, explanation: "Timeouts don't affect rotation at all." },
+        ],
+      },
+      {
+        question: "If the serving team wins the rally, what happens to their rotation?",
+        answers: [
+          { text: "Nothing rotates — the same player serves again", correct: true, explanation: "Correct — winning your own serve doesn't trigger a rotation." },
+          { text: "The whole team rotates one position", correct: false, explanation: "Rotation only happens on a side-out, not after a won serve." },
+          { text: "Only the server rotates to the back row", correct: false, explanation: "There's no partial rotation — either the whole team rotates or nobody does." },
+          { text: "The team rotates backward one position", correct: false, explanation: "Rotation never happens after a team wins its own serve." },
+        ],
+      },
+      {
+        question: "Can the same player serve multiple times in a row?",
+        answers: [
+          { text: "Yes, as long as their team keeps winning the rally", correct: true, explanation: "Correct — a winning streak on serve means no rotation, so the same server continues." },
+          { text: "No, a different player must serve every single rally", correct: false, explanation: "The same server continues serving until their team loses a rally." },
+          { text: "No, players must rotate every two rallies regardless of outcome", correct: false, explanation: "Rotation is tied to side-outs, not a fixed rally count." },
+          { text: "Only if the coach requests a lineup change", correct: false, explanation: "This happens naturally from winning rallies, not a coach's request." },
+        ],
+      },
+      {
+        question: "Under rally-point scoring, is a point scored on every rally?",
+        answers: [
+          { text: "Yes, regardless of which team served", correct: true, explanation: "Correct — modern volleyball awards a point on every rally." },
+          { text: "No, only the serving team can ever score", correct: false, explanation: "That describes old side-out-only scoring, not the current rally-point system." },
+          { text: "No, points are only scored every other rally", correct: false, explanation: "Every rally results in a point for one team or the other." },
+          { text: "Yes, but only in the deciding set", correct: false, explanation: "This applies in every set, not just the decider." },
+        ],
+      },
+      {
+        question: "Does scoring a point always mean a rotation also happens?",
+        answers: [
+          { text: "No — scoring and rotating are separate; rotation only happens on a side-out", correct: true, explanation: "Correct — every rally scores a point, but not every rally causes a rotation." },
+          { text: "Yes, every scored point causes a rotation for someone", correct: false, explanation: "Only the specific rallies where serve changes hands cause a rotation." },
+          { text: "Yes, but only for the team that lost the rally", correct: false, explanation: "The losing-serve team doesn't rotate — the newly-serving team does, and only on a side-out." },
+          { text: "No, rotations and points are on completely unrelated schedules", correct: false, explanation: "They are related — rotation is triggered specifically by a side-out rally." },
+        ],
+      },
+      {
+        question: "Which team rotates when a side-out happens?",
+        answers: [
+          { text: "The team that just won the serve back", correct: true, explanation: "Correct — the team about to serve next is the one that rotates." },
+          { text: "The team that just lost the rally and their serve", correct: false, explanation: "The team that lost serve does not rotate — the new server's team does." },
+          { text: "Both teams rotate together", correct: false, explanation: "Only the team gaining the serve rotates; the other team stays as it is." },
+          { text: "Neither team rotates on a side-out", correct: false, explanation: "A side-out is exactly the situation that does trigger a rotation." },
+        ],
+      },
+      {
+        question: "A team is currently serving and wins the next rally. Do they rotate before the following serve?",
+        answers: [
+          { text: "No, because they didn't just win the serve back — they already had it", correct: true, explanation: "Correct — only winning the serve away from the opponent triggers a rotation." },
+          { text: "Yes, because they scored a point", correct: false, explanation: "Scoring alone, without a side-out, never triggers a rotation." },
+          { text: "Yes, but only the server rotates", correct: false, explanation: "There's no rotation at all in this situation, partial or otherwise." },
+          { text: "It depends on the current score", correct: false, explanation: "The score has no effect on whether a rotation happens." },
+        ],
+      },
+      {
+        question: "What quick question can you ask yourself to check whether a rotation should happen?",
+        answers: [
+          { text: "'Did the team about to serve just win the ball away from the other team?'", correct: true, explanation: "Correct — a 'yes' answer means a side-out just happened, which triggers rotation." },
+          { text: "'How many points does the team have?'", correct: false, explanation: "Total score doesn't determine whether a rotation happens." },
+          { text: "'Is it currently a deciding set?'", correct: false, explanation: "The rotation trigger is the same in every set." },
+          { text: "'Has the team used all of its timeouts?'", correct: false, explanation: "Timeouts are unrelated to whether a rotation occurs." },
+        ],
+      },
+      {
+        question: "What is the volleyball term for winning the serve back from the opponent?",
+        answers: [
+          { text: "A side-out", correct: true, explanation: "Correct — this is the standard term for winning back the serve." },
+          { text: "A let", correct: false, explanation: "A let refers to a different situation, unrelated to winning back serve." },
+          { text: "A foot fault", correct: false, explanation: "That's a serving-position violation, not related to rotation triggers." },
+          { text: "A carry", correct: false, explanation: "A carry is a ball-handling fault, unrelated to rotation." },
+        ],
+      },
+      {
+        question: "Team A is serving and loses the rally to Team B. What happens next?",
+        answers: [
+          { text: "Team B rotates one position clockwise, then serves", correct: true, explanation: "Correct — Team B just won a side-out, so they rotate before serving." },
+          { text: "Team A rotates one position, even though they lost the point", correct: false, explanation: "The team that lost serve does not rotate — the team gaining serve does." },
+          { text: "Both teams rotate one position", correct: false, explanation: "Only the team that just won back the serve rotates." },
+          { text: "Neither team rotates, and Team A serves again", correct: false, explanation: "Losing the rally on serve means Team A loses their serve to Team B." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: "Rotation Before the Serve",
+    summary: "Why every player's zone must be legally correct at the exact moment the serve is contacted.",
+    durationMin: 7,
+    theory: [
+      "The formation a team lines up in matters most at one precise instant: the moment the server actually contacts the ball. Every player must be standing in a position that is legal relative to their teammates right then — not a second before, and (as the next lesson covers) not necessarily a second after.",
+      "'Legal' here means each player's rotational order must match the order established by the team's rotation — the same 1-2-3-4-5-6-1 sequence from Lesson 2. A player can't simply stand wherever they like; their position has to be consistent with where the rotation has placed them relative to their teammates.",
+      "This is why the order players are lined up in before a serve matters so much: it's not about where exactly on the court someone stands (within reason), but about their position relative to their direct neighbors in the rotation — the zones immediately next to theirs.",
+      "Officials watch specifically for this moment. A team can shift around before the serve and reposition immediately after, but if they are out of order at the exact instant of contact, it's called a positional fault, and the serving team is awarded the point.",
+      "Because this check happens only at one instant, teams often disguise their real tactical positions right up until the last moment, then move immediately once the ball is served — which is exactly what the next lesson explains.",
+    ],
+    keyTakeaway: "Every player's position must be legally correct relative to their rotational neighbors at the exact moment the ball is served — that single instant is when the formation is checked.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "All six players hold their correct rotational order the instant the server in Zone 1 contacts the ball — this is the moment their formation must be legal.",
+      activeZones: [1, 2, 3, 4, 5, 6],
+      labels: { 1: "1", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6" },
+      motions: {},
+      ball: { path: [{ x: 82, y: 70 }, { x: 20, y: -14 }] },
+    },
+    quiz: [
+      {
+        question: "At what exact moment must a team's formation be legally correct?",
+        answers: [
+          { text: "The instant the server contacts the ball", correct: true, explanation: "Correct — that single moment is when the formation is checked." },
+          { text: "For the entire rally", correct: false, explanation: "The check is specifically at the moment of contact, not the whole rally." },
+          { text: "Only at the start of the set", correct: false, explanation: "This check happens before every single serve, not just once per set." },
+          { text: "Whenever the referee feels like checking", correct: false, explanation: "It's tied to a specific moment (serve contact), not an arbitrary check." },
+        ],
+      },
+      {
+        question: "What does 'legal position' mean in this context?",
+        answers: [
+          { text: "Each player's order is consistent with their rotational neighbors", correct: true, explanation: "Correct — it's about relative order, not an exact fixed spot." },
+          { text: "Standing in the exact center of your numbered zone", correct: false, explanation: "The rule is about relative order between neighbors, not a precise fixed spot." },
+          { text: "Standing wherever gives the best tactical advantage", correct: false, explanation: "Tactical value doesn't override the legal ordering requirement." },
+          { text: "Standing closest to the net possible", correct: false, explanation: "Proximity to the net isn't what determines a legal position." },
+        ],
+      },
+      {
+        question: "What is it called when a team is out of order at the moment of serve?",
+        answers: [
+          { text: "A positional fault", correct: true, explanation: "Correct — this is the official term for the violation." },
+          { text: "A carry", correct: false, explanation: "A carry is a ball-handling fault, unrelated to formation order." },
+          { text: "A let", correct: false, explanation: "A let refers to a different situation entirely." },
+          { text: "A back-row attack violation", correct: false, explanation: "That's a different fault, about attacking above the net illegally." },
+        ],
+      },
+      {
+        question: "What happens if a team commits a positional fault?",
+        answers: [
+          { text: "The serving team is awarded the point", correct: true, explanation: "Correct — a positional fault results in a point for the other side." },
+          { text: "The rally is simply replayed", correct: false, explanation: "There's no replay for a positional fault — it results in a point." },
+          { text: "Nothing, since it's only a warning the first time", correct: false, explanation: "A positional fault gives a real point, it isn't a warning-only rule." },
+          { text: "The team loses their next rotation turn", correct: false, explanation: "The consequence is an awarded point, not a skipped rotation." },
+        ],
+      },
+      {
+        question: "Can a team reposition right before or right after the serve?",
+        answers: [
+          { text: "Yes, as long as they're legally ordered at the exact moment of contact", correct: true, explanation: "Correct — the check is only at that one instant." },
+          { text: "No, players must stay completely still for the whole rally", correct: false, explanation: "Players can move before and after — just not be out of order at contact." },
+          { text: "No, repositioning before a serve is never allowed", correct: false, explanation: "Pre-serve repositioning is common and legal, within limits." },
+          { text: "Only the server is allowed to move at all", correct: false, explanation: "All players can reposition, not just the server." },
+        ],
+      },
+      {
+        question: "Why might teams disguise their real tactical positions right up until the serve?",
+        answers: [
+          { text: "Because they can move freely immediately after contact, but must be legal exactly at contact", correct: true, explanation: "Correct — this is exactly the tactic the next lesson explains further." },
+          { text: "Because disguising position is required by the rules", correct: false, explanation: "It's a tactical choice, not a rule requirement." },
+          { text: "Because it changes who is allowed to serve", correct: false, explanation: "Server identity is set by rotation, unrelated to disguising position." },
+          { text: "Because it prevents the opposing team from serving", correct: false, explanation: "This tactic has no effect on the opposing team's serve." },
+        ],
+      },
+      {
+        question: "Is a legal position about a player's exact spot on the court, or their order relative to neighbors?",
+        answers: [
+          { text: "Their order relative to their rotational neighbors", correct: true, explanation: "Correct — it's a relative-order rule, not a fixed-spot rule." },
+          { text: "Their exact spot, measured to the centimeter", correct: false, explanation: "The rule cares about relative order, not an exact measured position." },
+          { text: "Neither — position legality doesn't actually exist as a rule", correct: false, explanation: "Position legality is a real, enforced rule (the positional fault)." },
+          { text: "Only the server's exact spot matters", correct: false, explanation: "Every player's relative position matters, not just the server's." },
+        ],
+      },
+      {
+        question: "Who typically watches for positional faults during a match?",
+        answers: [
+          { text: "Match officials", correct: true, explanation: "Correct — officials watch for this at the moment of serve." },
+          { text: "Only the opposing team's coach", correct: false, explanation: "Officials make the call, not a coach from the other side." },
+          { text: "Only the serving player themselves", correct: false, explanation: "The server isn't responsible for judging the whole team's formation." },
+          { text: "No one — it's checked automatically by a sensor", correct: false, explanation: "This is a human officiating call, not an automated sensor check." },
+        ],
+      },
+      {
+        question: "Does the positional-fault rule apply to every serve, or just the first one of a set?",
+        answers: [
+          { text: "Every single serve throughout the set", correct: true, explanation: "Correct — the formation is checked before each and every serve." },
+          { text: "Only the very first serve of each set", correct: false, explanation: "This check happens before every serve, not just the first." },
+          { text: "Only the last serve before a set-ending point", correct: false, explanation: "There's no special exception for a set-ending rally." },
+          { text: "Only if the receiving team requests a check", correct: false, explanation: "Officials watch for this automatically, without needing a request." },
+        ],
+      },
+      {
+        question: "What is checked when officials look for a positional fault?",
+        answers: [
+          { text: "Whether each player's order is legal relative to their immediate rotational neighbors", correct: true, explanation: "Correct — this is exactly what the rule is checking." },
+          { text: "Whether every player is touching their exact zone's center point", correct: false, explanation: "There's no requirement to stand on an exact center point." },
+          { text: "Whether the team's jerseys are numbered correctly", correct: false, explanation: "Jersey numbers are unrelated to positional faults." },
+          { text: "Whether the ball has crossed the net yet", correct: false, explanation: "That's unrelated to a team's formation legality." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "Overlap Rules",
+    summary: "The specific left-right and front-back relationships that make a rotational formation legal.",
+    durationMin: 8,
+    theory: [
+      "An 'overlap' is what happens when two neighboring players are standing in the wrong order relative to each other at the moment of serve. Overlap rules only apply between a player and their immediate neighbors in the rotation — not between every possible pair of players on the court.",
+      "There are two kinds of relationships to check: left-right (between players in the same row) and front-back (between a player and the teammate directly in front of or behind them in the rotation). Both must be correct at the same time for the formation to be legal.",
+      "For a left-right relationship: a player must stay to the correct side of their same-row neighbor. For example, the Zone 4 player must stay left of the Zone 3 player, and the Zone 3 player must stay left of the Zone 2 player — the same left-to-right order the zone numbers themselves suggest.",
+      "For a front-back relationship: a front-row player must stay closer to the net than their back-row counterpart in the same column. The Zone 4 player must stay in front of the Zone 5 player, Zone 3 in front of Zone 6, and Zone 2 in front of Zone 1 — right up until the ball is served.",
+      "A helpful way to think about it: overlap rules aren't about a player's absolute position on the court, they're about staying on the correct side of the specific teammates next to them in the rotation order. A player can stand almost anywhere within their zone, as long as they don't cross over their direct neighbors.",
+    ],
+    keyTakeaway: "Overlap rules compare a player only with their immediate rotational neighbors: same-row players must keep their left-right order, and same-column players must keep their front-back order, until the ball is served.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "Front-back overlap: the Zone 4 player must stay closer to the net than the Zone 5 player directly behind them, right up until the serve.",
+      activeZones: [4, 5],
+      labels: { 4: "4", 5: "5" },
+      motions: {
+        4: { dx: 0, dy: -6 },
+        5: { dx: 0, dy: 6 },
+      },
+      ball: null,
+    },
+    quiz: [
+      {
+        question: "What is an 'overlap' in the context of rotation rules?",
+        answers: [
+          { text: "Two neighboring players standing in the wrong relative order at serve", correct: true, explanation: "Correct — this is exactly what an overlap fault is." },
+          { text: "Two players touching the ball at the same time", correct: false, explanation: "That's a simultaneous contact situation, unrelated to overlap rules." },
+          { text: "A player stepping outside the court boundary", correct: false, explanation: "That's a boundary issue, not a rotational overlap." },
+          { text: "A serve that clips the net", correct: false, explanation: "That's a let-serve situation, unrelated to overlaps." },
+        ],
+      },
+      {
+        question: "Which players does the overlap rule compare against each other?",
+        answers: [
+          { text: "Only immediate neighbors in the rotation", correct: true, explanation: "Correct — overlap rules don't apply to every possible pair of players." },
+          { text: "Every player against every other player on the court", correct: false, explanation: "Only immediate rotational neighbors are compared, not everyone." },
+          { text: "Only the setter against the opposing setter", correct: false, explanation: "Overlap rules are about teammates, not comparisons across the net." },
+          { text: "Only players in the same zone number as each other", correct: false, explanation: "No two teammates share the same zone at once, so this isn't the comparison made." },
+        ],
+      },
+      {
+        question: "In a left-right relationship, where must the Zone 4 player stay relative to Zone 3?",
+        answers: [
+          { text: "To the left of the Zone 3 player", correct: true, explanation: "Correct — this matches the left-to-right zone order." },
+          { text: "To the right of the Zone 3 player", correct: false, explanation: "That would reverse the required left-right order." },
+          { text: "Directly behind the Zone 3 player", correct: false, explanation: "That describes a front-back relationship, not left-right." },
+          { text: "There is no required relationship between them", correct: false, explanation: "Zone 4 and Zone 3 are same-row neighbors, so a left-right rule applies." },
+        ],
+      },
+      {
+        question: "In a front-back relationship, where must the Zone 3 player stay relative to Zone 6?",
+        answers: [
+          { text: "Closer to the net than the Zone 6 player", correct: true, explanation: "Correct — Zone 3 is front row and must stay in front of Zone 6." },
+          { text: "Further from the net than the Zone 6 player", correct: false, explanation: "That would reverse the required front-back order." },
+          { text: "To the left of the Zone 6 player", correct: false, explanation: "That describes a left-right relationship, not front-back." },
+          { text: "There is no required relationship between them", correct: false, explanation: "Zone 3 and Zone 6 are same-column neighbors, so a front-back rule applies." },
+        ],
+      },
+      {
+        question: "Until when must front-back and left-right relationships stay legal?",
+        answers: [
+          { text: "Until the ball is served", correct: true, explanation: "Correct — the check is at the moment of serve, as covered in the last lesson." },
+          { text: "For the entire rally", correct: false, explanation: "Players are free to move once the ball is served." },
+          { text: "Only during the first rotation of the set", correct: false, explanation: "This check applies before every single serve." },
+          { text: "Until the ball crosses the net", correct: false, explanation: "The check is tied to the moment of serve contact, not the ball crossing the net." },
+        ],
+      },
+      {
+        question: "Must the Zone 2 player stay in front of the Zone 1 player before the serve?",
+        answers: [
+          { text: "Yes — Zone 2 is front row and Zone 1 is its back-row counterpart", correct: true, explanation: "Correct — this is a required front-back relationship." },
+          { text: "No, Zone 2 and Zone 1 have no required relationship", correct: false, explanation: "They are same-column neighbors, so a front-back rule does apply." },
+          { text: "No, Zone 1 must stay in front of Zone 2 instead", correct: false, explanation: "That reverses the actual required order — Zone 2 is the front-row zone." },
+          { text: "Only during the deciding set", correct: false, explanation: "This rule applies in every set, not just the decider." },
+        ],
+      },
+      {
+        question: "Can a player stand anywhere within their zone as long as overlap rules are respected?",
+        answers: [
+          { text: "Yes, as long as they don't cross over their direct rotational neighbors", correct: true, explanation: "Correct — the rule is about relative order, not an exact spot." },
+          { text: "No, every player must stand on one exact marked point", correct: false, explanation: "There's no requirement to stand on one precise point." },
+          { text: "No, players may only stand in the very center of the court", correct: false, explanation: "Standing anywhere within the legal relative order is fine." },
+          { text: "Only the server has any freedom of movement before serving", correct: false, explanation: "All players have this freedom, not just the server." },
+        ],
+      },
+      {
+        question: "Which of these is a left-right neighbor pair, not a front-back pair?",
+        answers: [
+          { text: "Zone 4 and Zone 3", correct: true, explanation: "Correct — these are same-row (front-row) neighbors." },
+          { text: "Zone 4 and Zone 5", correct: false, explanation: "This is a front-back pair, both in the same column." },
+          { text: "Zone 3 and Zone 6", correct: false, explanation: "This is a front-back pair, both in the same column." },
+          { text: "Zone 2 and Zone 1", correct: false, explanation: "This is a front-back pair, both in the same column." },
+        ],
+      },
+      {
+        question: "Which of these is a front-back neighbor pair, not a left-right pair?",
+        answers: [
+          { text: "Zone 2 and Zone 1", correct: true, explanation: "Correct — these are same-column (front/back) neighbors." },
+          { text: "Zone 4 and Zone 3", correct: false, explanation: "This is a left-right pair, both in the front row." },
+          { text: "Zone 3 and Zone 2", correct: false, explanation: "This is a left-right pair, both in the front row." },
+          { text: "Zone 5 and Zone 6", correct: false, explanation: "This is a left-right pair, both in the back row." },
+        ],
+      },
+      {
+        question: "What best summarizes what overlap rules are actually about?",
+        answers: [
+          { text: "Staying on the correct side of your direct rotational neighbors, not your absolute spot on court", correct: true, explanation: "Correct — this captures the core idea precisely." },
+          { text: "Standing in the exact geometric center of the court at all times", correct: false, explanation: "Overlap rules don't require any exact fixed position." },
+          { text: "Never moving at all until the rally ends", correct: false, explanation: "Movement is allowed once the ball is served — this is only about the moment of serve." },
+          { text: "Making sure no two players ever touch the same line", correct: false, explanation: "Overlap rules are about relative order between neighbors, not lines." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 6,
+    title: "Moving After the Serve",
+    summary: "Why formation legality only applies at contact, and what players are free to do the instant after.",
+    durationMin: 7,
+    theory: [
+      "The formation rules from the last two lessons — legal order, no overlaps — apply only at one instant: the moment the server contacts the ball. The very next instant, every player is free to move anywhere they want on their side of the court, entirely independent of their rotational zone.",
+      "This is what allows real tactics to exist at all. If players had to stay in their overlap-legal positions for the whole rally, a Zone 5 player could never help cover the middle of the court, and a front-row hitter could never sprint in from an angled approach — the game would look completely different.",
+      "In practice, this means a team's real defensive or offensive shape often looks nothing like their serving formation within a second of the ball being contacted. Players sprint to their actual tactical spots — the setter releases to the net, blockers spread along the net, back-row defenders spread out to cover the court.",
+      "The key distinction to hold onto: rotation legality is about the STARTING formation at one frozen instant, while what happens during the rally is about REAL tactical positioning, and the two are only loosely connected. A team can be perfectly legal at serve and still run a completely different-looking play a second later.",
+      "This is also why disguising formation (mentioned in Lesson 4) works: a team can start players slightly out of their 'natural' tactical spot, purely to stay legally ordered, and then have everyone sprint to their real positions the instant the ball leaves the server's hand.",
+    ],
+    keyTakeaway: "Formation legality applies only at the instant of serve contact — the moment after, every player is free to move anywhere on their side of the court to reach their real tactical position.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "The instant the server in Zone 1 contacts the ball, the Zone 3 player is free to release from their legal starting spot toward the net to begin blocking.",
+      activeZones: [1, 3],
+      labels: { 1: "S", 3: "MB" },
+      motions: { 3: { dx: 0, dy: -8 } },
+      ball: { path: [{ x: 82, y: 70 }, { x: 20, y: -14 }] },
+    },
+    quiz: [
+      {
+        question: "At which moment does formation legality actually apply?",
+        answers: [
+          { text: "Only the instant the server contacts the ball", correct: true, explanation: "Correct — legality is checked at that one instant only." },
+          { text: "For the entire rally, start to finish", correct: false, explanation: "Legality only applies at the moment of serve contact." },
+          { text: "Only after the ball crosses the net", correct: false, explanation: "The check happens at contact, before the ball even crosses." },
+          { text: "Whenever a player calls for the ball", correct: false, explanation: "This isn't tied to calling for the ball at all." },
+        ],
+      },
+      {
+        question: "What are players free to do the instant after the ball is served?",
+        answers: [
+          { text: "Move anywhere on their side of the court", correct: true, explanation: "Correct — overlap rules no longer apply once the ball is served." },
+          { text: "Nothing — they must hold their formation for the whole rally", correct: false, explanation: "Players are free to move immediately after the ball is served." },
+          { text: "Only move within their original numbered zone", correct: false, explanation: "There's no such restriction once the ball has been served." },
+          { text: "Only the server is allowed to move", correct: false, explanation: "Every player, not just the server, is free to move after contact." },
+        ],
+      },
+      {
+        question: "Why does this rule matter for real tactics?",
+        answers: [
+          { text: "Without it, players could never reach their real defensive or attacking positions", correct: true, explanation: "Correct — this freedom is what makes real tactical play possible." },
+          { text: "It has no real effect on how the game is actually played", correct: false, explanation: "This rule is foundational to how volleyball tactics work." },
+          { text: "It only matters for the serving team, not the receiving team", correct: false, explanation: "Both teams' players benefit from this freedom to move after serve." },
+          { text: "It only applies to the setter", correct: false, explanation: "This freedom applies to every player on both teams." },
+        ],
+      },
+      {
+        question: "What is the key distinction between 'rotation legality' and a team's real tactical shape?",
+        answers: [
+          { text: "Rotation legality is about one frozen instant at serve; tactical shape happens during the live rally", correct: true, explanation: "Correct — this is exactly the distinction to hold onto." },
+          { text: "There is no distinction — they are the same thing", correct: false, explanation: "They are related but distinct concepts, as this lesson explains." },
+          { text: "Tactical shape is checked by officials, but rotation legality is not", correct: false, explanation: "It's the reverse — officials check rotation legality, not general tactical shape." },
+          { text: "Rotation legality applies to the whole rally, and tactical shape only applies at serve", correct: false, explanation: "This reverses the actual relationship between the two ideas." },
+        ],
+      },
+      {
+        question: "Why might a team deliberately start in a slightly unusual formation before serving?",
+        answers: [
+          { text: "To disguise their real tactical plan while staying legally ordered", correct: true, explanation: "Correct — this is the disguising tactic from the previous lesson." },
+          { text: "Because the rules require teams to rotate their starting spots randomly", correct: false, explanation: "There's no such rule — disguising position is a tactical choice." },
+          { text: "Because it's required for the server to be allowed to serve", correct: false, explanation: "Server eligibility isn't related to this disguising tactic." },
+          { text: "Because it earns the team bonus points", correct: false, explanation: "There's no bonus-point mechanic tied to formation disguising." },
+        ],
+      },
+      {
+        question: "Does a team's serving formation always match their real defensive shape a second later?",
+        answers: [
+          { text: "No, it often looks completely different once players reach their real spots", correct: true, explanation: "Correct — the two are only loosely connected." },
+          { text: "Yes, they are required to be identical", correct: false, explanation: "There's no requirement for the two shapes to match." },
+          { text: "Yes, but only during the deciding set", correct: false, explanation: "This isn't a set-specific rule at all." },
+          { text: "No, but only the back row is allowed to move", correct: false, explanation: "All players, front and back row alike, are free to move." },
+        ],
+      },
+      {
+        question: "What might a middle blocker do immediately after their team's serve is contacted?",
+        answers: [
+          { text: "Release from their legal starting spot and move toward the net to prepare to block", correct: true, explanation: "Correct — this is a typical real tactical movement right after serve." },
+          { text: "Stay frozen in their exact starting spot for the whole rally", correct: false, explanation: "Players are free to move as soon as the ball is contacted." },
+          { text: "Switch zones with the setter", correct: false, explanation: "Zone assignments don't swap between players mid-rally." },
+          { text: "Leave the court entirely", correct: false, explanation: "There's no rule requiring a player to leave the court at this moment." },
+        ],
+      },
+      {
+        question: "Once the ball is served, is a player still restricted by their zone number?",
+        answers: [
+          { text: "No, their zone number only mattered for the legality check at serve", correct: true, explanation: "Correct — after that check, zone number stops restricting their movement." },
+          { text: "Yes, they must stay within that exact zone for the whole rally", correct: false, explanation: "Players are free to move anywhere on their side once the ball is served." },
+          { text: "Yes, but only front-row players are restricted this way", correct: false, explanation: "No player, front or back row, is restricted to their zone after serve." },
+          { text: "It depends on which zone they were in", correct: false, explanation: "The freedom to move applies equally regardless of starting zone." },
+        ],
+      },
+      {
+        question: "What happens to overlap rules once the ball leaves the server's hand?",
+        answers: [
+          { text: "They stop applying until the next serve", correct: true, explanation: "Correct — overlap rules are only checked at the moment of contact." },
+          { text: "They become even stricter", correct: false, explanation: "The opposite happens — the restriction is lifted, not tightened." },
+          { text: "They apply only to the back row from then on", correct: false, explanation: "Overlap rules simply stop applying at all until the next serve." },
+          { text: "They apply only if the serving team loses the rally", correct: false, explanation: "The outcome of the rally doesn't change when overlap rules apply." },
+        ],
+      },
+      {
+        question: "Which best describes what this lesson adds to the previous two lessons on formation legality?",
+        answers: [
+          { text: "It defines the boundary of when those rules stop applying", correct: true, explanation: "Correct — it clarifies that legality is a single-instant check, not an ongoing restriction." },
+          { text: "It introduces a brand new formation rule for mid-rally play", correct: false, explanation: "This lesson explains freedom from the rule, not a new restriction." },
+          { text: "It cancels the overlap rules from the previous lesson entirely", correct: false, explanation: "The overlap rules still apply — just only at the moment of serve." },
+          { text: "It only applies to teams that are currently losing", correct: false, explanation: "This applies to every team, regardless of the score." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 7,
+    title: "Setter Movement",
+    summary: "Where a setter's rotation can place them, and how they release to the net after every serve.",
+    durationMin: 8,
+    theory: [
+      "A setter's zone at the moment of serve depends entirely on where the team's rotation has placed them — it could be a front-row zone (2, 3 or 4) or a back-row zone (5, 6 or 1), and it changes every time the team rotates. There's no fixed 'setter's zone' the way there might seem to be for other roles.",
+      "Whatever zone the setter starts in, their job right after the serve is the same: get to the net as quickly as possible to be ready for the second contact. If they started in the back row, this often means sprinting a significant distance — from deep in the court all the way up to the net.",
+      "This is exactly the freedom covered in the last lesson. The setter only had to be in their legally ordered rotational spot for the instant of serve; the moment the ball is contacted, they're completely free to release and run toward the net regardless of which zone technically 'owns' them.",
+      "Because the setter's starting zone changes constantly across a set's six rotations, the distance they have to cover to reach the net also changes — starting in Zone 1 or Zone 5 means a long sprint, while starting already in Zone 2 or Zone 3 means they're already close to where they need to be.",
+      "Coaches build starting lineups with this in mind: some systems try to keep the setter's rotational neighbors positioned to make room for this sprint, since a clean, unobstructed release to the net is what lets the setter reach the ball in time for a well-timed second contact.",
+    ],
+    keyTakeaway: "A setter's starting zone depends on the current rotation and can be anywhere from 2 to 1, front row or back row — but the instant the ball is served, they release to the net to prepare for the second contact.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "The Setter (S) starts this rotation in Zone 5, in the back row. The instant the serve is contacted, they sprint across the court to the net to get ready to set.",
+      activeZones: [5],
+      labels: { 5: "S" },
+      motions: { 5: { dx: 47, dy: -52 } },
+      ball: { path: [{ x: 50, y: -8 }, { x: 30, y: 20 }] },
+    },
+    quiz: [
+      {
+        question: "Is there one fixed zone the setter always starts a rotation in?",
+        answers: [
+          { text: "No — it depends on the current rotation and can be any of the six zones", correct: true, explanation: "Correct — the setter's starting zone changes with every rotation." },
+          { text: "Yes, the setter is always in Zone 3", correct: false, explanation: "The setter's zone changes across the set's six rotations." },
+          { text: "Yes, the setter is always in the back row", correct: false, explanation: "The setter can be in the front row or back row depending on rotation." },
+          { text: "Yes, the setter is always wherever the coach points at the last second", correct: false, explanation: "The setter's zone is determined by rotation, not a last-second call." },
+        ],
+      },
+      {
+        question: "What is the setter's job the instant after their team serves?",
+        answers: [
+          { text: "Release to the net to prepare for the second contact", correct: true, explanation: "Correct — this is the setter's core job every single rally." },
+          { text: "Stay exactly in their starting zone for the whole rally", correct: false, explanation: "The setter needs to move to the net, not stay put." },
+          { text: "Immediately attempt to block at the net", correct: false, explanation: "Blocking is the middle blocker or front-row players' job, not the setter's specific task here." },
+          { text: "Rotate the team one position early", correct: false, explanation: "Rotation isn't something a single player triggers mid-rally." },
+        ],
+      },
+      {
+        question: "If the setter starts a rotation in Zone 1, what does their release to the net look like?",
+        answers: [
+          { text: "A long sprint, since Zone 1 is deep in the back row", correct: true, explanation: "Correct — Zone 1 is far from the net, so the release covers real distance." },
+          { text: "No movement is needed since Zone 1 is already at the net", correct: false, explanation: "Zone 1 is a back-row zone, far from the net." },
+          { text: "A short sideways step only", correct: false, explanation: "Starting from Zone 1 requires a real, longer sprint to the net." },
+          { text: "The setter cannot start a rotation in Zone 1", correct: false, explanation: "The setter can start in any of the six zones depending on rotation." },
+        ],
+      },
+      {
+        question: "Why does the setter's release distance change from rotation to rotation?",
+        answers: [
+          { text: "Because their starting zone changes with each rotation", correct: true, explanation: "Correct — a different starting zone means a different distance to the net." },
+          { text: "Because the net moves between rotations", correct: false, explanation: "The net stays fixed — it's the setter's starting zone that changes." },
+          { text: "Because the setter is substituted out every rotation", correct: false, explanation: "The same setter typically stays on, just in a different zone each time." },
+          { text: "It doesn't change — the distance is always the same", correct: false, explanation: "The distance varies significantly depending on the setter's current zone." },
+        ],
+      },
+      {
+        question: "What rule from the previous lesson makes the setter's release to the net legal?",
+        answers: [
+          { text: "Players are free to move anywhere once the ball is served", correct: true, explanation: "Correct — this is exactly the freedom covered in Lesson 6." },
+          { text: "Setters are given a special exception to all rotation rules", correct: false, explanation: "There's no special setter exception — this is the general post-serve freedom rule." },
+          { text: "The setter is allowed to break formation before the serve", correct: false, explanation: "The setter must still be legally positioned at the moment of serve." },
+          { text: "Overlap rules don't apply to setters at all", correct: false, explanation: "Overlap rules apply to every player, including the setter, at the moment of serve." },
+        ],
+      },
+      {
+        question: "When starting in Zone 2 or Zone 3, is the setter's release to the net shorter or longer than from Zone 1 or Zone 5?",
+        answers: [
+          { text: "Shorter, since Zone 2 and 3 are already close to the net", correct: true, explanation: "Correct — front-row zones require much less distance to cover." },
+          { text: "Longer, since Zone 2 and 3 are further from the net", correct: false, explanation: "Zone 2 and 3 are front-row zones, close to the net." },
+          { text: "Exactly the same distance every time", correct: false, explanation: "The distance depends heavily on which zone the setter starts in." },
+          { text: "The setter never starts in Zone 2 or Zone 3", correct: false, explanation: "The setter can start in any of the six zones, including these." },
+        ],
+      },
+      {
+        question: "Why might a coach consider the setter's rotational neighbors when building a lineup?",
+        answers: [
+          { text: "To help make room for a clean, unobstructed release to the net", correct: true, explanation: "Correct — this is a real tactical consideration for lineup building." },
+          { text: "Because neighbors must always be the same height as the setter", correct: false, explanation: "Height matching isn't the reason for this consideration." },
+          { text: "Because it changes how many times the setter is allowed to touch the ball", correct: false, explanation: "Touch counts aren't affected by lineup neighbor choices." },
+          { text: "Because it's required by the rules of positional legality", correct: false, explanation: "This is a tactical choice, not a legal requirement." },
+        ],
+      },
+      {
+        question: "What must be true about the setter's position at the exact moment of serve, regardless of their eventual sprint to the net?",
+        answers: [
+          { text: "They must be in a legal overlap position relative to their neighbors", correct: true, explanation: "Correct — the legality check still applies at that one instant." },
+          { text: "They must already be standing at the net", correct: false, explanation: "There's no such requirement — only legal ordering matters at serve." },
+          { text: "They must be touching the sideline", correct: false, explanation: "There's no rule requiring the setter to touch the sideline." },
+          { text: "They must be facing the opposing setter directly", correct: false, explanation: "Facing direction isn't part of the legality check." },
+        ],
+      },
+      {
+        question: "Does the setter's role change depending on which zone they're currently in?",
+        answers: [
+          { text: "No — the role stays the same; only their starting distance to the net changes", correct: true, explanation: "Correct — their job (set the second contact) doesn't change with zone." },
+          { text: "Yes, they only set the ball when they start in a front-row zone", correct: false, explanation: "The setter's core job is the same regardless of starting zone." },
+          { text: "Yes, they become a blocker when they start in the back row", correct: false, explanation: "Role assignments like setter don't change based on rotation." },
+          { text: "Yes, a different player takes over setting each rotation", correct: false, explanation: "The same player normally keeps the setter role through the set." },
+        ],
+      },
+      {
+        question: "What is the main takeaway about setter movement across a full set?",
+        answers: [
+          { text: "Their starting zone and release distance vary by rotation, but their job at the net stays constant", correct: true, explanation: "Correct — this captures the lesson's core idea." },
+          { text: "The setter stands still in one exact spot the entire set", correct: false, explanation: "The setter moves substantially every single rally." },
+          { text: "The setter's job changes completely with every rotation", correct: false, explanation: "Only their starting zone changes — their job stays the same." },
+          { text: "The setter is exempt from all rotation rules", correct: false, explanation: "The setter follows the same rotation and overlap rules as everyone else." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 8,
+    title: "Hitter Movement",
+    summary: "How outside hitters, opposite hitters and middle blockers transition into their attacking positions.",
+    durationMin: 8,
+    theory: [
+      "Front-row hitters — the outside hitter, opposite hitter, and middle blocker — face the same freedom described in Lesson 6: legal at the moment of serve, free to move the instant after. What they do with that freedom is sprint into their specific attacking approach.",
+      "The outside hitter (typically starting somewhere near Zone 4) moves to set up their approach toward the left antenna, ready to attack a ball delivered to that side. The opposite hitter does the same on the right, near Zone 2, while the middle blocker heads toward the center at Zone 3, ready for a quick attack or to shift along the net to block.",
+      "Back-row hitters move too, just with an added restriction: whoever is currently in the back row can approach and attack, but only if they jump from behind the 3 m attack line. This means a back-row player's transition run has to end with a take-off that starts further from the net than a front-row teammate's would.",
+      "Because these players are all released from their exact rotational spot only after the serve, the specific paths they run can look quite different from one rotation to the next — one rotation might put the outside hitter starting deep and needing a long angled run, while another has them starting already close to their attacking spot.",
+      "What stays constant, no matter the rotation, is the destination each role is running toward: Zone 4 area for the outside hitter's approach, Zone 2 area for the opposite hitter, and Zone 3 area for the middle blocker — the same net-side landmarks introduced back in Lesson 1.",
+    ],
+    keyTakeaway: "Front-row hitters release from their legal serving spot and transition toward their attacking zones — roughly Zone 4 for the outside hitter, Zone 2 for the opposite, and Zone 3 for the middle blocker — with back-row hitters needing to take off from behind the attack line.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "After the serve, the three front-row hitters release toward their attacking spots: the outside hitter toward Zone 4, the middle blocker toward Zone 3, and the opposite hitter toward Zone 2.",
+      activeZones: [4, 3, 2],
+      labels: { 4: "OH", 3: "MB", 2: "OP" },
+      motions: {
+        4: { dx: 0, dy: -6 },
+        3: { dx: 0, dy: -6 },
+        2: { dx: 0, dy: -6 },
+      },
+      ball: { path: [{ x: 50, y: 30 }, { x: 18, y: 10 }] },
+    },
+    quiz: [
+      {
+        question: "Which zone area does the outside hitter typically transition toward?",
+        answers: [
+          { text: "Zone 4", correct: true, explanation: "Correct — this is the outside hitter's typical attacking area." },
+          { text: "Zone 2", correct: false, explanation: "Zone 2 is the opposite hitter's typical attacking area." },
+          { text: "Zone 1", correct: false, explanation: "Zone 1 is a back-row serving zone, not the OH's attacking spot." },
+          { text: "Zone 6", correct: false, explanation: "Zone 6 is a back-row zone, not a front-row attacking spot." },
+        ],
+      },
+      {
+        question: "Which zone area does the opposite hitter typically transition toward?",
+        answers: [
+          { text: "Zone 2", correct: true, explanation: "Correct — this is the opposite hitter's typical attacking area." },
+          { text: "Zone 4", correct: false, explanation: "Zone 4 is the outside hitter's typical attacking area." },
+          { text: "Zone 5", correct: false, explanation: "Zone 5 is a back-row zone, not a front-row attacking spot." },
+          { text: "Zone 3", correct: false, explanation: "Zone 3 is the middle blocker's typical attacking area." },
+        ],
+      },
+      {
+        question: "Which zone area does the middle blocker typically transition toward?",
+        answers: [
+          { text: "Zone 3", correct: true, explanation: "Correct — this is the middle blocker's central attacking area." },
+          { text: "Zone 1", correct: false, explanation: "Zone 1 is a back-row serving zone." },
+          { text: "Zone 4", correct: false, explanation: "Zone 4 is the outside hitter's typical attacking area." },
+          { text: "Zone 6", correct: false, explanation: "Zone 6 is a back-row zone, not the middle blocker's front-row spot." },
+        ],
+      },
+      {
+        question: "What extra restriction applies to a back-row player attacking the ball?",
+        answers: [
+          { text: "They must jump from behind the 3 m attack line", correct: true, explanation: "Correct — this is the back-row attacking rule." },
+          { text: "They may never attack the ball at all", correct: false, explanation: "Back-row players can attack, just with the attack-line restriction." },
+          { text: "They must attack using an underhand motion", correct: false, explanation: "There's no such technique restriction on back-row attackers." },
+          { text: "They must wait for a teammate's permission", correct: false, explanation: "No such permission requirement exists in the rules." },
+        ],
+      },
+      {
+        question: "Why can a hitter's transition path look different from one rotation to the next?",
+        answers: [
+          { text: "Because their starting zone before the serve changes with each rotation", correct: true, explanation: "Correct — a different starting point means a different transition run." },
+          { text: "Because the court dimensions change between rotations", correct: false, explanation: "Court dimensions are fixed and never change." },
+          { text: "Because a different hitter plays the role every rotation", correct: false, explanation: "The same players generally keep their roles; only their zone changes." },
+          { text: "Because the net height changes between rotations", correct: false, explanation: "Net height is fixed throughout a match." },
+        ],
+      },
+      {
+        question: "When are front-row hitters free to begin their transition run?",
+        answers: [
+          { text: "The instant the ball is served", correct: true, explanation: "Correct — this follows the same rule covered in Lesson 6." },
+          { text: "Only after the ball crosses the net", correct: false, explanation: "They can move as soon as the ball is contacted, before it even crosses." },
+          { text: "Only once the opposing team touches the ball", correct: false, explanation: "The freedom to move begins at serve contact, not at the opponent's touch." },
+          { text: "At any point before the serve as well", correct: false, explanation: "Before the serve, they must still hold a legal overlap position." },
+        ],
+      },
+      {
+        question: "What stays the same about hitter roles across every rotation?",
+        answers: [
+          { text: "The general zone area each role transitions toward", correct: true, explanation: "Correct — Zone 4 for OH, Zone 2 for OP, Zone 3 for MB, regardless of rotation." },
+          { text: "The exact starting zone before every serve", correct: false, explanation: "The starting zone changes rotation to rotation — only the destination stays constant." },
+          { text: "Whether they are front row or back row", correct: false, explanation: "A hitter's row status changes as the team rotates." },
+          { text: "The distance they need to run", correct: false, explanation: "That distance changes depending on their current starting zone." },
+        ],
+      },
+      {
+        question: "If a hitter is currently in the back row this rotation, can they still attack the ball above net height?",
+        answers: [
+          { text: "Yes, if they take off from behind the 3 m attack line", correct: true, explanation: "Correct — this is the legal back-row attacking condition." },
+          { text: "No, back-row players can never attack above net height", correct: false, explanation: "They can, specifically when jumping from behind the attack line." },
+          { text: "Yes, from anywhere on the court, no restriction", correct: false, explanation: "That freedom belongs only to front-row players." },
+          { text: "No, only the libero is allowed to attack from the back row", correct: false, explanation: "The libero is actually the one player never allowed to attack above net height." },
+        ],
+      },
+      {
+        question: "What landmark from Lesson 1 do hitter transition destinations match up with?",
+        answers: [
+          { text: "The same zone numbers and layout introduced in Lesson 1", correct: true, explanation: "Correct — Zones 4, 3 and 2 are the same front-row zones from that lesson." },
+          { text: "The attack line specifically, not the zones", correct: false, explanation: "The destinations are described in terms of zones, not the attack line." },
+          { text: "The service zone behind the end line", correct: false, explanation: "The service zone is unrelated to where hitters transition to attack." },
+          { text: "The free zone surrounding the court", correct: false, explanation: "The free zone isn't where hitters are transitioning to attack from." },
+        ],
+      },
+      {
+        question: "What is the main idea of this lesson?",
+        answers: [
+          { text: "Hitters release from their legal serving spot and run toward their specific attacking zone", correct: true, explanation: "Correct — this summarizes the lesson precisely." },
+          { text: "Hitters must stay in their exact rotational zone for the whole rally", correct: false, explanation: "The opposite is true — they're free to move once the ball is served." },
+          { text: "Only the outside hitter is allowed to move after serve", correct: false, explanation: "All three front-row hitter roles transition after the serve." },
+          { text: "Hitter roles are reassigned randomly at each rotation", correct: false, explanation: "Roles stay fixed to specific players; only their zone location changes." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 9,
+    title: "Libero and Rotation",
+    summary: "How the libero fits into a team's rotation without ever appearing in the front row.",
+    durationMin: 8,
+    theory: [
+      "The libero never actually appears in the front row, even though the team's rotation keeps cycling through all six zones. Instead, the libero substitutes in for whichever teammate's rotation turn has placed them in the back row — most often a middle blocker, whose back-row defense tends to be the position teams most want to strengthen.",
+      "This substitution is special: it doesn't count against the team's normal, limited substitutions, and it doesn't have to happen exactly at the same moment as a rotation. Teams typically settle into a consistent pattern — swapping the libero in and out at the same points in the rotation cycle, rally after rally.",
+      "As the team's rotation advances through its usual 1-2-3-4-5-6-1 cycle, the libero effectively 'rides along' inside the back row: when the player they replaced would rotate out of the back row and into the front row, the libero swaps back out, and their real teammate takes the front-row zone instead.",
+      "Because of this, a team's on-court group of six often actually represents seven trained players across the full rotation — six starters plus the libero cycling in for whichever one of them is currently in the back row. The libero's own zone assignment effectively shadows their teammate's back-row zones without ever taking a front-row turn.",
+      "This pattern also explains why the libero can play so many consecutive rallies: as long as their team's rotation keeps returning that particular back-row slot to the group, the libero simply keeps swapping in for it, rotation after rotation, without needing to be re-substituted from scratch each time.",
+    ],
+    keyTakeaway: "The libero substitutes into the back-row zone of whichever teammate's rotation has placed them there, riding along through the back row without ever taking a front-row turn, and swaps back out the moment that zone would rotate to the front row.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "The Libero (L) has substituted in for a back-row teammate. As the rotation advances, the libero shifts between the back-row zones, never taking a front-row turn.",
+      activeZones: [5],
+      labels: { 5: "L" },
+      motions: { 5: { dx: 32, dy: 16 } },
+      ball: null,
+    },
+    quiz: [
+      {
+        question: "Does the libero ever appear in a front-row zone?",
+        answers: [
+          { text: "No — the libero never takes a front-row turn", correct: true, explanation: "Correct — the libero stays confined to back-row substitutions." },
+          { text: "Yes, once every full rotation cycle", correct: false, explanation: "The libero swaps back out before their zone would reach the front row." },
+          { text: "Yes, whenever the coach chooses", correct: false, explanation: "The libero is restricted from the front row by rule, not coach preference." },
+          { text: "Yes, but only during the deciding set", correct: false, explanation: "This restriction applies in every set, with no exception." },
+        ],
+      },
+      {
+        question: "Whose place does the libero typically take?",
+        answers: [
+          { text: "Whichever teammate's rotation has placed them in the back row", correct: true, explanation: "Correct — most often a middle blocker, but based on the rotation, not a fixed player." },
+          { text: "Always the setter, no matter the rotation", correct: false, explanation: "The libero isn't tied to substituting for the setter specifically." },
+          { text: "A randomly chosen teammate each rally", correct: false, explanation: "The substitution pattern is consistent, not random." },
+          { text: "Whichever teammate is currently in the front row", correct: false, explanation: "The libero substitutes for back-row players, not front-row ones." },
+        ],
+      },
+      {
+        question: "Does a libero substitution count against the team's normal substitution limit?",
+        answers: [
+          { text: "No, libero substitutions are unlimited and separate from that count", correct: true, explanation: "Correct — this is one of the libero's special rules." },
+          { text: "Yes, it counts the same as any other substitution", correct: false, explanation: "Libero substitutions are specifically exempt from the normal limit." },
+          { text: "Yes, but only after the third time it's used", correct: false, explanation: "There's no such threshold — libero substitutions are always exempt." },
+          { text: "It depends on which set is being played", correct: false, explanation: "This exemption applies in every set, not just specific ones." },
+        ],
+      },
+      {
+        question: "What happens when the zone the libero occupies would rotate into the front row?",
+        answers: [
+          { text: "The libero swaps back out, and their teammate takes the front-row zone instead", correct: true, explanation: "Correct — this is exactly the swap-out pattern." },
+          { text: "The libero moves to the front row anyway", correct: false, explanation: "The libero is never allowed to take a front-row turn." },
+          { text: "The whole team stops rotating", correct: false, explanation: "Rotation continues normally — it's specifically the libero who swaps out." },
+          { text: "The match is paused for a formal review", correct: false, explanation: "This swap is a routine, expected part of normal play." },
+        ],
+      },
+      {
+        question: "Why do teams often settle into a consistent libero substitution pattern?",
+        answers: [
+          { text: "Because the libero swaps in and out at the same points in the rotation cycle each time", correct: true, explanation: "Correct — this creates a predictable, repeating pattern." },
+          { text: "Because the rules require an identical pattern every match", correct: false, explanation: "This is a natural consequence of the rotation cycle, not a written rule." },
+          { text: "Because the libero must ask the referee for permission each time", correct: false, explanation: "No such repeated permission process exists." },
+          { text: "Because opposing teams vote on the pattern", correct: false, explanation: "The opposing team has no say in a team's libero substitution pattern." },
+        ],
+      },
+      {
+        question: "How many trained players effectively rotate through a team's back row across a full cycle, counting the libero?",
+        answers: [
+          { text: "Seven — six starters plus the libero cycling into one back-row slot", correct: true, explanation: "Correct — this is exactly what makes the libero pattern distinctive." },
+          { text: "Six, the same as without a libero", correct: false, explanation: "The libero effectively adds a seventh player into the back-row rotation." },
+          { text: "Twelve, since the whole roster is involved", correct: false, explanation: "Only the six starters plus the libero are involved in this specific pattern." },
+          { text: "Five, since the libero replaces one starter completely", correct: false, explanation: "The libero doesn't remove that starter from the lineup — they alternate in and out." },
+        ],
+      },
+      {
+        question: "Can the libero play many consecutive rallies without a fresh substitution each time?",
+        answers: [
+          { text: "Yes, as long as the rotation keeps returning that back-row slot to the group", correct: true, explanation: "Correct — the libero simply keeps swapping into that recurring slot." },
+          { text: "No, the libero must be re-substituted from scratch every single rally", correct: false, explanation: "The libero's swaps follow the recurring rotation pattern, not a fresh process each time." },
+          { text: "No, the libero can only play one rally per set", correct: false, explanation: "The libero can play many consecutive rallies under this pattern." },
+          { text: "It depends on the current score of the set", correct: false, explanation: "The score doesn't affect how the libero substitution pattern works." },
+        ],
+      },
+      {
+        question: "Does the libero's zone assignment follow the same six-zone rotation as everyone else?",
+        answers: [
+          { text: "It shadows their teammate's back-row zones, without a front-row turn", correct: true, explanation: "Correct — this is the specific pattern described in this lesson." },
+          { text: "No, the libero has no connection to the team's rotation at all", correct: false, explanation: "The libero's substitutions are directly tied to the rotation cycle." },
+          { text: "Yes, exactly identically, including front-row zones", correct: false, explanation: "The libero specifically never takes a front-row zone." },
+          { text: "No, the libero picks their own zone freely each rally", correct: false, explanation: "The libero's zone is determined by the substitution pattern, not free choice." },
+        ],
+      },
+      {
+        question: "Which position does a libero most often substitute for, and why?",
+        answers: [
+          { text: "A middle blocker, since strengthening their back-row defense is often most valuable", correct: true, explanation: "Correct — this is the most common, though not the only, pattern." },
+          { text: "An opposite hitter, because that role never plays defense", correct: false, explanation: "Opposite hitters do play defense in the back row like any other role." },
+          { text: "The setter, because setters are not allowed to play defense", correct: false, explanation: "Setters can and do play defense in the back row." },
+          { text: "Another libero, since teams may field multiple liberos on court", correct: false, explanation: "Only one libero is on court for a team at a time." },
+        ],
+      },
+      {
+        question: "What is the core idea of how the libero fits into rotation?",
+        answers: [
+          { text: "They substitute into the back row for a teammate, riding along until that zone would go front row", correct: true, explanation: "Correct — this captures the whole pattern accurately." },
+          { text: "The libero rotates through all six zones exactly like every other player", correct: false, explanation: "The libero specifically skips ever taking a front-row zone." },
+          { text: "The libero has a single fixed zone they never leave", correct: false, explanation: "The libero's zone shifts along with the rotation, within the back row." },
+          { text: "The libero's substitutions are unrelated to the team's rotation", correct: false, explanation: "The libero's substitution pattern is directly tied to the rotation cycle." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 10,
+    title: "Understanding a Full Rotation",
+    summary: "How the six rotations of a set connect into one complete, repeating cycle.",
+    durationMin: 8,
+    theory: [
+      "A team only has six unique rotational positions, and after six side-outs, the whole lineup has cycled all the way back to exactly where it started. This is the 'full rotation' — the complete loop through 1-2-3-4-5-6 and back to 1 that every lesson in this chapter has been building toward.",
+      "Each of the six rotations gives the team a different mix of who's in the front row and who's in the back row, which is why some rotations feel 'stronger' or 'weaker' to coaches and players — a rotation with your best blockers up front and best passers in the back can feel very different from its opposite.",
+      "Understanding the full cycle also makes it possible to predict what's coming: if you know your team's current rotation and its fixed order, you know exactly which rotation is next, and can already anticipate whether your best hitter is about to move to the front row or head to the back.",
+      "This is also why rotations are often labeled by a single reference point — commonly, which zone the setter currently occupies. Calling out 'we're in setter-in-1' or 'setter-in-4' is a quick way to communicate the team's entire current formation, since every other role's zone follows automatically once the setter's zone is known.",
+      "By the time a team has completed all six rotations, every player has taken a turn in every zone, experienced both front-row and back-row duty, and the team returns to its starting formation — ready for the exact same six-rotation cycle to begin again for as long as the set continues.",
+    ],
+    keyTakeaway: "A full rotation is the complete six-step cycle through every zone — after six side-outs the whole team is back exactly where it started, having passed through every zone and both rows along the way.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "A full rotation cycle: the ball travels through all six zones in order — 1, 2, 3, 4, 5, 6 and back to 1 — tracing the complete path every rotation follows.",
+      activeZones: [1, 2, 3, 4, 5, 6],
+      labels: { 1: "1", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6" },
+      motions: {},
+      ball: {
+        path: [
+          { x: 82, y: 76 },
+          { x: 82, y: 24 },
+          { x: 50, y: 24 },
+          { x: 18, y: 24 },
+          { x: 18, y: 76 },
+          { x: 50, y: 76 },
+          { x: 82, y: 76 },
+        ],
+      },
+    },
+    quiz: [
+      {
+        question: "How many unique rotational positions does a team have?",
+        answers: [
+          { text: "Six", correct: true, explanation: "Correct — one for each of the six zones." },
+          { text: "Twelve", correct: false, explanation: "Twelve would be double the actual number of rotations." },
+          { text: "Three", correct: false, explanation: "Three is too few — there are six zones and six rotations." },
+          { text: "Unlimited", correct: false, explanation: "The cycle is fixed at exactly six rotations before repeating." },
+        ],
+      },
+      {
+        question: "After how many side-outs does a team's lineup return exactly to its starting formation?",
+        answers: [
+          { text: "Six", correct: true, explanation: "Correct — six side-outs complete one full rotation cycle." },
+          { text: "Two", correct: false, explanation: "Two side-outs only moves the lineup a fraction of the way around." },
+          { text: "Twenty-five", correct: false, explanation: "That's unrelated to the rotation cycle — it happens to be a common set point target." },
+          { text: "It never returns to the starting formation", correct: false, explanation: "After six side-outs, the cycle repeats from the exact starting formation." },
+        ],
+      },
+      {
+        question: "Why might one rotation feel 'stronger' than another to a team?",
+        answers: [
+          { text: "Because each rotation has a different mix of players in the front row versus back row", correct: true, explanation: "Correct — this changes which strengths are available where." },
+          { text: "Because the court size changes between rotations", correct: false, explanation: "Court size never changes — only which players are in which row does." },
+          { text: "Because the net height is lowered for weaker rotations", correct: false, explanation: "Net height is fixed and doesn't change based on rotation." },
+          { text: "Because some rotations are worth more points", correct: false, explanation: "Every rally is worth exactly one point, regardless of rotation." },
+        ],
+      },
+      {
+        question: "What is a common way teams label their current rotation?",
+        answers: [
+          { text: "By which zone the setter currently occupies", correct: true, explanation: "Correct — for example, 'setter-in-1' or 'setter-in-4'." },
+          { text: "By the current score of the set", correct: false, explanation: "Rotation labeling isn't tied to the score." },
+          { text: "By which team is currently ahead", correct: false, explanation: "This has nothing to do with identifying a specific rotation." },
+          { text: "By the referee's current position", correct: false, explanation: "Referee position doesn't identify a team's rotation." },
+        ],
+      },
+      {
+        question: "Why does knowing the setter's zone tell you the whole team's formation?",
+        answers: [
+          { text: "Because every other role's zone follows automatically once the setter's zone is known", correct: true, explanation: "Correct — the fixed rotation order determines everyone else's position from there." },
+          { text: "Because the setter is the only player whose zone actually matters", correct: false, explanation: "Every player's zone matters — the setter's zone is just a useful shorthand reference." },
+          { text: "Because the setter tells every teammate where to stand out loud", correct: false, explanation: "It's the fixed rotation order that determines this, not verbal instruction." },
+          { text: "It doesn't — every player's zone must be checked separately", correct: false, explanation: "Knowing the setter's zone is enough because the whole formation follows the same fixed order." },
+        ],
+      },
+      {
+        question: "By the end of a full six-rotation cycle, what has every player experienced?",
+        answers: [
+          { text: "A turn in every zone, and both front-row and back-row duty", correct: true, explanation: "Correct — the full cycle guarantees this for every player." },
+          { text: "Only front-row duty, never back-row", correct: false, explanation: "Every player experiences both rows across the full cycle." },
+          { text: "Exactly one serve and no more", correct: false, explanation: "How many times a player serves depends on rally outcomes, not a fixed count." },
+          { text: "A chance to play every role, such as setter and libero", correct: false, explanation: "Roles stay fixed to specific players — only zones rotate, not roles." },
+        ],
+      },
+      {
+        question: "What happens once a team completes its sixth rotation in a set?",
+        answers: [
+          { text: "The same six-rotation cycle begins again from the starting formation", correct: true, explanation: "Correct — the cycle repeats for as long as the set continues." },
+          { text: "The set automatically ends", correct: false, explanation: "Sets end based on score, not the rotation cycle completing." },
+          { text: "The team is not allowed to rotate again for the rest of the set", correct: false, explanation: "The cycle simply repeats — there's no such restriction." },
+          { text: "The team must choose six new starting players", correct: false, explanation: "There's no requirement to change the lineup after a full cycle." },
+        ],
+      },
+      {
+        question: "What connects all the individual lessons in this chapter into one bigger picture?",
+        answers: [
+          { text: "They each explain one piece of the complete six-rotation cycle", correct: true, explanation: "Correct — this lesson ties all of them together into that full cycle." },
+          { text: "They are all unrelated topics with no shared thread", correct: false, explanation: "Every lesson in this chapter builds toward understanding the full rotation." },
+          { text: "They only apply to the libero specifically", correct: false, explanation: "These lessons cover the whole team's rotation, not just the libero." },
+          { text: "They only apply to back-row play", correct: false, explanation: "Both front-row and back-row rules are covered across this chapter." },
+        ],
+      },
+      {
+        question: "If a team is in 'setter-in-6', where is the setter positioned?",
+        answers: [
+          { text: "In Zone 6, the back-middle zone", correct: true, explanation: "Correct — the label directly names the setter's current zone." },
+          { text: "In Zone 6 of the opposing team's court", correct: false, explanation: "Rotation zones refer to a team's own court, not the opponent's." },
+          { text: "On the sideline, substituted out", correct: false, explanation: "'Setter-in-6' describes their on-court zone, not a substitution." },
+          { text: "In Zone 2, ready to attack", correct: false, explanation: "'Setter-in-6' specifically means Zone 6, not Zone 2." },
+        ],
+      },
+      {
+        question: "What best summarizes a 'full rotation' as covered across this chapter?",
+        answers: [
+          { text: "The complete six-step clockwise cycle that returns a team to its exact starting formation", correct: true, explanation: "Correct — this is the full rotation concept in one sentence." },
+          { text: "A single team's one-time shift from Zone 1 to Zone 2", correct: false, explanation: "That's just one step of the cycle, not the full six-step rotation." },
+          { text: "The moment a substitution is made", correct: false, explanation: "Substitutions are a separate mechanism from the rotation cycle." },
+          { text: "The order in which sets are played during a match", correct: false, explanation: "Set order is unrelated to a team's six-zone rotation cycle." },
+        ],
+      },
+    ],
+  },
+];
+const CHAPTER_3_TEST = {
+  id: 11,
+  title: "Chapter 3 Test",
+  summary: "A 20-question test covering everything from Rotations, including scenario questions.",
+  durationMin: 16,
+  theory: null,
+  keyTakeaway: null,
+  showAnimation: false,
+  isTest: true,
+  quiz: [
+    {
+      question: "Which zones make up the front row?",
+      answers: [
+        { text: "Zones 4, 3 and 2", correct: true, explanation: "Correct — these three zones sit closest to the net." },
+        { text: "Zones 5, 6 and 1", correct: false, explanation: "Those three zones make up the back row instead." },
+        { text: "Zones 1, 2 and 3", correct: false, explanation: "This mixes a back-row zone (1) with front-row zones." },
+        { text: "Zones 3, 4 and 5", correct: false, explanation: "This mixes front-row zones with a back-row zone (5)." },
+      ],
+    },
+    {
+      question: "In which order do players rotate through the zones?",
+      answers: [
+        { text: "1 to 2, 2 to 3, 3 to 4, 4 to 5, 5 to 6, 6 to 1", correct: true, explanation: "Correct — this fixed clockwise order never changes." },
+        { text: "1 to 6, 6 to 5, 5 to 4, 4 to 3, 3 to 2, 2 to 1", correct: false, explanation: "That reverses the actual rotation direction." },
+        { text: "A new random order each time a team rotates", correct: false, explanation: "Rotation always follows the same fixed order." },
+        { text: "Only back-row players rotate each time", correct: false, explanation: "All six players rotate together, front and back row alike." },
+      ],
+    },
+    {
+      question: "Scenario: Team A is serving and wins the rally. What happens to their rotation?",
+      answers: [
+        { text: "Nothing rotates — the same player serves again", correct: true, explanation: "Correct — winning your own serve doesn't trigger a rotation." },
+        { text: "The whole team rotates one position clockwise", correct: false, explanation: "Rotation only happens on a side-out, not after winning your own serve." },
+        { text: "Only the server moves to the back row", correct: false, explanation: "No rotation, partial or otherwise, happens when the serving team wins." },
+        { text: "The team rotates counter-clockwise as a penalty", correct: false, explanation: "There's no such penalty rotation in volleyball." },
+      ],
+    },
+    {
+      question: "Scenario: Team B is receiving serve and wins the rally. What happens next?",
+      answers: [
+        { text: "Team B rotates one position clockwise, then serves", correct: true, explanation: "Correct — winning the serve back (a side-out) triggers a rotation." },
+        { text: "Team A rotates, even though they lost the point", correct: false, explanation: "The team that lost serve does not rotate — the team gaining serve does." },
+        { text: "Both teams rotate together", correct: false, explanation: "Only the team that just won back the serve rotates." },
+        { text: "Neither team rotates", correct: false, explanation: "Winning the serve back is exactly the trigger for a rotation." },
+      ],
+    },
+    {
+      question: "At what exact moment must a team's formation be legally ordered?",
+      answers: [
+        { text: "The instant the server contacts the ball", correct: true, explanation: "Correct — legality is checked at that one specific instant." },
+        { text: "For the entire rally, from serve to point", correct: false, explanation: "The check is only at the moment of serve contact." },
+        { text: "Only at the start of each set", correct: false, explanation: "This check happens before every single serve." },
+        { text: "Only when the referee calls for a check", correct: false, explanation: "The check happens automatically at every serve, not on request." },
+      ],
+    },
+    {
+      question: "What is it called when a team is illegally ordered at the moment of serve?",
+      answers: [
+        { text: "A positional fault", correct: true, explanation: "Correct — this is the official term, and it awards a point to the other team." },
+        { text: "A carry", correct: false, explanation: "A carry is a ball-handling fault, unrelated to formation order." },
+        { text: "A let", correct: false, explanation: "A let refers to an unrelated situation." },
+        { text: "A rotation violation replay", correct: false, explanation: "There's no replay — a positional fault directly awards a point." },
+      ],
+    },
+    {
+      question: "Scenario: at the moment of serve, the Zone 4 player is standing to the right of the Zone 3 player. What is this?",
+      answers: [
+        { text: "An illegal overlap — a left-right positional fault", correct: true, explanation: "Correct — Zone 4 must stay left of Zone 3, its same-row neighbor." },
+        { text: "A completely legal formation", correct: false, explanation: "This reverses the required left-right order between same-row neighbors." },
+        { text: "A front-back overlap, not left-right", correct: false, explanation: "Zone 4 and Zone 3 are same-row neighbors, so this is a left-right issue." },
+        { text: "Not enforced unless it happens twice in a row", correct: false, explanation: "A single instance is enough to be called as a positional fault." },
+      ],
+    },
+    {
+      question: "Scenario: the Zone 5 player is standing closer to the net than the Zone 4 player at the moment of serve. What is this?",
+      answers: [
+        { text: "An illegal overlap — a front-back positional fault", correct: true, explanation: "Correct — Zone 4 (front row) must stay closer to the net than Zone 5 (back row)." },
+        { text: "A completely legal formation", correct: false, explanation: "This reverses the required front-back order between same-column neighbors." },
+        { text: "A left-right overlap, not front-back", correct: false, explanation: "Zone 4 and Zone 5 are same-column neighbors, so this is a front-back issue." },
+        { text: "Only a problem if Zone 5 is also out of line with Zone 6", correct: false, explanation: "The Zone 4/Zone 5 relationship alone is enough to create a fault." },
+      ],
+    },
+    {
+      question: "Once the ball is served, are players still restricted to their legal pre-serve positions?",
+      answers: [
+        { text: "No — they are free to move anywhere on their side of the court", correct: true, explanation: "Correct — overlap rules stop applying the instant the ball is contacted." },
+        { text: "Yes, for the whole rally", correct: false, explanation: "The restriction lifts the instant the ball is served." },
+        { text: "Yes, but only the back row must hold position", correct: false, explanation: "No player, front or back row, is restricted to their zone after serve." },
+        { text: "Only the setter is free to move", correct: false, explanation: "Every player is free to move after serve, not just the setter." },
+      ],
+    },
+    {
+      question: "Scenario: a setter starts a rotation in Zone 1. What must they do right after their team serves?",
+      answers: [
+        { text: "Sprint across the court to release to the net for the second contact", correct: true, explanation: "Correct — Zone 1 is far from the net, so this requires real distance." },
+        { text: "Stay in Zone 1 for the whole rally", correct: false, explanation: "The setter needs to reach the net, not remain in Zone 1." },
+        { text: "Immediately attempt to block", correct: false, explanation: "Blocking is not the setter's primary task here — reaching the net to set is." },
+        { text: "Switch roles with the libero", correct: false, explanation: "Roles don't swap between players during a rally." },
+      ],
+    },
+    {
+      question: "Which zone area does the outside hitter typically transition toward after serve?",
+      answers: [
+        { text: "Zone 4", correct: true, explanation: "Correct — this is the outside hitter's typical attacking area." },
+        { text: "Zone 2", correct: false, explanation: "Zone 2 is the opposite hitter's typical attacking area." },
+        { text: "Zone 6", correct: false, explanation: "Zone 6 is a back-row zone, not a front-row attacking spot." },
+        { text: "Zone 1", correct: false, explanation: "Zone 1 is the back-row serving zone." },
+      ],
+    },
+    {
+      question: "What extra restriction applies specifically to a back-row hitter attacking the ball above net height?",
+      answers: [
+        { text: "They must take off from behind the 3 m attack line", correct: true, explanation: "Correct — this is the back-row attacking rule." },
+        { text: "They may never attack the ball under any circumstance", correct: false, explanation: "They can, specifically when jumping from behind the attack line." },
+        { text: "They must attack only with an open hand", correct: false, explanation: "There's no such technique restriction tied to back-row attacking." },
+        { text: "They must attack within one second of the set", correct: false, explanation: "There's no timing restriction like this in the rules." },
+      ],
+    },
+    {
+      question: "Does the libero ever take a front-row turn during rotation?",
+      answers: [
+        { text: "No — the libero never appears in the front row", correct: true, explanation: "Correct — the libero is restricted to back-row substitutions only." },
+        { text: "Yes, once each full rotation cycle", correct: false, explanation: "The libero swaps back out before their zone would reach the front row." },
+        { text: "Yes, if the coach requests it", correct: false, explanation: "This restriction applies regardless of coach preference." },
+        { text: "Yes, but only in the deciding set", correct: false, explanation: "This restriction applies in every set with no exception." },
+      ],
+    },
+    {
+      question: "Do libero substitutions count against a team's normal substitution limit?",
+      answers: [
+        { text: "No, they are unlimited and tracked separately", correct: true, explanation: "Correct — this is one of the libero's defining special rules." },
+        { text: "Yes, exactly like any other substitution", correct: false, explanation: "Libero substitutions are specifically exempt from the normal limit." },
+        { text: "Only after the libero has played three rotations", correct: false, explanation: "There's no such threshold — the exemption applies from the very first swap." },
+        { text: "Only in tournaments, not regular matches", correct: false, explanation: "This exemption applies at every level of play." },
+      ],
+    },
+    {
+      question: "Scenario: your team is 'setter-in-4' this rotation. Which zone is the setter currently in?",
+      answers: [
+        { text: "Zone 4", correct: true, explanation: "Correct — this labeling directly names the setter's current zone." },
+        { text: "Zone 1", correct: false, explanation: "'Setter-in-4' specifically means Zone 4, not Zone 1." },
+        { text: "Wherever the coach points at that moment", correct: false, explanation: "The label refers to a specific, fixed zone, not a flexible spot." },
+        { text: "The opposing team's Zone 4", correct: false, explanation: "Rotation labels refer to a team's own court, not the opponent's." },
+      ],
+    },
+    {
+      question: "After how many side-outs does a team's lineup return exactly to where it started?",
+      answers: [
+        { text: "Six", correct: true, explanation: "Correct — six side-outs complete one full rotation cycle." },
+        { text: "Three", correct: false, explanation: "Three side-outs only moves the lineup halfway around the cycle." },
+        { text: "Twelve", correct: false, explanation: "Twelve would be double a full cycle — it repeats after just six." },
+        { text: "It never returns to the same formation", correct: false, explanation: "After six side-outs, the exact starting formation returns." },
+      ],
+    },
+    {
+      question: "Scenario: a back-row player takes off from in front of the attack line and hits the ball above net height into the opponent's court. What is the ruling?",
+      answers: [
+        { text: "A fault — a back-row attack violation, and the point goes to the other team", correct: true, explanation: "Correct — taking off in front of the line makes this attack illegal." },
+        { text: "A legal attack, since the ball crossed the net successfully", correct: false, explanation: "Take-off position, not the outcome, is what makes this illegal." },
+        { text: "A warning only, with play continuing", correct: false, explanation: "This fault is called immediately, not just warned about." },
+        { text: "Legal, as long as the player is the middle blocker", correct: false, explanation: "This rule applies to every back-row player, regardless of role." },
+      ],
+    },
+    {
+      question: "Scenario: at the moment of serve, the Zone 2 player is standing behind (further from the net than) the Zone 1 player. What is this?",
+      answers: [
+        { text: "An illegal overlap — Zone 2 must stay in front of Zone 1", correct: true, explanation: "Correct — this is a required front-back relationship." },
+        { text: "A completely legal formation", correct: false, explanation: "This reverses the required front-back order for these same-column neighbors." },
+        { text: "Irrelevant, since Zone 1 and Zone 2 have no required relationship", correct: false, explanation: "Zone 1 and Zone 2 are same-column neighbors, so a front-back rule applies." },
+        { text: "Only a fault if it happens during the team's own serve", correct: false, explanation: "This positional rule applies to whichever team is about to serve, every time." },
+      ],
+    },
+    {
+      question: "Why is the setter's zone often used as a shorthand to describe a team's whole rotation?",
+      answers: [
+        { text: "Because every other role's zone follows automatically from the fixed rotation order once the setter's zone is known", correct: true, explanation: "Correct — this is exactly why the shorthand works." },
+        { text: "Because the setter is the only player whose position is tracked", correct: false, explanation: "Every player's zone matters — the setter's zone is just a convenient reference." },
+        { text: "Because the setter decides the whole team's positions out loud each rally", correct: false, explanation: "It's the fixed rotation order, not verbal calls, that determines this." },
+        { text: "It isn't actually a real practice — teams don't do this", correct: false, explanation: "Labeling rotations by the setter's zone is a genuinely common practice." },
+      ],
+    },
+    {
+      question: "Scenario: your team just completed its sixth rotation of the set. What happens next?",
+      answers: [
+        { text: "The same six-rotation cycle begins again from the starting formation", correct: true, explanation: "Correct — the cycle repeats for as long as the set continues." },
+        { text: "The set ends automatically", correct: false, explanation: "Sets end based on score, not the rotation cycle completing." },
+        { text: "The team must select six entirely new starting players", correct: false, explanation: "There's no requirement to change the lineup after a full cycle." },
+        { text: "The team is no longer allowed to rotate for the rest of the set", correct: false, explanation: "The cycle simply continues repeating." },
+      ],
+    },
+  ],
+};
+/* ---------------------------------------------------------------------- */
+/* Chapter 4 — Serve Receive (real content)                                */
+/* ---------------------------------------------------------------------- */
+
+const CHAPTER_4_LESSONS = [
+  {
+    id: 1,
+    title: "What Is Serve Receive?",
+    summary: "The first contact of a rally, and why a clean serve receive matters so much.",
+    durationMin: 7,
+    theory: [
+      "Serve receive is the name for a team's very first contact of a rally: passing the opponent's serve under control so the team can begin building an attack. It's the foundation every rally is built on — nothing else in the rally can happen until the serve is received.",
+      "The player who receives usually contacts the ball with a forearm pass, sometimes called a 'bump,' aiming to send the ball on a smooth, predictable path toward a target near the net rather than trying to place it perfectly by themselves. Control matters far more than power here.",
+      "A good serve receive gives the setter every option: any hitter, any type of set, a full tempo attack. A poor serve receive narrows those options fast — the setter might only be able to reach one hitter, or might not even be able to set at all, forcing a simpler, safer play.",
+      "Because the very first touch shapes everything that follows, teams spend enormous amounts of practice time on serve receive specifically. A team that receives serve well gives itself far more chances to win the rally than a team that struggles with this first contact.",
+      "This chapter builds on the rotation concepts from the last one: exactly which players are responsible for receiving, and where they stand to do it, both depend on the team's current rotation — which is exactly what the next several lessons dig into.",
+    ],
+    keyTakeaway: "Serve receive is a team's first contact of the rally — a controlled pass of the opponent's serve toward the net — and how well it's done determines how many attacking options the setter has afterward.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "The serve arrives deep in the court. The receiver passes it forward and up, sending it on a controlled path toward the target near the net.",
+      activeZones: [6],
+      labels: { 6: "R" },
+      motions: {},
+      ball: { path: [{ x: 50, y: -8 }, { x: 50, y: 70 }, { x: 45, y: 30 }] },
+    },
+    quiz: [
+      {
+        question: "What is serve receive?",
+        answers: [
+          { text: "A team's first contact of the rally, passing the opponent's serve", correct: true, explanation: "Correct — this is the definition of serve receive." },
+          { text: "The action of hitting the ball over the net for a point", correct: false, explanation: "That describes an attack, not serve receive." },
+          { text: "The referee's signal to begin a rally", correct: false, explanation: "Serve receive is a player action, not an officiating signal." },
+          { text: "A type of serve used only in the back row", correct: false, explanation: "Serve receive is about receiving a serve, not a type of serve itself." },
+        ],
+      },
+      {
+        question: "What technique is most commonly used to receive a serve?",
+        answers: [
+          { text: "A forearm pass (bump)", correct: true, explanation: "Correct — this is the standard technique for serve receive." },
+          { text: "An overhand set", correct: false, explanation: "Setting is typically the second contact, not how serves are usually received." },
+          { text: "A one-handed tip", correct: false, explanation: "A tip is an attacking touch, not a serve-receive technique." },
+          { text: "A two-handed overhead throw", correct: false, explanation: "Throwing the ball isn't a legal or standard technique at all." },
+        ],
+      },
+      {
+        question: "What matters most on a serve-receive contact?",
+        answers: [
+          { text: "Control — sending the ball on a smooth, predictable path", correct: true, explanation: "Correct — control matters far more than power on this contact." },
+          { text: "Hitting the ball as hard as possible", correct: false, explanation: "Power isn't the goal here — a controlled, predictable pass is." },
+          { text: "Making the pass land exactly on the centerline", correct: false, explanation: "The goal is a controlled pass toward a target near the net, not the centerline specifically." },
+          { text: "Scoring a point directly off the reception", correct: false, explanation: "Serve receive is about starting the rally under control, not scoring immediately." },
+        ],
+      },
+      {
+        question: "What does a good serve receive give the setter?",
+        answers: [
+          { text: "Every attacking option — any hitter, any type of set", correct: true, explanation: "Correct — a clean pass keeps all offensive options open." },
+          { text: "An automatic point", correct: false, explanation: "A good pass sets up the attack — it doesn't score automatically." },
+          { text: "The right to serve next", correct: false, explanation: "The right to serve depends on winning the rally, not the pass quality." },
+          { text: "A guaranteed substitution", correct: false, explanation: "Substitutions are unrelated to serve-receive quality." },
+        ],
+      },
+      {
+        question: "What can happen if a serve receive is poor?",
+        answers: [
+          { text: "The setter's options narrow, sometimes to just one hitter or a simpler play", correct: true, explanation: "Correct — a bad pass limits what the setter can do next." },
+          { text: "The rally is automatically replayed", correct: false, explanation: "There's no automatic replay tied to a poor pass." },
+          { text: "The receiving team automatically loses the point", correct: false, explanation: "A poor pass makes scoring harder, but doesn't automatically lose the point." },
+          { text: "The serving team must serve again", correct: false, explanation: "The rally continues normally regardless of pass quality." },
+        ],
+      },
+      {
+        question: "Why do teams spend so much practice time on serve receive specifically?",
+        answers: [
+          { text: "Because it's the first touch and shapes everything that follows in the rally", correct: true, explanation: "Correct — nothing else can happen until the serve is received well." },
+          { text: "Because it's the easiest skill to master, so it's a good warmup", correct: false, explanation: "It's actually considered a demanding skill, not an easy warmup." },
+          { text: "Because rules require a fixed amount of receive practice", correct: false, explanation: "There's no such rule — this is a practical training choice." },
+          { text: "Because only the libero is allowed to practice it", correct: false, explanation: "Serve receive practice involves multiple players, not just the libero." },
+        ],
+      },
+      {
+        question: "What does this chapter build on from the previous chapter?",
+        answers: [
+          { text: "Rotation — since receiving responsibilities depend on the current rotation", correct: true, explanation: "Correct — where each receiver stands depends on the team's rotation." },
+          { text: "Scoring rules from a much earlier chapter", correct: false, explanation: "This chapter connects specifically to the rotation concepts just covered." },
+          { text: "Substitution limits", correct: false, explanation: "This chapter's foundation is rotation, not substitution rules." },
+          { text: "Net height regulations", correct: false, explanation: "Net height isn't the connecting concept for this chapter." },
+        ],
+      },
+      {
+        question: "Is serve receive considered part of the attack, or separate from it?",
+        answers: [
+          { text: "Separate — it's the first contact that sets up the attack that follows", correct: true, explanation: "Correct — serve receive comes before and enables the attack." },
+          { text: "It is the attack itself", correct: false, explanation: "The attack is a separate, later contact in the sequence." },
+          { text: "They are the exact same action", correct: false, explanation: "Receiving and attacking are distinct actions with different goals." },
+          { text: "Serve receive happens after the attack", correct: false, explanation: "Serve receive is the very first contact, before any attack." },
+        ],
+      },
+      {
+        question: "What is the target that a serve-receive pass is usually aimed toward?",
+        answers: [
+          { text: "A spot near the net where the setter can reach it", correct: true, explanation: "Correct — this is the standard target for a serve-receive pass." },
+          { text: "Directly back over the net to the opponent", correct: false, explanation: "That would end the rally immediately, not set up an attack." },
+          { text: "The exact spot where the ball was served from", correct: false, explanation: "The target is near the setter's position, not the serve's origin." },
+          { text: "Wherever the receiver happens to be standing", correct: false, explanation: "The pass is aimed at a specific target, not just wherever the receiver stands." },
+        ],
+      },
+      {
+        question: "What best summarizes the importance of serve receive?",
+        answers: [
+          { text: "It's the foundation of the rally — nothing else can happen until it's done", correct: true, explanation: "Correct — this captures why serve receive matters so much." },
+          { text: "It's optional and can be skipped if the team prefers", correct: false, explanation: "Serve receive is a required first contact, not optional." },
+          { text: "It only matters in the deciding set", correct: false, explanation: "Serve receive quality matters in every single rally, every set." },
+          { text: "It's the least important contact in a rally", correct: false, explanation: "It's often considered one of the most important, since everything builds on it." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Passing Zones",
+    summary: "The back-row zones a team typically relies on to absorb the serve.",
+    durationMin: 7,
+    theory: [
+      "Serve receive responsibility falls mainly on the back-row zones — Zones 5, 6 and 1 — since these are the players positioned deepest on the court and furthest from the net, giving them the best view and the most time to react to an incoming serve.",
+      "Front-row players can and sometimes do receive as well, but teams generally try to keep their front-row attackers further from serve-receive duty, since those players need to save their energy and focus for transitioning into the attack once the ball is passed.",
+      "Within the back row, the three zones don't cover perfectly equal areas — teams adjust who covers what based on serve speed, angle, and the specific strengths of their passers, but the general principle stays the same: the deep zones absorb the serve first.",
+      "A team's passing zones aren't a fixed grid painted on the floor; they're a flexible area of responsibility that shifts depending on exactly where the serve is heading. A passer's 'zone' is really more about their area of primary responsibility than a strict boundary.",
+      "Recognizing which zones are typically responsible for receiving is the first step toward understanding the specific receive formations covered in the next two lessons — three-person and two-person serve receive both build directly on this back-row foundation.",
+    ],
+    keyTakeaway: "Serve receive responsibility centers on the back-row zones — 5, 6 and 1 — since those players have the best view and most time to react, though the exact coverage shifts based on where the serve is heading.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "The three back-row zones — 5, 6 and 1 — form a team's typical serve-receive area, each covering a portion of the court closest to their own position.",
+      activeZones: [5, 6, 1],
+      labels: { 5: "5", 6: "6", 1: "1" },
+      motions: {},
+      ball: null,
+    },
+    quiz: [
+      {
+        question: "Which zones typically hold the main serve-receive responsibility?",
+        answers: [
+          { text: "Zones 5, 6 and 1 — the back row", correct: true, explanation: "Correct — these deep zones have the best view and most reaction time." },
+          { text: "Zones 2, 3 and 4 — the front row", correct: false, explanation: "Front-row players generally aren't the primary receivers." },
+          { text: "Only Zone 1", correct: false, explanation: "Receiving responsibility spreads across all three back-row zones, not just one." },
+          { text: "Whichever zone the setter is currently in", correct: false, explanation: "The setter's zone isn't what determines receiving responsibility." },
+        ],
+      },
+      {
+        question: "Why are back-row players well suited to receiving serve?",
+        answers: [
+          { text: "They're positioned deepest on the court, giving the best view and most reaction time", correct: true, explanation: "Correct — this positioning advantage is exactly why they receive." },
+          { text: "They are required by rule to receive every serve", correct: false, explanation: "There's no such strict rule — it's a practical positioning advantage." },
+          { text: "They are the tallest players on the team", correct: false, explanation: "Height isn't the reason — court position and reaction time are." },
+          { text: "They are not allowed to attack, so receiving is their only job", correct: false, explanation: "Back-row players can attack under the attack-line rule — this isn't their only job." },
+        ],
+      },
+      {
+        question: "Why do teams often try to keep front-row attackers away from serve-receive duty?",
+        answers: [
+          { text: "So they can save energy and focus for transitioning into the attack", correct: true, explanation: "Correct — this lets attackers be ready to hit right after the pass." },
+          { text: "Because front-row players are not allowed to touch the ball first", correct: false, explanation: "There's no rule preventing front-row players from receiving." },
+          { text: "Because front-row players are always weaker passers", correct: false, explanation: "This is a strategic choice, not a statement about passing skill." },
+          { text: "Because the ball can never reach the front row on a serve", correct: false, explanation: "Serves absolutely can be angled or driven toward the front row." },
+        ],
+      },
+      {
+        question: "Do the three back-row zones cover exactly equal areas of the court?",
+        answers: [
+          { text: "No — coverage is adjusted based on serve speed, angle and passer strengths", correct: true, explanation: "Correct — the split isn't a rigid equal division." },
+          { text: "Yes, each always covers exactly one-third of the court", correct: false, explanation: "Coverage flexes based on the situation, not a fixed equal split." },
+          { text: "Yes, and this never changes during a match", correct: false, explanation: "Teams adjust this actively depending on the serve they're facing." },
+          { text: "No, only Zone 6 ever covers any area at all", correct: false, explanation: "All three back-row zones share receiving responsibility." },
+        ],
+      },
+      {
+        question: "Is a passer's 'zone' a strict, fixed boundary on the floor?",
+        answers: [
+          { text: "No — it's more of a flexible area of primary responsibility", correct: true, explanation: "Correct — it shifts depending on where the serve is actually heading." },
+          { text: "Yes, marked with a painted line no player may cross", correct: false, explanation: "There's no such painted boundary restricting a passer's movement." },
+          { text: "Yes, and stepping outside it is a rule violation", correct: false, explanation: "Passers can and do move outside their typical area to make a play." },
+          { text: "No, passing zones don't really exist as a concept", correct: false, explanation: "They exist as a useful concept — they're just flexible, not rigid." },
+        ],
+      },
+      {
+        question: "What do these back-row passing zones set up for the next lessons in this chapter?",
+        answers: [
+          { text: "The specific three-person and two-person receive formations", correct: true, explanation: "Correct — both formations build directly on this back-row foundation." },
+          { text: "The scoring rules for a set", correct: false, explanation: "Scoring rules were covered in an earlier chapter, unrelated to this one." },
+          { text: "The libero's jersey color rule", correct: false, explanation: "That's a separate topic from serve-receive formations." },
+          { text: "The net height regulations", correct: false, explanation: "Net height isn't connected to passing zone coverage." },
+        ],
+      },
+      {
+        question: "Can a front-row player ever be involved in serve receive?",
+        answers: [
+          { text: "Yes, though teams generally try to limit this", correct: true, explanation: "Correct — it happens, but isn't the preferred arrangement." },
+          { text: "No, it's against the rules for a front-row player to receive", correct: false, explanation: "There's no rule against it — it's simply a tactical preference to avoid it." },
+          { text: "Yes, and it's actually the most common arrangement", correct: false, explanation: "Back-row players are the more common, preferred receivers." },
+          { text: "Only the middle blocker is allowed to receive from the front row", correct: false, explanation: "There's no such role-specific restriction." },
+        ],
+      },
+      {
+        question: "What factors influence how a team adjusts its passing-zone coverage?",
+        answers: [
+          { text: "Serve speed, angle, and the strengths of their passers", correct: true, explanation: "Correct — these are the main factors teams consider." },
+          { text: "The current score of the set only", correct: false, explanation: "The score doesn't directly determine passing-zone coverage." },
+          { text: "The color of the opposing team's jerseys", correct: false, explanation: "Jersey color has no bearing on passing-zone coverage." },
+          { text: "The weather conditions only, in every match", correct: false, explanation: "Weather might matter outdoors, but it's not the defining factor described here." },
+        ],
+      },
+      {
+        question: "Which zone is on the back-right of the court, closest to where serves are hit from?",
+        answers: [
+          { text: "Zone 1", correct: true, explanation: "Correct — Zone 1 is the back-right, serving zone." },
+          { text: "Zone 5", correct: false, explanation: "Zone 5 is on the back-left, not the back-right." },
+          { text: "Zone 6", correct: false, explanation: "Zone 6 is in the back-middle, not the back-right." },
+          { text: "Zone 2", correct: false, explanation: "Zone 2 is a front-row zone, not a back-row zone." },
+        ],
+      },
+      {
+        question: "What is the general principle behind which zones absorb the serve first?",
+        answers: [
+          { text: "The deep back-row zones absorb the serve first", correct: true, explanation: "Correct — this is the core principle of passing-zone coverage." },
+          { text: "Whichever zone is closest to the net absorbs the serve first", correct: false, explanation: "This reverses the actual principle — the deep zones absorb it." },
+          { text: "The team captain always takes the first touch", correct: false, explanation: "Team leadership role doesn't determine who receives." },
+          { text: "It's decided randomly each rally by the referee", correct: false, explanation: "This is a tactical team decision, not a random referee assignment." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "Three-Person Serve Receive",
+    summary: "A wider receiving formation that spreads coverage across three passers.",
+    durationMin: 7,
+    theory: [
+      "Three-person serve receive uses three back-row players spread across the court to share the responsibility of covering every serve. This is a common, balanced formation — with three sets of eyes and three sets of hands on the ball, no single passer has to cover too much ground alone.",
+      "The three receivers position themselves so their individual areas slightly overlap rather than leaving gaps, and communicate constantly — calling for the ball the instant they read where it's headed — so that even a serve landing between two of them still gets a clear, single answer for who takes it.",
+      "Because three players are receiving, the remaining three players — usually including the setter — are freed up to focus entirely on their transition roles: the setter releasing to the net, and attackers preparing their approaches, without needing to worry about handling the first contact themselves.",
+      "This formation tends to work especially well against fast, hard-driven serves, since a smaller area for each receiver to defend means less ground to cover and less time pressure on any single player to make a difficult read.",
+      "The exact three zones used can shift depending on rotation and strategy, but the underlying idea stays the same: three receivers, evenly spread, sharing the court so that the whole receiving area is covered without gaps.",
+    ],
+    keyTakeaway: "Three-person serve receive spreads coverage across three back-row passers with slightly overlapping areas, freeing the setter and attackers to focus on their transition roles instead of receiving.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "Three receivers spread across the back row share the court, each shifting slightly to cover their area as the serve comes in.",
+      activeZones: [5, 6, 1],
+      labels: { 5: "R", 6: "R", 1: "R" },
+      motions: {
+        5: { dx: 6, dy: 0 },
+        6: { dx: 0, dy: -4 },
+        1: { dx: -6, dy: 0 },
+      },
+      ball: { path: [{ x: 60, y: -8 }, { x: 50, y: 68 }, { x: 45, y: 30 }] },
+    },
+    quiz: [
+      {
+        question: "How many receivers does three-person serve receive use?",
+        answers: [
+          { text: "Three", correct: true, explanation: "Correct — that's exactly what gives the formation its name." },
+          { text: "Two", correct: false, explanation: "Two-person receive is a separate formation, covered in the next lesson." },
+          { text: "Six", correct: false, explanation: "Using all six players to receive would leave no one to run the offense." },
+          { text: "One", correct: false, explanation: "A single receiver would have to cover far too much court alone." },
+        ],
+      },
+      {
+        question: "What is the main benefit of spreading receive across three players?",
+        answers: [
+          { text: "No single passer has to cover too much ground alone", correct: true, explanation: "Correct — sharing the court reduces the burden on each individual receiver." },
+          { text: "It automatically wins the point", correct: false, explanation: "This formation improves passing quality, not an automatic point." },
+          { text: "It allows the team to skip the setter entirely", correct: false, explanation: "The setter's role is unaffected by how many players receive." },
+          { text: "It lets the team serve twice in a row", correct: false, explanation: "Serve receive formation has no effect on serving turns." },
+        ],
+      },
+      {
+        question: "Why do the three receivers' areas slightly overlap rather than leave gaps?",
+        answers: [
+          { text: "So a serve landing between two of them still gets a clear answer for who takes it", correct: true, explanation: "Correct — overlap prevents confusion on seam balls." },
+          { text: "Because the rules require overlapping coverage", correct: false, explanation: "This is a tactical choice, not a rule requirement." },
+          { text: "So the receivers can practice tackling each other", correct: false, explanation: "Overlap is about coverage clarity, not physical contact." },
+          { text: "Because the court is too small for non-overlapping zones", correct: false, explanation: "The overlap is a deliberate coverage strategy, not a court-size issue." },
+        ],
+      },
+      {
+        question: "What are the other three players (not receiving) usually free to focus on?",
+        answers: [
+          { text: "Their transition roles — the setter releasing, attackers preparing to approach", correct: true, explanation: "Correct — this is exactly what frees them up." },
+          { text: "Serving the next point", correct: false, explanation: "Serving isn't relevant mid-rally during their own team's receive." },
+          { text: "Leaving the court", correct: false, explanation: "They stay on court, just focused on different roles." },
+          { text: "Blocking the opponent's next attack immediately", correct: false, explanation: "That comes later in the rally, not during serve receive itself." },
+        ],
+      },
+      {
+        question: "Against what type of serve does three-person receive tend to work especially well?",
+        answers: [
+          { text: "Fast, hard-driven serves", correct: true, explanation: "Correct — smaller individual areas help against tougher, faster serves." },
+          { text: "Serves that never leave the server's hand", correct: false, explanation: "Every legal serve leaves the server's hand — this isn't a real distinction." },
+          { text: "Only underhand serves", correct: false, explanation: "This formation isn't specifically tied to underhand serving." },
+          { text: "Serves that are called illegal before they're hit", correct: false, explanation: "An illegal serve wouldn't need to be received at all." },
+        ],
+      },
+      {
+        question: "Does using three-person receive mean the setter also receives serve?",
+        answers: [
+          { text: "Usually not — the setter is typically one of the three players freed up to transition", correct: true, explanation: "Correct — three-person receive frees the setter from receiving duty." },
+          { text: "Yes, the setter is always one of the three receivers", correct: false, explanation: "Teams generally keep the setter out of the receiving group when possible." },
+          { text: "Yes, but only if the setter is in the front row", correct: false, explanation: "Regardless of row, teams generally try to free the setter from receiving." },
+          { text: "It's impossible to know without seeing the exact rotation", correct: false, explanation: "The general pattern is to keep the setter out of the three receivers." },
+        ],
+      },
+      {
+        question: "Do the exact three zones used in this formation ever change?",
+        answers: [
+          { text: "Yes, depending on rotation and strategy", correct: true, explanation: "Correct — the specific zones can shift while the underlying idea stays the same." },
+          { text: "No, it's always Zones 5, 6 and 1 with no variation", correct: false, explanation: "While these are common, the exact zones can shift by rotation and strategy." },
+          { text: "No, the zones used are chosen by the opposing team", correct: false, explanation: "A team chooses its own receiving formation, not the opponent." },
+          { text: "Yes, but only between different matches, never within one", correct: false, explanation: "Formation choices can shift within a single match based on rotation." },
+        ],
+      },
+      {
+        question: "What does constant communication between the three receivers help prevent?",
+        answers: [
+          { text: "Confusion over who takes a serve landing between two of them", correct: true, explanation: "Correct — calling for the ball clears up exactly this situation." },
+          { text: "The ball from ever being served at all", correct: false, explanation: "Communication doesn't prevent a serve — it helps receive it cleanly." },
+          { text: "The setter from being able to set", correct: false, explanation: "This communication supports the play, it doesn't hinder the setter." },
+          { text: "The team from needing to rotate", correct: false, explanation: "Rotation is a separate mechanic, unrelated to receiver communication." },
+        ],
+      },
+      {
+        question: "What is the core idea behind three-person serve receive?",
+        answers: [
+          { text: "Three receivers spread evenly to share full court coverage without gaps", correct: true, explanation: "Correct — this is the essence of the formation." },
+          { text: "One receiver covers the entire court alone while two rest", correct: false, explanation: "The whole point is to share the coverage across all three." },
+          { text: "Three receivers all stand in the exact same spot", correct: false, explanation: "They spread out across the court, not cluster together." },
+          { text: "Receivers switch positions with attackers mid-rally", correct: false, explanation: "This describes a swap, not the spread-coverage concept of this formation." },
+        ],
+      },
+      {
+        question: "Which row of players typically makes up a three-person receive formation?",
+        answers: [
+          { text: "The back row", correct: true, explanation: "Correct — back-row players are the typical receivers in this formation." },
+          { text: "The front row", correct: false, explanation: "Front-row players are usually freed from receiving duty in this setup." },
+          { text: "A mix of two front-row and one back-row player", correct: false, explanation: "The standard formation draws its three receivers from the back row." },
+          { text: "Whichever players are closest to the net", correct: false, explanation: "Receivers are typically the deepest players, not the ones closest to the net." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: "Two-Person Serve Receive",
+    summary: "A leaner receiving formation used when a team wants more players free for offense.",
+    durationMin: 7,
+    theory: [
+      "Two-person serve receive uses just two back-row players to cover the whole receiving area between them, freeing up a fourth player beyond what a three-person formation would allow — useful when a team wants to commit more players to their transition attack.",
+      "With only two receivers, each one has to cover noticeably more court than they would in a three-person formation, so the two typically stand wider apart, splitting the width of the court roughly in half between them.",
+      "This formation is often used by teams with a strong, dependable pair of passers — since there's less margin for error with only two people covering the same area three would otherwise share, the two chosen receivers usually have to be especially reliable.",
+      "Two-person receive tends to be more vulnerable against a well-placed serve aimed right at the seam between the two receivers, since there's no third player nearby to help close that gap the way there would be in a three-person setup.",
+      "Choosing between two-person and three-person receive is a real tactical decision teams make rotation by rotation — trading some passing security for extra attacking presence, or the reverse, depending on what the team values most in that specific lineup.",
+    ],
+    keyTakeaway: "Two-person serve receive uses only two back-row passers spread wide to split the court, freeing an extra player for offense at the cost of a bigger seam and less margin for error on each pass.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "Only two receivers cover the back row, spreading wide to split the court's width between them while a third back-row player is freed for another role.",
+      activeZones: [5, 1],
+      labels: { 5: "R", 1: "R" },
+      motions: {
+        5: { dx: -10, dy: 0 },
+        1: { dx: 10, dy: 0 },
+      },
+      ball: { path: [{ x: 55, y: -8 }, { x: 65, y: 65 }, { x: 45, y: 30 }] },
+    },
+    quiz: [
+      {
+        question: "How many receivers does two-person serve receive use?",
+        answers: [
+          { text: "Two", correct: true, explanation: "Correct — that's exactly what gives the formation its name." },
+          { text: "Three", correct: false, explanation: "Three-person receive is the separate formation from the previous lesson." },
+          { text: "Four", correct: false, explanation: "Four receivers would be more than either standard formation uses." },
+          { text: "Six", correct: false, explanation: "Using all six players to receive would leave no one to attack." },
+        ],
+      },
+      {
+        question: "What does using only two receivers free up compared to a three-person formation?",
+        answers: [
+          { text: "An extra player beyond what three-person receive would allow, for more offensive presence", correct: true, explanation: "Correct — this is the main trade-off of the formation." },
+          { text: "An extra substitution for the match", correct: false, explanation: "Substitution counts are unrelated to receive formation choice." },
+          { text: "An extra timeout for the set", correct: false, explanation: "Timeouts are a separate mechanic, unaffected by receive formation." },
+          { text: "The team's serving turn", correct: false, explanation: "Serving turns are decided by rotation and rally outcomes, not receive formation." },
+        ],
+      },
+      {
+        question: "How do the two receivers typically position themselves?",
+        answers: [
+          { text: "Wider apart, splitting the court's width roughly in half between them", correct: true, explanation: "Correct — each has to cover more ground, so they spread out further." },
+          { text: "Standing directly next to each other", correct: false, explanation: "Standing close together would leave large uncovered areas." },
+          { text: "One in the front row, one in the back row", correct: false, explanation: "Both receivers in this formation are typically back-row players." },
+          { text: "Exactly on the centerline", correct: false, explanation: "The centerline is under the net — receivers position themselves in the back row." },
+        ],
+      },
+      {
+        question: "Why might a team use two-person receive only with a strong, dependable pair of passers?",
+        answers: [
+          { text: "Because there's less margin for error with fewer people covering the same area", correct: true, explanation: "Correct — reliability matters more when fewer players share the load." },
+          { text: "Because the rules require experienced players for this formation", correct: false, explanation: "There's no such rule — it's a practical, tactical consideration." },
+          { text: "Because inexperienced players are not allowed in the back row", correct: false, explanation: "Any player can be in the back row — this is about tactical reliability." },
+          { text: "Because two-person receive requires taller players", correct: false, explanation: "Height isn't the relevant factor here — passing reliability is." },
+        ],
+      },
+      {
+        question: "What is a common vulnerability of two-person receive?",
+        answers: [
+          { text: "A well-placed serve aimed at the seam between the two receivers", correct: true, explanation: "Correct — with no third player nearby, this seam is harder to cover." },
+          { text: "It cannot be used against any serve at all", correct: false, explanation: "It's a fully usable formation — it just has this specific vulnerability." },
+          { text: "It requires an illegal number of players", correct: false, explanation: "Two-person receive uses a perfectly legal number of receivers." },
+          { text: "It only works if the opposing team agrees to it", correct: false, explanation: "A team chooses its own receive formation independently." },
+        ],
+      },
+      {
+        question: "What kind of decision is choosing between two-person and three-person receive?",
+        answers: [
+          { text: "A real tactical decision made rotation by rotation", correct: true, explanation: "Correct — teams weigh passing security against attacking presence." },
+          { text: "A fixed rule that never changes during a match", correct: false, explanation: "Teams can and do change this choice throughout a match." },
+          { text: "A decision made entirely by the referee", correct: false, explanation: "This is a team's own tactical choice, not an officiating decision." },
+          { text: "A random choice with no strategic reasoning behind it", correct: false, explanation: "This choice is a deliberate trade-off, not a random one." },
+        ],
+      },
+      {
+        question: "What is the main trade-off a team accepts by using two-person receive?",
+        answers: [
+          { text: "Trading some passing security for extra attacking presence", correct: true, explanation: "Correct — this is exactly the trade-off described in this lesson." },
+          { text: "Trading serving turns for extra timeouts", correct: false, explanation: "This formation choice doesn't affect serving turns or timeouts." },
+          { text: "Trading net height for court width", correct: false, explanation: "Neither net height nor court dimensions change based on formation." },
+          { text: "Trading the libero's role for the setter's role", correct: false, explanation: "Role assignments aren't swapped based on this formation choice." },
+        ],
+      },
+      {
+        question: "Compared to three-person receive, does each two-person receiver cover more or less court?",
+        answers: [
+          { text: "More", correct: true, explanation: "Correct — with one fewer receiver, each has to cover more ground." },
+          { text: "Less", correct: false, explanation: "Fewer receivers means each one covers more area, not less." },
+          { text: "The exact same amount", correct: false, explanation: "The coverage area per player changes with the number of receivers." },
+          { text: "It depends entirely on the referee's positioning", correct: false, explanation: "Court coverage is a team tactical matter, unrelated to referee position." },
+        ],
+      },
+      {
+        question: "Is two-person receive a legal, standard formation in volleyball?",
+        answers: [
+          { text: "Yes, it's a legitimate tactical choice teams make", correct: true, explanation: "Correct — both two-person and three-person receive are standard options." },
+          { text: "No, receiving always requires at least three players by rule", correct: false, explanation: "There's no such minimum-player rule for serve receive." },
+          { text: "No, it was banned from modern volleyball", correct: false, explanation: "Two-person receive remains a normal, legal tactical option." },
+          { text: "Only in beach volleyball, never indoors", correct: false, explanation: "This lesson covers indoor volleyball, where two-person receive is also used." },
+        ],
+      },
+      {
+        question: "What is the core idea behind two-person serve receive?",
+        answers: [
+          { text: "Fewer, more reliable receivers cover the court, freeing an extra player for offense", correct: true, explanation: "Correct — this captures the formation's purpose precisely." },
+          { text: "Two receivers stand in the exact same spot for double coverage", correct: false, explanation: "They spread wide to split the court, not stack together." },
+          { text: "The formation eliminates the need for a setter", correct: false, explanation: "The setter's role is unaffected by this receive formation." },
+          { text: "It uses two front-row players instead of back-row players", correct: false, explanation: "The two receivers are typically back-row players, like other receive formations." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "Understanding Seams",
+    summary: "The gaps between receivers, and how teams decide who takes responsibility for them.",
+    durationMin: 7,
+    theory: [
+      "A 'seam' is the gap between two neighboring receivers — the space where it's genuinely unclear, at first glance, which of them should take the ball. Seams exist in every receive formation, whether it's two-person, three-person, or anything else, simply because no two players can occupy the same spot.",
+      "Good servers deliberately target seams, since a ball landing right between two receivers is the hardest kind of serve to handle cleanly — both players might hesitate, both might reach, or worse, both might assume the other has it.",
+      "The fix isn't positioning alone; it's communication. Receivers are trained to call out loudly and immediately — 'mine' or a teammate's name — the instant they've decided to take a ball in the seam, so there's no ambiguity left by the time either of them actually needs to move.",
+      "As a general principle, the receiver moving forward (toward the net) usually has priority over a teammate moving sideways or backward to the same ball, since a player already moving toward the target has an easier path to a controlled pass than one scrambling sideways.",
+      "Seams shift constantly, because they exist between whichever two players happen to be neighbors in that specific formation — a team using two-person receive has a very different, wider seam than one using three-person receive, which is part of why formation choice (the last two lessons) matters so much.",
+    ],
+    keyTakeaway: "A seam is the gap between two receivers where responsibility for the ball isn't automatically clear — good servers target it, and the fix is loud, early communication rather than positioning alone.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "The serve is aimed right into the seam — the gap between two receivers. Whoever calls for it first and moves forward takes responsibility for the ball.",
+      activeZones: [6, 1],
+      labels: { 6: "R", 1: "R" },
+      motions: {},
+      ball: { path: [{ x: 70, y: -8 }, { x: 66, y: 62 }] },
+    },
+    quiz: [
+      {
+        question: "What is a 'seam' in serve receive?",
+        answers: [
+          { text: "The gap between two neighboring receivers", correct: true, explanation: "Correct — this is exactly what a seam refers to." },
+          { text: "A stitched line on the volleyball itself", correct: false, explanation: "This lesson's 'seam' refers to court positioning, not the ball's construction." },
+          { text: "The boundary line at the edge of the court", correct: false, explanation: "That's a sideline or end line, a different concept entirely." },
+          { text: "The exact center of the net", correct: false, explanation: "A seam is between two receivers on court, not a net location." },
+        ],
+      },
+      {
+        question: "Why do seams exist in every receive formation?",
+        answers: [
+          { text: "Because no two players can occupy the exact same spot", correct: true, explanation: "Correct — any gap between neighboring receivers creates a seam." },
+          { text: "Because the court is too large to cover completely", correct: false, explanation: "Seams exist due to player spacing, not overall court size." },
+          { text: "Because the rules require a gap between receivers", correct: false, explanation: "There's no rule mandating a gap — it's simply a natural consequence of spacing." },
+          { text: "Only in two-person receive, never in three-person receive", correct: false, explanation: "Seams exist in every formation, just in different places." },
+        ],
+      },
+      {
+        question: "Why do good servers deliberately target seams?",
+        answers: [
+          { text: "Because a ball landing between two receivers is hardest to handle cleanly", correct: true, explanation: "Correct — hesitation or confusion there often leads to a worse pass." },
+          { text: "Because hitting a seam automatically scores a point", correct: false, explanation: "It makes the pass harder, but doesn't automatically win the rally." },
+          { text: "Because it's the only legal place to serve", correct: false, explanation: "Servers can legally aim anywhere within the court, not just seams." },
+          { text: "Because seams are marked with a special line", correct: false, explanation: "There's no physical line marking a seam — it's a positional gap." },
+        ],
+      },
+      {
+        question: "What is the main fix for handling seam balls well?",
+        answers: [
+          { text: "Loud, early communication between receivers", correct: true, explanation: "Correct — calling for the ball removes the ambiguity." },
+          { text: "Standing perfectly still until the ball lands", correct: false, explanation: "Standing still doesn't resolve who should take the ball." },
+          { text: "Always letting the taller player take it", correct: false, explanation: "Height isn't the deciding factor — communication and positioning are." },
+          { text: "Switching to a completely different sport strategy", correct: false, explanation: "The fix is a communication habit within the same formation, not a strategy overhaul." },
+        ],
+      },
+      {
+        question: "What might happen if both receivers stay silent on a seam ball?",
+        answers: [
+          { text: "Both might hesitate, both might reach, or both might assume the other has it", correct: true, explanation: "Correct — this is exactly the risk of poor communication on a seam." },
+          { text: "The ball automatically goes out of bounds", correct: false, explanation: "The ball's path isn't affected by whether receivers communicate." },
+          { text: "The rally is stopped for a mandatory timeout", correct: false, explanation: "There's no rule triggering a timeout in this situation." },
+          { text: "The referee assigns the ball to whichever player is closer", correct: false, explanation: "Officials don't assign responsibility for a ball between teammates." },
+        ],
+      },
+      {
+        question: "As a general priority rule, who usually takes a seam ball?",
+        answers: [
+          { text: "The receiver moving forward toward the net", correct: true, explanation: "Correct — moving toward the target gives an easier path to a controlled pass." },
+          { text: "Whoever is standing furthest from the net", correct: false, explanation: "The general principle favors the player moving forward, not the furthest one." },
+          { text: "The setter, regardless of position", correct: false, explanation: "The setter is usually not even one of the receivers involved." },
+          { text: "Whichever player calls a timeout first", correct: false, explanation: "Timeouts have no connection to who takes a seam ball." },
+        ],
+      },
+      {
+        question: "Why does a player moving forward have priority over one moving sideways to the same ball?",
+        answers: [
+          { text: "They have an easier path to a controlled pass than a player scrambling sideways", correct: true, explanation: "Correct — this positioning advantage is the reasoning behind the priority." },
+          { text: "Forward movement is required by the rules", correct: false, explanation: "This is a practical tactical guideline, not a formal rule." },
+          { text: "Sideways movement is illegal during serve receive", correct: false, explanation: "Moving sideways is completely legal — it's just a harder angle for a clean pass." },
+          { text: "It has nothing to do with the quality of the resulting pass", correct: false, explanation: "The whole reasoning is specifically about pass quality and control." },
+        ],
+      },
+      {
+        question: "Does a seam stay in the same place regardless of which receive formation is used?",
+        answers: [
+          { text: "No — it shifts depending on which two players are neighbors in that formation", correct: true, explanation: "Correct — different formations create different seams." },
+          { text: "Yes, seams are fixed to the exact same spot on the court always", correct: false, explanation: "Seams move with whichever formation and players are currently receiving." },
+          { text: "Yes, but only between Zone 5 and Zone 6", correct: false, explanation: "A seam can occur between any two neighboring receivers, not just those two zones." },
+          { text: "No, seams only exist in two-person receive", correct: false, explanation: "Seams exist in every formation, including three-person receive." },
+        ],
+      },
+      {
+        question: "Why does formation choice (two-person vs. three-person) matter for seams?",
+        answers: [
+          { text: "A two-person formation creates a wider seam than a three-person one", correct: true, explanation: "Correct — fewer receivers spread wider apart means a bigger gap between them." },
+          { text: "Formation choice has no effect on where seams appear", correct: false, explanation: "Formation choice directly changes how many seams exist and how wide they are." },
+          { text: "Three-person receive has no seams at all", correct: false, explanation: "Even three-person receive has seams between its receivers, just smaller ones." },
+          { text: "Seams only appear in two-person receive, never in three-person receive", correct: false, explanation: "Both formations have seams — the difference is in their size and number." },
+        ],
+      },
+      {
+        question: "What is the best summary of how a team should handle a serve aimed at a seam?",
+        answers: [
+          { text: "Communicate early and let the receiver best positioned to move forward take it", correct: true, explanation: "Correct — this combines both key principles from the lesson." },
+          { text: "Ignore it and let the ball land untouched", correct: false, explanation: "Letting the ball land untouched would simply lose the rally." },
+          { text: "Both receivers should always dive for it simultaneously", correct: false, explanation: "This risks collision — clear communication is the better approach." },
+          { text: "Call a timeout immediately whenever a seam serve is spotted", correct: false, explanation: "There's no need for a timeout — this is handled through in-play communication." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 6,
+    title: "The Setter's Target",
+    summary: "The specific spot near the net a pass should reach, and why it matters so much.",
+    durationMin: 7,
+    theory: [
+      "The 'target' is a specific, small area near the net — not the setter's exact body, but a consistent spot the setter can reach quickly and set from comfortably, usually somewhere around the middle of the front row, a step or two off the net.",
+      "Aiming a pass at this fixed target, rather than directly at wherever the setter happens to be standing, matters because the setter is often on the move themselves — releasing from a back-row zone, as covered back in the rotation chapter. A ball aimed at a moving person is a much harder target than a ball aimed at a fixed spot.",
+      "A pass that reaches the target lets the setter arrive, plant their feet, and set with their whole body under control, which is exactly what allows for accurate, varied sets. A pass that lands even a meter or two off target often forces the setter to reach, stretch, or run it down instead.",
+      "Because the target is defined relative to the net and the court, not relative to the setter's current position, it actually stays the same target regardless of which rotation is in play or where the setter started that particular rotation.",
+      "Coaches and passers train specifically toward this target using repetition — serve after serve, pass after pass — because consistently hitting the same small area is what turns serve receive from an unpredictable scramble into a repeatable, reliable part of the offense.",
+    ],
+    keyTakeaway: "The target is a fixed spot near the net, not the setter's exact body — a well-aimed pass reaches this spot so the setter can arrive under control and set accurately, rather than chasing a stray ball.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "The receiver passes the serve toward a fixed target near the net — not toward the setter's exact position, but to a consistent spot the setter can run onto.",
+      activeZones: [6],
+      labels: { 6: "R" },
+      motions: {},
+      ball: { path: [{ x: 50, y: -8 }, { x: 50, y: 66 }, { x: 62, y: 14 }] },
+    },
+    quiz: [
+      {
+        question: "What is the 'target' in serve receive?",
+        answers: [
+          { text: "A specific, consistent spot near the net the pass should reach", correct: true, explanation: "Correct — this is the definition used in this lesson." },
+          { text: "The exact spot where the serve was originally hit from", correct: false, explanation: "The target is near the net on the receiving team's side, unrelated to the serve's origin." },
+          { text: "Wherever the setter happens to be standing at that instant", correct: false, explanation: "The target is a fixed spot, not the setter's current, possibly moving, position." },
+          { text: "The centerline under the net", correct: false, explanation: "The target is a spot in the front row near the net, not the centerline itself." },
+        ],
+      },
+      {
+        question: "Why is the target a fixed spot rather than 'wherever the setter is standing'?",
+        answers: [
+          { text: "Because the setter is often on the move, and a fixed spot is easier to aim at than a moving person", correct: true, explanation: "Correct — this is exactly the reasoning given in this lesson." },
+          { text: "Because setters are not allowed to move during a rally", correct: false, explanation: "Setters move constantly — that's precisely why a fixed target works better." },
+          { text: "Because the target changes to match the score", correct: false, explanation: "The target's location is unrelated to the score." },
+          { text: "Because only one target exists per entire match", correct: false, explanation: "The target concept applies to every single serve-receive pass, not once per match." },
+        ],
+      },
+      {
+        question: "What does a pass that reaches the target let the setter do?",
+        answers: [
+          { text: "Arrive, plant their feet, and set with their whole body under control", correct: true, explanation: "Correct — this control is what makes accurate, varied sets possible." },
+          { text: "Automatically win the rally", correct: false, explanation: "A good pass sets up the play — it doesn't win the rally by itself." },
+          { text: "Skip their turn to set", correct: false, explanation: "The setter still needs to set — a good pass just makes it easier." },
+          { text: "Serve the next point immediately", correct: false, explanation: "Serving order is unrelated to how well a pass reaches the target." },
+        ],
+      },
+      {
+        question: "What often happens if a pass lands well off the target?",
+        answers: [
+          { text: "The setter has to reach, stretch, or run the ball down instead", correct: true, explanation: "Correct — an off-target pass makes the setter's job much harder." },
+          { text: "The point is automatically awarded to the serving team", correct: false, explanation: "An off-target pass doesn't automatically end the rally." },
+          { text: "The rally is replayed from scratch", correct: false, explanation: "There's no automatic replay for an off-target pass." },
+          { text: "The setter is substituted out immediately", correct: false, explanation: "A single off-target pass doesn't trigger an automatic substitution." },
+        ],
+      },
+      {
+        question: "Does the target's location change depending on which rotation is currently in play?",
+        answers: [
+          { text: "No — it stays fixed relative to the net and court", correct: true, explanation: "Correct — the target's location doesn't shift by rotation." },
+          { text: "Yes, it moves to match the setter's starting zone each rotation", correct: false, explanation: "The target is fixed, precisely so it doesn't depend on the setter's starting zone." },
+          { text: "Yes, it moves to the opposite side of the court each rotation", correct: false, explanation: "There's no such shifting rule for the target." },
+          { text: "It only exists during specific rotations", correct: false, explanation: "The target concept applies in every rotation, every rally." },
+        ],
+      },
+      {
+        question: "Why do coaches emphasize repetition when training toward the target?",
+        answers: [
+          { text: "Because consistently hitting the same small area turns receive into something reliable, not a scramble", correct: true, explanation: "Correct — this repeatability is the whole point of the training focus." },
+          { text: "Because repetition is required by official volleyball rules", correct: false, explanation: "This is a training method, not a rule requirement." },
+          { text: "Because it helps players memorize the scoring system", correct: false, explanation: "This training is about passing accuracy, unrelated to scoring rules." },
+          { text: "Because it changes how many contacts a team is allowed", correct: false, explanation: "The three-contact rule is unrelated to target-passing practice." },
+        ],
+      },
+      {
+        question: "Roughly where is the target usually located?",
+        answers: [
+          { text: "Around the middle of the front row, a step or two off the net", correct: true, explanation: "Correct — this matches the typical target location described." },
+          { text: "In the back-right corner of the court", correct: false, explanation: "The target is near the net in the front row, not the back-right corner." },
+          { text: "Directly on the net itself", correct: false, explanation: "The target sits a step or two off the net, not touching it." },
+          { text: "In the service zone behind the end line", correct: false, explanation: "The service zone is nowhere near the target's actual location." },
+        ],
+      },
+      {
+        question: "What is the relationship between a good pass and the setter's options?",
+        answers: [
+          { text: "A pass that hits the target gives the setter more options and more control", correct: true, explanation: "Correct — this connects directly to what earlier lessons covered too." },
+          { text: "There is no relationship between them", correct: false, explanation: "Pass quality and setter options are closely connected." },
+          { text: "A good pass always removes the setter's options", correct: false, explanation: "The opposite is true — a good pass expands the setter's options." },
+          { text: "The setter's options are decided before the serve happens", correct: false, explanation: "The setter's real options depend heavily on how well the pass lands." },
+        ],
+      },
+      {
+        question: "Is aiming for the target only useful in specific rotations?",
+        answers: [
+          { text: "No, it applies on every single serve-receive pass, in every rotation", correct: true, explanation: "Correct — the target is a constant goal, not a rotation-specific one." },
+          { text: "Yes, only when the setter starts in the back row", correct: false, explanation: "The target matters regardless of the setter's starting zone." },
+          { text: "Yes, only during the deciding set", correct: false, explanation: "Aiming for the target matters in every set, not just the decider." },
+          { text: "Yes, only against certain opposing servers", correct: false, explanation: "The target concept applies against every serve, not select opponents." },
+        ],
+      },
+      {
+        question: "What best summarizes why the target matters so much in serve receive?",
+        answers: [
+          { text: "It turns a moving, unpredictable target (the setter) into a fixed, reliable aiming point for passers", correct: true, explanation: "Correct — this captures the core reasoning of the lesson." },
+          { text: "It guarantees the setter never has to move at all", correct: false, explanation: "The setter still moves to the target — the target just gives them a reliable spot to move toward." },
+          { text: "It removes the need for a setter entirely", correct: false, explanation: "The setter's role remains essential — the target just makes their job easier." },
+          { text: "It only matters for teaching beginners, not experienced teams", correct: false, explanation: "Even experienced, elite teams train and rely on hitting this target consistently." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 7,
+    title: "Moving From Receive to Attack",
+    summary: "How a team's shape shifts from a receiving formation into an attacking one in the seconds after the pass.",
+    durationMin: 8,
+    theory: [
+      "The moment a receiver contacts the serve, the whole team's job shifts: receivers who just passed begin recovering into a supportive position, the setter is already moving toward the target, and hitters begin their transition into an attacking approach — all within just a second or two.",
+      "Front-row hitters typically start serve receive standing a little off the net, deeper than their eventual attacking spot, specifically to leave themselves room for a proper approach — a hitter starting right at the net has no runway left to build speed and power into their jump.",
+      "As the pass travels toward the target, hitters read its flight and time their approach to arrive at the net just as the setter is about to deliver the ball to them — arriving too early means standing and waiting awkwardly, arriving too late means missing the timing of the set entirely.",
+      "This whole sequence — pass, set, attack — has to happen quickly, but each part depends on the one before it: a clean pass gives the setter time to choose confidently, and a well-timed set gives the hitter a rhythm to attack on, rather than reacting to a surprise.",
+      "Watching this transition closely is one of the best ways to judge a team's overall readiness: a team that flows smoothly from receiving shape into attacking shape, without hesitation or bunched-up players, usually has a well-drilled system running underneath it.",
+    ],
+    keyTakeaway: "The instant a serve is received, the team transitions fast: the setter releases to the target, hitters who started deep begin their timed approach to the net, and the whole shape shifts from a receiving formation into an attacking one within a second or two.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "As the pass travels toward the target, the Outside Hitter — who started deeper for a running start — approaches the net to time their attack.",
+      activeZones: [6, 4],
+      labels: { 6: "R", 4: "OH" },
+      motions: { 4: { dx: 0, dy: -10 } },
+      ball: { path: [{ x: 50, y: -8 }, { x: 50, y: 66 }, { x: 20, y: 14 }] },
+    },
+    quiz: [
+      {
+        question: "What begins the instant a receiver contacts the serve?",
+        answers: [
+          { text: "The whole team's transition into their next roles — recovery, setting and attacking", correct: true, explanation: "Correct — this transition begins immediately after the first touch." },
+          { text: "A mandatory pause before anyone can move", correct: false, explanation: "There's no pause — the transition begins immediately." },
+          { text: "The rotation of the entire team", correct: false, explanation: "Rotation only happens on a side-out, not after every serve receive." },
+          { text: "The opposing team's substitution window", correct: false, explanation: "This is about the receiving team's own transition, not the opponent's substitutions." },
+        ],
+      },
+      {
+        question: "Why do front-row hitters often start serve receive standing off the net?",
+        answers: [
+          { text: "To leave room for a proper approach before attacking", correct: true, explanation: "Correct — starting right at the net leaves no runway to build speed and power." },
+          { text: "Because they are not allowed to stand near the net during receive", correct: false, explanation: "There's no such rule — this is a tactical positioning choice." },
+          { text: "Because the net is dangerous to stand near", correct: false, explanation: "Safety isn't the reasoning — approach distance is." },
+          { text: "Because the libero requires that space", correct: false, explanation: "This positioning is about the hitter's own approach, not the libero." },
+        ],
+      },
+      {
+        question: "What are hitters doing as the pass travels toward the target?",
+        answers: [
+          { text: "Reading its flight and timing their approach to the net", correct: true, explanation: "Correct — this timing is crucial to a well-executed attack." },
+          { text: "Standing completely still until the set is delivered", correct: false, explanation: "Hitters are actively moving and timing their run during this phase." },
+          { text: "Leaving the court to be substituted", correct: false, explanation: "Hitters stay on court, actively preparing to attack." },
+          { text: "Serving the next point", correct: false, explanation: "This all happens mid-rally, well before any next serve." },
+        ],
+      },
+      {
+        question: "What happens if a hitter arrives at the net too early?",
+        answers: [
+          { text: "They end up standing and waiting awkwardly for the set", correct: true, explanation: "Correct — early arrival disrupts a hitter's attacking rhythm." },
+          { text: "They are awarded an automatic point", correct: false, explanation: "Early arrival doesn't score a point — it just hurts timing." },
+          { text: "The set becomes illegal", correct: false, explanation: "There's no such rule tied to a hitter's arrival timing." },
+          { text: "The rally is stopped", correct: false, explanation: "Play continues normally — the hitter simply has worse timing." },
+        ],
+      },
+      {
+        question: "What happens if a hitter arrives at the net too late?",
+        answers: [
+          { text: "They miss the timing of the set entirely", correct: true, explanation: "Correct — late arrival means the set may already be there without a hitter ready." },
+          { text: "They are given a bonus contact to make up for it", correct: false, explanation: "There's no such rule providing an extra contact for mistimed arrival." },
+          { text: "The team automatically rotates", correct: false, explanation: "Rotation is unrelated to a hitter's approach timing." },
+          { text: "The opposing team must replay the point", correct: false, explanation: "Mistimed approaches don't trigger a replay." },
+        ],
+      },
+      {
+        question: "How does a clean pass affect the setter's decision-making?",
+        answers: [
+          { text: "It gives the setter time to choose confidently among options", correct: true, explanation: "Correct — a clean pass creates the time and control needed for good decisions." },
+          { text: "It removes the setter's need to make any decision", correct: false, explanation: "The setter still chooses where to set — a clean pass just makes that choice easier." },
+          { text: "It forces the setter to always set the same hitter", correct: false, explanation: "A clean pass actually opens up more options, not fewer." },
+          { text: "It has no effect on the setter's decisions", correct: false, explanation: "Pass quality directly shapes what options the setter has available." },
+        ],
+      },
+      {
+        question: "What sequence does this lesson describe, in order?",
+        answers: [
+          { text: "Pass, then set, then attack", correct: true, explanation: "Correct — this is the standard sequence covered in this lesson." },
+          { text: "Attack, then set, then pass", correct: false, explanation: "This reverses the actual order of the sequence." },
+          { text: "Set, then pass, then attack", correct: false, explanation: "The pass always comes before the set in this sequence." },
+          { text: "Serve, then attack, then pass", correct: false, explanation: "The serve itself starts the rally — pass, set, attack follows it." },
+        ],
+      },
+      {
+        question: "What is one good way to judge a team's overall readiness?",
+        answers: [
+          { text: "How smoothly they flow from receiving shape into attacking shape", correct: true, explanation: "Correct — this smooth transition reflects a well-drilled system." },
+          { text: "How loudly the team celebrates after scoring", correct: false, explanation: "Celebration volume doesn't reflect tactical readiness." },
+          { text: "How many substitutions the team makes", correct: false, explanation: "Substitution count isn't a direct measure of transition quality." },
+          { text: "How tall the team's tallest player is", correct: false, explanation: "Height isn't what this lesson identifies as the readiness indicator." },
+        ],
+      },
+      {
+        question: "Roughly how much time does the whole pass-set-attack sequence typically take?",
+        answers: [
+          { text: "Just a second or two", correct: true, explanation: "Correct — this whole transition happens very quickly." },
+          { text: "Several minutes", correct: false, explanation: "This sequence happens in seconds, not minutes." },
+          { text: "An entire set", correct: false, explanation: "This sequence is a single rally's transition, not a whole set." },
+          { text: "It has no time limit at all", correct: false, explanation: "While there's no formal timer, this transition happens quickly by necessity." },
+        ],
+      },
+      {
+        question: "Why does each part of the pass-set-attack sequence depend on the one before it?",
+        answers: [
+          { text: "A clean pass enables a good set, and a well-timed set enables a rhythm-based attack", correct: true, explanation: "Correct — this chain of dependency is exactly what the lesson describes." },
+          { text: "They are actually completely independent of each other", correct: false, explanation: "The lesson specifically describes them as closely dependent steps." },
+          { text: "Only the attack matters — the pass and set are optional", correct: false, explanation: "All three steps are necessary parts of the same sequence." },
+          { text: "The order can be freely rearranged by the team", correct: false, explanation: "The sequence follows a fixed, logical order: pass, set, attack." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 8,
+    title: "Out-of-System Passing",
+    summary: "What happens when a pass doesn't reach the target, and how a team adapts.",
+    durationMin: 8,
+    theory: [
+      "'In system' describes a rally where the pass reached the target cleanly, giving the setter their full range of options. 'Out of system' describes the opposite: the pass landed away from the target, forcing the setter (or whoever ends up on the ball) to improvise instead of running the planned offense.",
+      "Passes can go out of system for plenty of reasons — a tough serve, a miscommunication between receivers, a ball that clips the net on the way over, or simply a difficult read. However it happens, the result is the same: the ball is no longer where the offense was built to expect it.",
+      "When out of system, the setter often has to chase the ball down themselves, or a completely different player has to step in to make the second contact, since the setter may be too far away to reach it in time. This often means giving up the ideal setter-to-hitter delivery entirely.",
+      "Being out of system usually limits the attack to safer, simpler options — a high, slow set that any nearby hitter can still time, or even just sending the ball back over without a real attack at all, purely to keep the rally alive rather than force a low-percentage play.",
+      "Good teams train specifically for out-of-system situations, because no team receives perfectly every single time. Knowing the fallback options in advance — who covers the second contact, which simple set to fall back on — turns a broken play into a manageable one instead of a lost point.",
+    ],
+    keyTakeaway: "'In system' means the pass reached the target and the setter has full options; 'out of system' means it didn't, forcing simpler, safer plays — and good teams train fallback plans specifically for this situation.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "The pass drifts away from the target into open space. Out of system, the setter has to chase the ball down instead of running a normal play.",
+      activeZones: [6, 3],
+      labels: { 6: "R", 3: "S" },
+      motions: { 3: { dx: -18, dy: 30 } },
+      ball: { path: [{ x: 60, y: -8 }, { x: 30, y: 70 }] },
+    },
+    quiz: [
+      {
+        question: "What does 'in system' mean?",
+        answers: [
+          { text: "The pass reached the target cleanly, giving the setter full options", correct: true, explanation: "Correct — this is the definition used in this lesson." },
+          { text: "The team has just won three rallies in a row", correct: false, explanation: "'In system' refers to pass quality, not a winning streak." },
+          { text: "The team is currently serving", correct: false, explanation: "This term applies to receiving and running offense, not serving." },
+          { text: "The setter has been substituted out", correct: false, explanation: "Substitutions are unrelated to whether a play is in or out of system." },
+        ],
+      },
+      {
+        question: "What does 'out of system' mean?",
+        answers: [
+          { text: "The pass landed away from the target, forcing improvisation", correct: true, explanation: "Correct — this is the opposite of an in-system play." },
+          { text: "The team has run out of substitutions", correct: false, explanation: "This term is about pass quality, not substitution counts." },
+          { text: "The serve was ruled illegal", correct: false, explanation: "An illegal serve is a separate issue from being out of system." },
+          { text: "The rally has gone on too long and must be replayed", correct: false, explanation: "There's no such rally-length replay rule connected to this term." },
+        ],
+      },
+      {
+        question: "Which of these could cause a pass to go out of system?",
+        answers: [
+          { text: "A tough serve, a miscommunication, or simply a difficult read", correct: true, explanation: "Correct — all of these are realistic causes described in the lesson." },
+          { text: "The team scoring too many points in a row", correct: false, explanation: "Scoring points doesn't cause a pass to go out of system." },
+          { text: "The referee calling a timeout", correct: false, explanation: "Timeouts don't directly cause an out-of-system pass." },
+          { text: "The net being set at the wrong height", correct: false, explanation: "Net height is fixed and checked before play, not a mid-rally cause." },
+        ],
+      },
+      {
+        question: "What often has to happen when the setter can't reach an out-of-system pass?",
+        answers: [
+          { text: "A different player steps in to make the second contact", correct: true, explanation: "Correct — this is a common adjustment when the setter is out of position." },
+          { text: "The rally is automatically awarded to the opponent", correct: false, explanation: "The rally continues — a teammate can step in to keep it alive." },
+          { text: "The team is charged a penalty point", correct: false, explanation: "There's no automatic penalty for an out-of-system pass." },
+          { text: "The set must be repeated from the serve", correct: false, explanation: "Play continues live — there's no restart mechanism here." },
+        ],
+      },
+      {
+        question: "What kind of attack options does an out-of-system situation usually limit a team to?",
+        answers: [
+          { text: "Safer, simpler options like a high, slow set", correct: true, explanation: "Correct — this trades scoring upside for reliability." },
+          { text: "Only illegal attacking options", correct: false, explanation: "Out-of-system attacks are still fully legal, just simpler and safer." },
+          { text: "Exactly the same options as an in-system play", correct: false, explanation: "Options are typically more limited when out of system." },
+          { text: "No options at all — the team must simply give up the rally", correct: false, explanation: "Teams still attempt to keep the rally alive with safer options." },
+        ],
+      },
+      {
+        question: "Why do good teams train specifically for out-of-system situations?",
+        answers: [
+          { text: "Because no team receives perfectly every single time", correct: true, explanation: "Correct — planning for this reality turns a broken play into a manageable one." },
+          { text: "Because the rules require a specific out-of-system drill each practice", correct: false, explanation: "There's no such formal training requirement — it's a practical choice." },
+          { text: "Because out-of-system plays are worth extra points", correct: false, explanation: "Every rally is worth exactly one point, regardless of system status." },
+          { text: "Because it's the only situation teams are allowed to practice", correct: false, explanation: "Teams practice many situations — this is just one important one." },
+        ],
+      },
+      {
+        question: "What is a realistic fallback option a team might use out of system?",
+        answers: [
+          { text: "A high, slow set that any nearby hitter can still time", correct: true, explanation: "Correct — this is a described fallback in the lesson." },
+          { text: "Refusing to return the ball at all", correct: false, explanation: "Not returning the ball would simply lose the rally." },
+          { text: "Substituting the entire team", correct: false, explanation: "A full-team substitution isn't a realistic in-rally fallback." },
+          { text: "Calling for a rotation early", correct: false, explanation: "Rotation timing isn't a fallback option for a broken pass." },
+        ],
+      },
+      {
+        question: "Is being out of system the same as automatically losing the rally?",
+        answers: [
+          { text: "No — it just limits the options, it doesn't end the rally", correct: true, explanation: "Correct — teams can still win the rally with a well-executed fallback." },
+          { text: "Yes, an out-of-system pass always loses the point", correct: false, explanation: "The rally continues; it's simply harder to attack effectively." },
+          { text: "Yes, but only if it happens twice in a row", correct: false, explanation: "There's no such two-strikes rule connected to this concept." },
+          { text: "It depends on which set is being played", correct: false, explanation: "This concept works the same way in every set." },
+        ],
+      },
+      {
+        question: "What is the key difference between in-system and out-of-system play?",
+        answers: [
+          { text: "Whether the pass reached the target and preserved the setter's full options", correct: true, explanation: "Correct — this is exactly the distinguishing factor." },
+          { text: "Whether the team is currently winning the set", correct: false, explanation: "The score doesn't determine system status — pass quality does." },
+          { text: "Whether the libero is currently on the court", correct: false, explanation: "The libero's presence doesn't determine system status." },
+          { text: "Whether the serve was legal", correct: false, explanation: "A legal serve can still result in an out-of-system pass by the receiving team." },
+        ],
+      },
+      {
+        question: "What best summarizes the value of having a fallback plan for out-of-system situations?",
+        answers: [
+          { text: "It turns a broken play into a manageable one instead of an automatic lost point", correct: true, explanation: "Correct — this is the practical value described in the lesson." },
+          { text: "It guarantees the team will still score every time", correct: false, explanation: "A fallback plan improves the odds — it doesn't guarantee scoring." },
+          { text: "It removes the need to ever pass accurately", correct: false, explanation: "Accurate passing is still the priority — fallback plans are for when it fails." },
+          { text: "It only matters for teams with a libero", correct: false, explanation: "Every team benefits from having an out-of-system fallback plan." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 9,
+    title: "Serve Receive in Different Rotations",
+    summary: "Why the same team's receiving shape looks different from one rotation to the next.",
+    durationMin: 8,
+    theory: [
+      "A team's serve-receive formation isn't one fixed shape used all match — it shifts from rotation to rotation, because the players currently in the back row (and therefore available to receive) change every time the team rotates, exactly as covered back in the rotation chapter.",
+      "In one rotation, a team's best passer might be in Zone 5, perfectly placed to take a big share of the court. A few rotations later, that same player has rotated to the front row, and a completely different teammate is now the one anchoring the back row instead.",
+      "This is also where the libero, from the rotation chapter, becomes especially relevant: because the libero specifically substitutes into back-row zones, their presence in a given rotation often changes which players are receiving and how the formation is shaped, compared to a rotation where they aren't involved.",
+      "Coaches often plan slightly different receive formations for different rotations specifically because of this — a rotation with two strong passers in the back row might comfortably run two-person receive, while a weaker-passing rotation might need the extra safety net of three-person receive instead.",
+      "Recognizing that 'serve receive' isn't one static system, but six related systems (one per rotation) that share the same principles, is what lets players and coaches actually plan for a whole match rather than just one moment of it.",
+    ],
+    keyTakeaway: "A team's receive formation changes rotation by rotation because the specific players available in the back row — and whether the libero is currently on for one of them — changes every time the team rotates.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "As the team rotates, the specific players available to receive shift with it — the same formation shape, but different players filling each receiving role.",
+      activeZones: [5, 6, 1],
+      labels: { 5: "R", 6: "R", 1: "R" },
+      motions: {
+        5: { dx: 10, dy: -6 },
+        6: { dx: -8, dy: 8 },
+        1: { dx: -10, dy: -6 },
+      },
+      ball: null,
+    },
+    quiz: [
+      {
+        question: "Does a team use the exact same receive formation in every rotation?",
+        answers: [
+          { text: "No — it shifts based on which players are currently in the back row", correct: true, explanation: "Correct — this is the core idea of this lesson." },
+          { text: "Yes, the formation never changes across a whole match", correct: false, explanation: "The formation adapts as different players rotate into the back row." },
+          { text: "Yes, but only the setter's position changes, not the formation", correct: false, explanation: "The whole receiving formation can shift, not just the setter's spot." },
+          { text: "No, formation is fixed by rule for the entire set", correct: false, explanation: "There's no such rule — formation is a team's own tactical choice each rotation." },
+        ],
+      },
+      {
+        question: "Why does the set of available receivers change from rotation to rotation?",
+        answers: [
+          { text: "Because rotation changes which players are currently in the back row", correct: true, explanation: "Correct — this directly connects back to the rotation chapter." },
+          { text: "Because players are substituted out every rotation", correct: false, explanation: "Rotation moves the same players through zones — it doesn't substitute them." },
+          { text: "Because the coach picks new players before each rotation", correct: false, explanation: "The lineup for the set stays fixed — it's their zones that change via rotation." },
+          { text: "Because the court itself changes shape", correct: false, explanation: "The court is fixed — it's player positioning that changes." },
+        ],
+      },
+      {
+        question: "How does the libero connect to this lesson's topic?",
+        answers: [
+          { text: "Their presence in back-row zones changes who is receiving and how the formation looks", correct: true, explanation: "Correct — the libero's substitution pattern directly affects receive formations." },
+          { text: "The libero has no connection to serve receive at all", correct: false, explanation: "The libero is often one of the primary receivers on the team." },
+          { text: "The libero only participates in serving, not receiving", correct: false, explanation: "The libero focuses heavily on passing and digging, including serve receive." },
+          { text: "The libero replaces the setter specifically for this purpose", correct: false, explanation: "The libero substitutes for back-row players generally, not specifically the setter." },
+        ],
+      },
+      {
+        question: "Why might a coach plan two-person receive for one rotation and three-person for another?",
+        answers: [
+          { text: "Because the passing strength available in the back row differs by rotation", correct: true, explanation: "Correct — stronger passing rotations can afford a leaner formation." },
+          { text: "Because the rules require alternating formations each rotation", correct: false, explanation: "There's no such alternating requirement — it's a tactical choice based on personnel." },
+          { text: "Because the referee assigns a different formation each time", correct: false, explanation: "Formation choice belongs to the team, not the officials." },
+          { text: "Because the net is adjusted between rotations", correct: false, explanation: "Net height stays fixed throughout the match." },
+        ],
+      },
+      {
+        question: "Is 'serve receive' best understood as one single fixed system, or several related ones?",
+        answers: [
+          { text: "Several related systems — one shaped for each of the six rotations", correct: true, explanation: "Correct — this is exactly the reframing this lesson offers." },
+          { text: "One single system that never varies", correct: false, explanation: "The system's principles stay the same, but its shape adapts per rotation." },
+          { text: "Twelve separate systems, two per rotation", correct: false, explanation: "There are six rotations, and generally one receive plan per rotation." },
+          { text: "A system that only exists in the deciding set", correct: false, explanation: "Serve receive planning applies in every set, not just the decider." },
+        ],
+      },
+      {
+        question: "What lets coaches and players actually plan for a whole match, according to this lesson?",
+        answers: [
+          { text: "Recognizing that receive formation is planned per rotation, not as one static shape", correct: true, explanation: "Correct — this recognition is exactly what this lesson emphasizes." },
+          { text: "Memorizing the opposing team's lineup", correct: false, explanation: "This lesson focuses on planning your own team's formations, not the opponent's lineup." },
+          { text: "Ignoring rotation entirely and using one formation always", correct: false, explanation: "That would be the opposite of the planning approach this lesson recommends." },
+          { text: "Relying entirely on the referee's guidance", correct: false, explanation: "This planning is done by the team's own coaches and players." },
+        ],
+      },
+      {
+        question: "If a team's best passer rotates from the back row to the front row, what typically happens to the receive formation?",
+        answers: [
+          { text: "A different teammate becomes the new anchor of the back-row receive shape", correct: true, explanation: "Correct — the formation adapts to whichever players are currently in the back row." },
+          { text: "The team is no longer allowed to receive serve that rotation", correct: false, explanation: "The team still receives — just with a different set of back-row players." },
+          { text: "The best passer must remain in the back row regardless of rotation", correct: false, explanation: "Rotation moves every player, including strong passers, through all six zones." },
+          { text: "The match is paused until the passer returns to the back row", correct: false, explanation: "Play continues normally — the formation simply adjusts to different players." },
+        ],
+      },
+      {
+        question: "Do the underlying principles of serve receive (target, seams, communication) change between rotations?",
+        answers: [
+          { text: "No — the principles stay the same, only the specific players and shape change", correct: true, explanation: "Correct — this is what makes it 'the same system' applied six different ways." },
+          { text: "Yes, completely different principles apply in each rotation", correct: false, explanation: "The core principles from earlier lessons apply across every rotation." },
+          { text: "Yes, but only the concept of seams changes between rotations", correct: false, explanation: "All these principles remain consistent — only personnel and shape shift." },
+          { text: "No, but only the target concept applies across rotations", correct: false, explanation: "All the principles — target, seams, communication — apply across every rotation." },
+        ],
+      },
+      {
+        question: "What is the practical benefit of planning receive formations rotation by rotation?",
+        answers: [
+          { text: "It lets a team use its strongest available passers effectively in every rotation", correct: true, explanation: "Correct — this maximizes passing quality across the whole match." },
+          { text: "It guarantees a technical foul against the opponent", correct: false, explanation: "This planning has nothing to do with fouls against the opposing team." },
+          { text: "It allows the team to skip serve receive in weaker rotations", correct: false, explanation: "Every rotation still requires receiving — the plan just adapts to available players." },
+          { text: "It changes how many points a rally is worth", correct: false, explanation: "Every rally is worth exactly one point, regardless of formation planning." },
+        ],
+      },
+      {
+        question: "What best summarizes this lesson's main point?",
+        answers: [
+          { text: "Receive formation adapts to whichever players rotation has placed in the back row", correct: true, explanation: "Correct — this captures the lesson's central idea." },
+          { text: "Only one player ever receives serve, regardless of rotation", correct: false, explanation: "Multiple players share receiving responsibility, and this can shift by rotation." },
+          { text: "Rotation and serve receive are completely unrelated topics", correct: false, explanation: "This lesson shows exactly how closely connected the two topics are." },
+          { text: "Serve receive formations are chosen once and never revisited", correct: false, explanation: "Formations are actively planned and can differ for each of the six rotations." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 10,
+    title: "Reading a Serve-Receive Formation",
+    summary: "Putting it all together: recognizing roles, receivers and the setter's starting point at a glance.",
+    durationMin: 8,
+    theory: [
+      "By now, you have all the pieces needed to look at a team lined up before a serve and actually understand what you're seeing: the six zones, the front-row/back-row split, rotation order, overlap rules, and how receive formations and the target work together.",
+      "The first thing to identify is who's receiving: look for the players spread across the back row (and occasionally a front-row player) in a recognizable two-person or three-person shape, usually standing a little deeper in the court, ready to read the serve.",
+      "The next thing to find is the setter — often the player standing slightly apart from the receiving shape, positioned to release quickly toward the net the instant the ball is contacted. If the setter is in the back row that rotation, they'll typically be the one player not sharing receiving responsibility with the others.",
+      "From there, the front-row attackers become easier to spot too: they're usually standing a little off the net (as covered in Lesson 7), leaving themselves room for an approach, with their specific zone position hinting at whether they're likely to attack from the left, middle, or right.",
+      "Being able to read a formation this way — quickly identifying receivers, the setter, and the attackers before a single serve is even hit — is a genuinely useful skill, whether you're playing, coaching, or simply watching a match with a sharper eye for what's about to happen.",
+    ],
+    keyTakeaway: "Reading a formation means spotting the receivers (usually two or three back-row players), finding the setter (often standing apart, ready to release to the net), and recognizing the attackers by their off-net starting spots.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "A full formation, ready to read: three receivers spread through the back row, the setter released and ready near the net, and hitters standing off the net for their approach.",
+      activeZones: [5, 6, 1, 3, 4, 2],
+      labels: { 5: "R", 6: "R", 1: "R", 3: "S", 4: "OH", 2: "OP" },
+      motions: {
+        4: { dx: 0, dy: -6 },
+        2: { dx: 0, dy: -6 },
+      },
+      ball: null,
+    },
+    quiz: [
+      {
+        question: "What is the first thing to identify when reading a serve-receive formation?",
+        answers: [
+          { text: "Who is receiving — the players in the two-person or three-person receiving shape", correct: true, explanation: "Correct — this is the natural first thing to spot." },
+          { text: "The final score of the set", correct: false, explanation: "The score isn't part of reading a formation before a serve." },
+          { text: "The referee's exact position", correct: false, explanation: "Referee position isn't relevant to reading a team's formation." },
+          { text: "The color of the ball", correct: false, explanation: "Ball color has nothing to do with reading a formation." },
+        ],
+      },
+      {
+        question: "How can you typically spot the setter in a formation?",
+        answers: [
+          { text: "They often stand slightly apart from the receiving shape, ready to release to the net", correct: true, explanation: "Correct — this positioning is a strong clue for finding the setter." },
+          { text: "They always wear a different colored jersey", correct: false, explanation: "That distinct jersey belongs to the libero, not the setter." },
+          { text: "They always stand exactly on the centerline", correct: false, explanation: "The setter's position depends on their current rotation zone, not the centerline." },
+          { text: "They are always the tallest player on the team", correct: false, explanation: "Height isn't a reliable way to identify the setter." },
+        ],
+      },
+      {
+        question: "If the setter is currently in the back row, how do they typically relate to the receiving group?",
+        answers: [
+          { text: "They're usually the one player not sharing receiving responsibility with the others", correct: true, explanation: "Correct — teams generally free the setter from receiving duty when possible." },
+          { text: "They always take the largest share of the receiving area", correct: false, explanation: "Teams generally try to keep the setter out of primary receiving duty." },
+          { text: "They swap roles with the libero for that rotation", correct: false, explanation: "Roles like setter and libero don't swap between players." },
+          { text: "They must stand exactly behind the server", correct: false, explanation: "There's no such positioning requirement tied to the setter." },
+        ],
+      },
+      {
+        question: "How can front-row attackers often be recognized before the serve?",
+        answers: [
+          { text: "By standing a little off the net, leaving room for their approach", correct: true, explanation: "Correct — this matches the positioning described in Lesson 7." },
+          { text: "By standing directly against the net", correct: false, explanation: "Standing right at the net would leave no room for an approach." },
+          { text: "By wearing a specially marked jersey", correct: false, explanation: "There's no special jersey marking front-row attackers." },
+          { text: "By always standing in the exact center of the court", correct: false, explanation: "Their position relates to their zone and attacking role, not the court's center." },
+        ],
+      },
+      {
+        question: "What does a hitter's specific zone position hint at?",
+        answers: [
+          { text: "Whether they're likely to attack from the left, middle, or right", correct: true, explanation: "Correct — zone position lines up with the attacking areas from Lesson 8 of Chapter 3." },
+          { text: "How many points the team currently has", correct: false, explanation: "Zone position has no connection to the current score." },
+          { text: "Which team will win the rally", correct: false, explanation: "Formation reading doesn't predict rally outcomes, just likely roles." },
+          { text: "Whether a substitution is about to happen", correct: false, explanation: "Zone position doesn't indicate an upcoming substitution." },
+        ],
+      },
+      {
+        question: "Which chapter concepts does reading a formation draw on?",
+        answers: [
+          { text: "Zones, front-row/back-row split, rotation order, overlap rules, and receive formations", correct: true, explanation: "Correct — this lesson pulls together everything from the whole chapter (and the last one)." },
+          { text: "Only the scoring rules from a much earlier chapter", correct: false, explanation: "This skill draws on rotation and receive concepts specifically, not scoring rules." },
+          { text: "Only the libero's jersey color rule", correct: false, explanation: "That's just one small piece — formation reading uses many more concepts than this." },
+          { text: "Nothing from previous lessons — it's an entirely new topic", correct: false, explanation: "This lesson deliberately ties together everything learned so far." },
+        ],
+      },
+      {
+        question: "Who might find the skill of reading a formation useful?",
+        answers: [
+          { text: "Players, coaches, and even spectators watching with a sharper eye", correct: true, explanation: "Correct — this skill benefits anyone trying to understand what's about to happen." },
+          { text: "Only professional referees", correct: false, explanation: "This skill is useful well beyond officiating specifically." },
+          { text: "Only the team's setter", correct: false, explanation: "Every player, and even spectators, can benefit from reading formations." },
+          { text: "Nobody — it has no practical use", correct: false, explanation: "Understanding formations has real, practical value for play and coaching." },
+        ],
+      },
+      {
+        question: "Why might a front-row player NOT be part of the primary receiving group?",
+        answers: [
+          { text: "So they can save position and energy for their attacking approach", correct: true, explanation: "Correct — this mirrors the reasoning from earlier lessons in this chapter." },
+          { text: "Because front-row players are legally barred from receiving", correct: false, explanation: "There's no such legal restriction — it's a tactical choice." },
+          { text: "Because only the libero is allowed to touch the ball first", correct: false, explanation: "Any eligible player can make the first contact, not only the libero." },
+          { text: "Because front-row players must stand still until the point ends", correct: false, explanation: "Front-row players move actively to prepare their attacking approach." },
+        ],
+      },
+      {
+        question: "What would a two-person versus three-person receiving shape tell you about a team's formation choice?",
+        answers: [
+          { text: "Whether they're prioritizing extra attacking presence or extra passing security that rotation", correct: true, explanation: "Correct — this reflects the trade-off covered in earlier lessons." },
+          { text: "Nothing — both shapes are functionally identical", correct: false, explanation: "The two shapes reflect a real tactical trade-off, as covered earlier in this chapter." },
+          { text: "That the team is about to be called for a rotation violation", correct: false, explanation: "Formation choice alone doesn't indicate any kind of violation." },
+          { text: "That the team has too few available substitutes", correct: false, explanation: "Formation choice is a tactical decision, unrelated to substitute availability." },
+        ],
+      },
+      {
+        question: "What is the overall value of being able to read a serve-receive formation, as this lesson summarizes it?",
+        answers: [
+          { text: "It lets you understand a team's likely plan before a single serve is even hit", correct: true, explanation: "Correct — this is the culminating skill this lesson (and chapter) builds toward." },
+          { text: "It guarantees you can predict the exact outcome of every rally", correct: false, explanation: "It helps you understand likely roles and plans, not guarantee outcomes." },
+          { text: "It replaces the need to understand any of the rules from this chapter", correct: false, explanation: "Reading formations relies directly on the rules and concepts from this chapter." },
+          { text: "It only applies to professional-level matches", correct: false, explanation: "This skill applies at any level of play, not just professional matches." },
+        ],
+      },
+    ],
+  },
+];
+const CHAPTER_4_TEST = {
+  id: 11,
+  title: "Chapter 4 Test",
+  summary: "A 20-question test covering everything from Serve Receive, including scenario questions.",
+  durationMin: 16,
+  theory: null,
+  keyTakeaway: null,
+  showAnimation: false,
+  isTest: true,
+  quiz: [
+    {
+      question: "What is serve receive?",
+      answers: [
+        { text: "A team's first contact of the rally, passing the opponent's serve", correct: true, explanation: "Correct — this is the foundation of every rally." },
+        { text: "The act of scoring the final point of a set", correct: false, explanation: "That describes winning a set, not serve receive." },
+        { text: "A referee's hand signal", correct: false, explanation: "Serve receive is a player action, not an officiating signal." },
+        { text: "A specific type of serve", correct: false, explanation: "Serve receive is about receiving a serve, not a type of serve itself." },
+      ],
+    },
+    {
+      question: "Which zones typically hold the main serve-receive responsibility?",
+      answers: [
+        { text: "Zones 5, 6 and 1 — the back row", correct: true, explanation: "Correct — these deep zones give the best view and reaction time." },
+        { text: "Zones 2, 3 and 4 — the front row", correct: false, explanation: "Front-row players generally aren't the primary receivers." },
+        { text: "Only Zone 3", correct: false, explanation: "Zone 3 is a front-row zone, not a typical receiving zone." },
+        { text: "Whichever zone is closest to the referee", correct: false, explanation: "Referee position has no bearing on receiving responsibility." },
+      ],
+    },
+    {
+      question: "Scenario: a team uses only two back-row players to receive, freeing a third for offense. What formation is this?",
+      answers: [
+        { text: "Two-person serve receive", correct: true, explanation: "Correct — this matches the definition of the formation exactly." },
+        { text: "Three-person serve receive", correct: false, explanation: "Three-person receive uses three receivers, not two." },
+        { text: "Six-person serve receive", correct: false, explanation: "Using all six players to receive isn't a standard formation." },
+        { text: "Out-of-system receive", correct: false, explanation: "That term describes a broken pass, not a formation type." },
+      ],
+    },
+    {
+      question: "What is the main benefit of three-person serve receive over two-person?",
+      answers: [
+        { text: "Each receiver covers less court individually, sharing the load across three players", correct: true, explanation: "Correct — this is the main trade-off in favor of three-person receive." },
+        { text: "It automatically wins the point", correct: false, explanation: "No formation automatically wins a rally — it just improves pass quality." },
+        { text: "It allows the team to serve twice", correct: false, explanation: "Serving turns aren't affected by receive formation." },
+        { text: "It removes the need for a setter", correct: false, explanation: "The setter's role stays the same regardless of receive formation." },
+      ],
+    },
+    {
+      question: "What is a 'seam' in serve receive?",
+      answers: [
+        { text: "The gap between two neighboring receivers", correct: true, explanation: "Correct — this is the definition used throughout the chapter." },
+        { text: "A stitched line on the ball itself", correct: false, explanation: "This chapter's 'seam' refers to court positioning, not the ball's construction." },
+        { text: "The boundary line at the edge of the court", correct: false, explanation: "That's a sideline, a completely different concept." },
+        { text: "The exact center of the net", correct: false, explanation: "A seam is a gap between two players, not a net location." },
+      ],
+    },
+    {
+      question: "Scenario: a serve lands right between two receivers, and both hesitate. What is the recommended fix?",
+      answers: [
+        { text: "Loud, early communication — calling for the ball as soon as it's read", correct: true, explanation: "Correct — this removes the ambiguity before it becomes a problem." },
+        { text: "Both players should dive for it at the same time", correct: false, explanation: "This risks a collision — clear communication is the better approach." },
+        { text: "Letting the ball drop untouched", correct: false, explanation: "That would simply lose the rally rather than resolve the seam." },
+        { text: "Calling an automatic timeout", correct: false, explanation: "There's no rule requiring a timeout for this situation." },
+      ],
+    },
+    {
+      question: "What is the 'target' in serve receive?",
+      answers: [
+        { text: "A specific, consistent spot near the net the pass should reach", correct: true, explanation: "Correct — a fixed spot, not the setter's exact moving position." },
+        { text: "The exact spot the serve was hit from", correct: false, explanation: "The target is on the receiving side near the net, unrelated to the serve's origin." },
+        { text: "Wherever the setter happens to be standing at that instant", correct: false, explanation: "The target is fixed, precisely because the setter is often moving." },
+        { text: "The service zone behind the end line", correct: false, explanation: "The service zone is nowhere near the actual receiving target." },
+      ],
+    },
+    {
+      question: "Why is the target a fixed spot rather than the setter's current position?",
+      answers: [
+        { text: "Because the setter is often on the move, and a fixed spot is easier to aim at", correct: true, explanation: "Correct — this is the key reasoning behind using a fixed target." },
+        { text: "Because setters are not allowed to move during a rally", correct: false, explanation: "Setters move constantly, which is exactly why a fixed target helps." },
+        { text: "Because it changes based on the score", correct: false, explanation: "The target's location has nothing to do with the score." },
+        { text: "Because only the libero is allowed to aim at a fixed spot", correct: false, explanation: "Any receiver aims for the same fixed target, not just the libero." },
+      ],
+    },
+    {
+      question: "Scenario: your team's pass reaches the target cleanly. What is this situation called?",
+      answers: [
+        { text: "In system", correct: true, explanation: "Correct — a clean pass to the target keeps the offense fully in system." },
+        { text: "Out of system", correct: false, explanation: "Out of system describes the opposite: a pass that missed the target." },
+        { text: "A positional fault", correct: false, explanation: "That's an unrelated rotation-legality violation, not a pass-quality term." },
+        { text: "A side-out", correct: false, explanation: "A side-out refers to winning back the serve, unrelated to pass quality." },
+      ],
+    },
+    {
+      question: "Scenario: the pass sails well off target and the setter can't reach it. What typically happens?",
+      answers: [
+        { text: "A different player steps in to make the second contact, and the team runs a simpler, safer play", correct: true, explanation: "Correct — this is a typical out-of-system adjustment." },
+        { text: "The point is automatically awarded to the opponent", correct: false, explanation: "The rally continues — a teammate can still step in and keep it alive." },
+        { text: "The rally is automatically replayed", correct: false, explanation: "There's no automatic replay for an off-target pass." },
+        { text: "The setter is substituted out immediately", correct: false, explanation: "A single off-target pass doesn't force an automatic substitution." },
+      ],
+    },
+    {
+      question: "Why do front-row hitters often start serve receive standing off the net?",
+      answers: [
+        { text: "To leave room for a proper attacking approach", correct: true, explanation: "Correct — starting right at the net leaves no runway to build speed and power." },
+        { text: "Because standing at the net is against the rules during receive", correct: false, explanation: "There's no such rule — this is a tactical positioning choice." },
+        { text: "Because the libero requires that exact space", correct: false, explanation: "This positioning is about the hitter's own approach, unrelated to the libero." },
+        { text: "Because the net is considered unsafe to stand near", correct: false, explanation: "Safety isn't the reasoning here — approach distance is." },
+      ],
+    },
+    {
+      question: "What is the correct order of the pass-set-attack sequence?",
+      answers: [
+        { text: "Pass, then set, then attack", correct: true, explanation: "Correct — this is the standard sequence covered in this chapter." },
+        { text: "Attack, then set, then pass", correct: false, explanation: "This reverses the actual order of the sequence." },
+        { text: "Set, then pass, then attack", correct: false, explanation: "The pass always comes before the set." },
+        { text: "Serve, then attack, then pass", correct: false, explanation: "The serve starts the rally; pass, set, attack is what follows for the receiving team." },
+      ],
+    },
+    {
+      question: "Scenario: a hitter arrives at the net too early, before the set is delivered. What is the likely result?",
+      answers: [
+        { text: "They end up standing and waiting awkwardly, disrupting their attacking rhythm", correct: true, explanation: "Correct — early arrival hurts timing rather than helping it." },
+        { text: "They are awarded an automatic point", correct: false, explanation: "Early arrival doesn't score a point — it just hurts timing." },
+        { text: "The set becomes illegal", correct: false, explanation: "There's no rule tied to a hitter's arrival timing making a set illegal." },
+        { text: "The rally is stopped immediately", correct: false, explanation: "Play continues normally, just with worse attacking timing." },
+      ],
+    },
+    {
+      question: "Does a team's receive formation stay exactly the same across all six rotations?",
+      answers: [
+        { text: "No — it shifts because different players are in the back row each rotation", correct: true, explanation: "Correct — this connects receive formation directly to rotation." },
+        { text: "Yes, the exact same formation and players are used all match", correct: false, explanation: "The available back-row players change as the team rotates." },
+        { text: "Yes, but only the setter's position changes", correct: false, explanation: "The whole receiving group can shift, not just the setter's spot." },
+        { text: "No, but it only changes once per set, not every rotation", correct: false, explanation: "It can meaningfully shift with each of the six rotations, not just once." },
+      ],
+    },
+    {
+      question: "How does the libero typically affect serve-receive formations?",
+      answers: [
+        { text: "Their presence in back-row zones changes who is receiving and how the formation is shaped", correct: true, explanation: "Correct — the libero's substitution pattern directly influences the receive shape." },
+        { text: "The libero has no effect on serve receive at all", correct: false, explanation: "The libero is often one of the team's primary receivers." },
+        { text: "The libero only affects serving, not receiving", correct: false, explanation: "The libero's core strengths are passing and digging, including serve receive." },
+        { text: "The libero always receives alone, with no teammates", correct: false, explanation: "The libero receives as part of the team's formation, not alone." },
+      ],
+    },
+    {
+      question: "Scenario: you're watching a team line up before a serve. How can you typically spot the setter?",
+      answers: [
+        { text: "They often stand slightly apart from the receiving shape, ready to release to the net", correct: true, explanation: "Correct — this positioning is a strong clue for identifying the setter." },
+        { text: "They always wear a visibly different colored jersey", correct: false, explanation: "That distinct jersey belongs to the libero, not the setter." },
+        { text: "They are always the shortest player on the team", correct: false, explanation: "Height isn't a reliable indicator of who the setter is." },
+        { text: "They always stand exactly on the sideline", correct: false, explanation: "The setter's position depends on their current zone, not a fixed sideline spot." },
+      ],
+    },
+    {
+      question: "Scenario: a hitter's zone position before the serve hints at what?",
+      answers: [
+        { text: "Whether they're likely to attack from the left, middle, or right", correct: true, explanation: "Correct — zone position lines up with typical attacking areas." },
+        { text: "The current score of the set", correct: false, explanation: "Zone position has no connection to the score." },
+        { text: "Whether a substitution is about to occur", correct: false, explanation: "Zone position doesn't indicate an upcoming substitution." },
+        { text: "Which team will win the rally", correct: false, explanation: "Formation reading suggests likely roles, not rally outcomes." },
+      ],
+    },
+    {
+      question: "What is the key difference between in-system and out-of-system play?",
+      answers: [
+        { text: "Whether the pass reached the target and preserved the setter's full range of options", correct: true, explanation: "Correct — this distinction is exactly what separates the two terms." },
+        { text: "Whether the team is currently ahead on the scoreboard", correct: false, explanation: "The score doesn't determine system status — pass quality does." },
+        { text: "Whether the serve itself was legal", correct: false, explanation: "A legal serve can still result in an out-of-system pass for the receiving team." },
+        { text: "Whether the libero is currently on the court", correct: false, explanation: "The libero's presence doesn't by itself determine system status." },
+      ],
+    },
+    {
+      question: "Why do good teams train specifically for out-of-system situations?",
+      answers: [
+        { text: "Because no team passes perfectly every single time, and a fallback plan turns a broken play into a manageable one", correct: true, explanation: "Correct — this is exactly the reasoning behind training for it." },
+        { text: "Because the rules require a mandatory out-of-system drill", correct: false, explanation: "There's no such formal rule — it's a practical training choice." },
+        { text: "Because out-of-system rallies are worth bonus points", correct: false, explanation: "Every rally is worth exactly one point, regardless of system status." },
+        { text: "Because it's the only drill teams are permitted to run", correct: false, explanation: "Teams train many situations — this is simply one important one." },
+      ],
+    },
+    {
+      question: "What is the overall value of being able to read a serve-receive formation before the serve is hit?",
+      answers: [
+        { text: "It lets you understand a team's likely plan — receivers, setter, and attackers — before the ball is even served", correct: true, explanation: "Correct — this is the culminating skill this chapter builds toward." },
+        { text: "It guarantees you can predict the exact outcome of every rally", correct: false, explanation: "It helps identify likely roles and plans, not guarantee a specific result." },
+        { text: "It only matters for professional-level matches", correct: false, explanation: "This skill is useful at any level of play, not just professional ones." },
+        { text: "It replaces the need to understand rotation rules", correct: false, explanation: "Reading a formation actually relies directly on understanding rotation rules." },
+      ],
+    },
+  ],
+};
+
 /**
  * Builds the course structure. Chapters 1–2 use the real content above;
  * Chapters 3–8 remain placeholder-only until their content is written.
@@ -2750,6 +5492,26 @@ function buildChapters() {
         title: "Player Positions",
         summary: "The six on-court roles, what each one does, and how they rotate together.",
         lessons: [...CHAPTER_2_LESSONS, CHAPTER_2_TEST],
+      });
+      continue;
+    }
+
+    if (c === 3) {
+      chapters.push({
+        id: 3,
+        title: "Rotations",
+        summary: "The six-zone rotation cycle, overlap rules, and how every role moves through it.",
+        lessons: [...CHAPTER_3_LESSONS, CHAPTER_3_TEST],
+      });
+      continue;
+    }
+
+    if (c === 4) {
+      chapters.push({
+        id: 4,
+        title: "Serve Receive",
+        summary: "Passing formations, targets and seams — turning the opponent's serve into a clean first contact.",
+        lessons: [...CHAPTER_4_LESSONS, CHAPTER_4_TEST],
       });
       continue;
     }
