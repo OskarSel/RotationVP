@@ -107,6 +107,27 @@ const AVATAR_DEFS = [
         <path d="M13 5.6v6.4M13 8.5l-4 2M13 8.5l5.5-4.5M9 12l-3 7M13 12l3 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         <circle cx="19.5" cy="2.5" r="1.6" stroke="currentColor" stroke-width="1.3"/>`, 24),
   },
+  {
+    id: 'rotation-master',
+    label: 'Rotation Master',
+    hint: 'Pass the Chapter 3 test (70%+) to unlock.',
+    unlocked: () => isChapterTestPassed(3),
+    face: iconFace(`<rect x="6" y="6" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M6 12h12M12 6v12" stroke="currentColor" stroke-width="1" opacity="0.6"/>
+        <path d="M20.3 8.2a8 8 0 1 1-2.6-4.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        <path d="M17.2 1.2l0.9 2.7 2.7-0.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`, 24),
+  },
+  {
+    id: 'first-touch',
+    label: 'First Touch',
+    hint: 'Pass the Chapter 4 test (70%+) to unlock.',
+    unlocked: () => isChapterTestPassed(4),
+    face: iconFace(`<path d="M12 3c4 2 5 8 3 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2 2" fill="none"/>
+        <circle cx="15" cy="14.3" r="1.4" fill="currentColor"/>
+        <circle cx="6" cy="18.5" r="1.8" stroke="currentColor" stroke-width="1.4"/>
+        <circle cx="12" cy="20" r="1.8" stroke="currentColor" stroke-width="1.4"/>
+        <circle cx="18" cy="18.5" r="1.8" stroke="currentColor" stroke-width="1.4"/>`, 24),
+  },
 
   // ---- Shop wheel prizes -------------------------------------------------
   // Common (55% total, 11% each)

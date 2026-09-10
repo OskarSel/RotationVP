@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   const page = document.body.dataset.page;
 
   switch (page) {
+    case 'home':
+      initHomePage();
+      break;
     case 'learn':
       renderChapterGrid();
       break;

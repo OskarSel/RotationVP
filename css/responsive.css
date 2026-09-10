@@ -50,6 +50,7 @@
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
   .hero__stats { gap: var(--sp-8); }
   .complete-screen__actions { flex-wrap: nowrap; }
+  .proof-strip { grid-template-columns: repeat(4, 1fr); }
 }
 
 /* ---- ≥ 900px : full desktop nav, multi-column layouts ---- */
@@ -77,6 +78,7 @@
     padding-block: var(--sp-9) var(--sp-8);
   }
   .hero__copy { max-width: 50ch; }
+  .hero__visual { display: block; }
 
   .plan { padding-left: var(--sp-8); max-width: 68ch; }
   .plan-step--accent { margin-left: var(--sp-9); }
