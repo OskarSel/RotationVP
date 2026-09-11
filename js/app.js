@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await ProgressStore.syncOnBoot();
   applyAuthNav();
   document.documentElement.dataset.theme = ProgressStore.getTheme();
+  initDailyLoginModal();
 
   const page = document.body.dataset.page;
 

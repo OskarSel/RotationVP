@@ -79,6 +79,34 @@ function iconFace(inner, viewBoxSize) {
       </svg>`;
 }
 
+/** Epic/legendary icons get a fixed gradient "enamel badge" disc behind
+ *  their linework instead of a flat currentColor outline — a painted,
+ *  multi-tone look that doesn't get re-tinted by whatever context (wheel
+ *  slice, avatar card, leaderboard row) draws it, which is what makes the
+ *  rarer prizes read as noticeably richer than the common/rare ones.
+ *  `sparkles` (legendary only) bakes a couple of tiny 4-point stars into
+ *  the art itself, on top of the CSS glow/foil-sweep the rarity already
+ *  gets everywhere else. */
+function prestigeIconFace(inner, viewBoxSize, gradientId, stops, ringColor, sparkles) {
+  const size = viewBoxSize;
+  const r = size / 2 - 1;
+  const stopMarkup = stops.map(([offset, color]) => `<stop offset="${offset}" stop-color="${color}"/>`).join('');
+  const star = (cx, cy, s) => `<path d="M${cx} ${cy - s}L${cx + s * 0.3} ${cy - s * 0.3}L${cx + s} ${cy}L${cx + s * 0.3} ${cy + s * 0.3}L${cx} ${cy + s}L${cx - s * 0.3} ${cy + s * 0.3}L${cx - s} ${cy}L${cx - s * 0.3} ${cy - s * 0.3}Z" fill="#fff6d6" opacity="0.9"/>`;
+  const sparkleMarkup = sparkles ? sparkles.map(([sx, sy, ss]) => star(sx, sy, ss)).join('') : '';
+  return () => `
+      <svg class="avatar-face-icon avatar-face-icon--prestige" viewBox="0 0 ${size} ${size}" width="${viewBoxSize}" height="${viewBoxSize}" aria-hidden="true">
+        <defs><radialGradient id="${gradientId}" cx="35%" cy="28%" r="80%">${stopMarkup}</radialGradient></defs>
+        <circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="url(#${gradientId})" stroke="${ringColor}" stroke-width="1.1"/>
+        ${inner}
+        ${sparkleMarkup}
+      </svg>`;
+}
+
+const EPIC_GRADIENT_STOPS = [['0%', '#f5ebff'], ['55%', '#c084fc'], ['100%', '#6b21c9']];
+const EPIC_RING = '#5b1fa8';
+const LEGENDARY_GRADIENT_STOPS = [['0%', '#fffaeb'], ['50%', '#ffd666'], ['100%', '#b8791a']];
+const LEGENDARY_RING = '#8a5a16';
+
 /** Reward avatars. 'initials' is always available; 'volleyball' and 'spiker'
  *  unlock by passing a chapter test at 70%+; everything with a `rarity` is a
  *  shop-wheel prize unlocked via ProgressStore.unlockAvatar (see shop.js). */
@@ -250,61 +278,69 @@ const AVATAR_DEFS = [
         <circle cx="19" cy="8" r="1.8" stroke="currentColor" stroke-width="1.4"/>`, 24),
   },
 
-  // Epic
+  // Epic — richer gradient "enamel badge" art (see prestigeIconFace above)
   {
     id: 'triple-block', label: 'Triple Block', rarity: 'epic',
     hint: 'Win it on the Shop wheel.',
     unlocked: () => ProgressStore.isAvatarUnlocked('triple-block'),
-    face: iconFace(`<path d="M3 20V10M12 20V6M21 20V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M3 10l-1.6 2.6M3 10l1.6 2.6M12 6l-1.7 2.8M12 6l1.7 2.8M21 10l-1.6 2.6M21 10l1.6 2.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-        <path d="M1 20h22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>`, 24),
+    face: prestigeIconFace(`<path d="M6 18V10M12 18V7M18 18V10" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M6 10l-1.4 2.2M6 10l1.4 2.2M12 7l-1.5 2.4M12 7l1.5 2.4M18 10l-1.4 2.2M18 10l1.4 2.2" stroke="#fff" stroke-width="1.3" stroke-linecap="round" opacity="0.85"/>
+        <path d="M3 18h18" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="12" cy="4" r="1.4" fill="#fff" opacity="0.9"/>`, 24, 'g-triple-block', EPIC_GRADIENT_STOPS, EPIC_RING),
   },
   {
     id: 'perfect-rotation', label: 'Perfect Rotation', rarity: 'epic',
     hint: 'Win it on the Shop wheel.',
     unlocked: () => ProgressStore.isAvatarUnlocked('perfect-rotation'),
-    face: iconFace(`<path d="M12 4a8 8 0 1 1-6.9 3.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M4.2 5.5l.9 2.4 2.4-.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="12" cy="4" r="1.3" fill="currentColor"/><circle cx="18" cy="7" r="1.3" fill="currentColor"/>
-        <circle cx="20" cy="13" r="1.3" fill="currentColor"/><circle cx="17" cy="19" r="1.3" fill="currentColor"/>
-        <circle cx="11" cy="20.5" r="1.3" fill="currentColor"/><circle cx="6" cy="16" r="1.3" fill="currentColor"/>`, 24),
+    face: prestigeIconFace(`<path d="M12 5a7 7 0 1 0-6 3.4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        <path d="M4.6 6l.8 2.2 2.2-.6" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <circle cx="12" cy="5" r="1.2" fill="#fff"/><circle cx="17.5" cy="7.5" r="1.2" fill="#fff" opacity="0.85"/>
+        <circle cx="19" cy="13" r="1.2" fill="#fff" opacity="0.85"/><circle cx="16" cy="18" r="1.2" fill="#fff" opacity="0.85"/>
+        <circle cx="10" cy="19" r="1.2" fill="#fff" opacity="0.85"/><circle cx="6" cy="16" r="1.2" fill="#fff" opacity="0.85"/>`, 24, 'g-perfect-rotation', EPIC_GRADIENT_STOPS, EPIC_RING),
   },
   {
     id: 'five-set-thriller', label: 'Five-Set Thriller', rarity: 'epic',
     hint: 'Win it on the Shop wheel.',
     unlocked: () => ProgressStore.isAvatarUnlocked('five-set-thriller'),
-    face: iconFace(`<path d="M18 4H9v7h4.5a3.5 3.5 0 110 7H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`, 24),
+    face: prestigeIconFace(`<path d="M16.5 6H9.5v6h4a3 3 0 110 6H8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M7 19.5h10" stroke="#fff" stroke-width="1" opacity="0.5" stroke-linecap="round"/>`, 24, 'g-five-set-thriller', EPIC_GRADIENT_STOPS, EPIC_RING),
   },
   {
     id: 'read-block', label: 'Read Block', rarity: 'epic',
     hint: 'Win it on the Shop wheel.',
     unlocked: () => ProgressStore.isAvatarUnlocked('read-block'),
-    face: iconFace(`<path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
-        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M4 19l2-3M20 19l-2-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`, 24),
+    face: prestigeIconFace(`<path d="M3 12s4-5.5 9-5.5S21 12 21 12s-4 5.5-9 5.5S3 12 3 12z" stroke="#fff" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
+        <circle cx="12" cy="12" r="2.6" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="12" cy="12" r="0.9" fill="#fff"/>
+        <path d="M5 18.5l1.8-2.6M19 18.5l-1.8-2.6" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity="0.85"/>`, 24, 'g-read-block', EPIC_GRADIENT_STOPS, EPIC_RING),
   },
 
-  // Legendary
+  // Legendary — gradient badge + baked-in sparkle accents on top of the CSS glow/foil sweep
   {
     id: 'championship-spike', label: 'Championship Spike', rarity: 'legendary',
     hint: 'Win it on the Shop wheel.',
     unlocked: () => ProgressStore.isAvatarUnlocked('championship-spike'),
-    face: iconFace(`<circle cx="12.5" cy="3.6" r="1.6" fill="currentColor"/>
-        <path d="M12.2 5.2v4.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M12.2 6.3l4.3-3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M12.4 7.4l-3 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M12.5 9.5l-2.3 5.8M12.5 9.5l3 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        <circle cx="18.3" cy="1.6" r="1.5" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M16.6 3l-1.6 1.4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-        <path d="M2 21h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M6 21v-6.5M6 15h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>`, 24),
+    face: prestigeIconFace(`<circle cx="13" cy="4.2" r="1.5" fill="#fff"/>
+        <path d="M12.7 5.6v4M12.7 6.6l4-3.2M12.9 7.6l-2.8 1.3M13 9.6l-2.1 5.4M13 9.6l2.8 4.6" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M4 20h16" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M7.5 20v-5.5M7.5 15h4" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity="0.85"/>`,
+      24, 'g-championship-spike', LEGENDARY_GRADIENT_STOPS, LEGENDARY_RING, [[19, 5, 1.3], [4, 17, 1]]),
   },
   {
     id: 'golden-ace', label: 'Golden Ace', rarity: 'legendary',
     hint: 'Win it on the Shop wheel.',
     unlocked: () => ProgressStore.isAvatarUnlocked('golden-ace'),
-    face: iconFace(`<circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/>
-        <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.5 4.5l2 2M17.5 17.5l2 2M4.5 19.5l2-2M17.5 6.5l2-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`, 24),
+    face: prestigeIconFace(`<circle cx="12" cy="12" r="3.4" stroke="#fff" stroke-width="1.6"/>
+        <path d="M12 4.5v2.2M12 17.3v2.2M4.5 12h2.2M17.3 12h2.2M6.4 6.4l1.6 1.6M16 16l1.6 1.6M6.4 17.6l1.6-1.6M16 8l1.6-1.6" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/>`,
+      24, 'g-golden-ace', LEGENDARY_GRADIENT_STOPS, LEGENDARY_RING, [[4, 20, 1], [20, 4, 1.1]]),
+  },
+  {
+    id: 'persistent-player', label: 'Persistent Player', rarity: 'legendary', wheelExempt: true,
+    hint: 'Claim 5 days in a row of Daily Login Rewards to unlock.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('persistent-player'),
+    face: prestigeIconFace(`<path d="M12 4l6 2.2v5c0 4-2.6 6.8-6 8-3.4-1.2-6-4-6-8v-5L12 4z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+        <path d="M9 12.3l2 2 4-4.6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>`,
+      24, 'g-persistent-player', LEGENDARY_GRADIENT_STOPS, LEGENDARY_RING, [[5, 6, 1], [19, 7, 1.1], [12, 20, 0.9]]),
   },
 ];
 
@@ -314,7 +350,7 @@ const AVATAR_DEFS = [
  *  needs the odds recomputed by hand. */
 const RARITY_TOTAL_CHANCE = { common: 55, rare: 35, epic: 9, legendary: 1 };
 const WHEEL_PRIZES = (() => {
-  const prizes = AVATAR_DEFS.filter((a) => a.rarity);
+  const prizes = AVATAR_DEFS.filter((a) => a.rarity && !a.wheelExempt);
   const countByRarity = prizes.reduce((acc, a) => {
     acc[a.rarity] = (acc[a.rarity] || 0) + 1;
     return acc;
@@ -335,6 +371,8 @@ function renderAvatarFace(el, avatarId, username) {
   if (!el) return;
   const def = getAvatarDef(avatarId);
   el.innerHTML = def.id === 'initials' ? def.face(username) : def.face();
+  if (def.rarity) el.dataset.rarity = def.rarity;
+  else delete el.dataset.rarity;
 }
 
 function renderAvatarPicker() {
@@ -370,6 +408,12 @@ function renderAvatarPicker() {
       renderProfile();
     });
   });
+
+  const countEl = document.getElementById('shop-collection-count');
+  if (countEl) {
+    const unlockedCount = AVATAR_DEFS.filter((a) => a.unlocked()).length;
+    countEl.textContent = `${unlockedCount} / ${AVATAR_DEFS.length} unlocked`;
+  }
 }
 
 const ACHIEVEMENTS = [

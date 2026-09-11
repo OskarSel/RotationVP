@@ -92,6 +92,7 @@ const ProgressStore = (() => {
       avatar: 'initials', // see AVATAR_DEFS in progress.js for every valid id
       coins: 0,
       unlockedAvatars: [], // ids of shop-wheel avatars won so far (see WHEEL_PRIZES in shop.js)
+      dailyLogin: { lastClaimDay: 0, lastClaimDate: null }, // see getDailyLoginStatus/claimDailyLogin below
       account: null, // { id, email, username } once logged in, else null
     };
   }
@@ -251,6 +252,67 @@ const ProgressStore = (() => {
         save(state);
       }
       return state;
+    },
+
+    /** Coin reward for daily-login days 1-4 — day 5 is the "Persistent
+     *  Player" legendary avatar instead (see claimDailyLogin). */
+    getDailyLoginCoinTable() {
+      return { 1: 50, 2: 100, 3: 200, 4: 300 };
+    },
+
+    /** Whether today's daily-login reward is still there to claim, and
+     *  which day of the 5-day cycle it is. Missing a day (no claim
+     *  yesterday or today) resets the cycle back to day 1 — that's what
+     *  makes it a "5 consecutive days" streak rather than a plain counter. */
+    getDailyLoginStatus() {
+      const state = load();
+      const dl = state.dailyLogin || { lastClaimDay: 0, lastClaimDate: null };
+      const today = todayISO();
+
+      if (dl.lastClaimDate === today) {
+        return { available: false, claimedToday: true, day: dl.lastClaimDay, claimedThrough: dl.lastClaimDay };
+      }
+
+      const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+      const continuing = dl.lastClaimDate === yesterday;
+      const day = continuing ? (dl.lastClaimDay % 5) + 1 : 1;
+      const claimedThrough = continuing ? dl.lastClaimDay : 0;
+      return { available: true, claimedToday: false, day, claimedThrough };
+    },
+
+    /** Claims today's daily-login reward if one is available. Returns
+     *  `{ day, coins }` or `{ day, avatarId, isNewAvatar }` for day 5, or
+     *  `null` if there's nothing to claim right now (already claimed
+     *  today — call getDailyLoginStatus first to avoid this). */
+    claimDailyLogin() {
+      const status = this.getDailyLoginStatus();
+      if (!status.available) return null;
+
+      const state = load();
+      const day = status.day;
+      const result = { day };
+
+      if (day === 5) {
+        result.avatarId = 'persistent-player';
+        if (!state.unlockedAvatars.includes('persistent-player')) {
+          state.unlockedAvatars.push('persistent-player');
+          result.isNewAvatar = true;
+        } else {
+          // Already own it from a previous 5-day cycle — a coin bonus
+          // keeps day 5 worth claiming instead of doing nothing.
+          state.coins = (state.coins || 0) + 300;
+          result.isNewAvatar = false;
+          result.coins = 300;
+        }
+      } else {
+        const amount = this.getDailyLoginCoinTable()[day];
+        state.coins = (state.coins || 0) + amount;
+        result.coins = amount;
+      }
+
+      state.dailyLogin = { lastClaimDay: day, lastClaimDate: todayISO() };
+      save(state);
+      return result;
     },
 
     /** Overall course completion, 0–100 (rounded). */

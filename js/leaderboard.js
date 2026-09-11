@@ -25,10 +25,11 @@ function medalLabel(rank) {
 
 function renderLeaderboardRow(entry, isYou) {
   const medal = medalLabel(entry.rank);
+  const rarity = getAvatarDef(entry.avatar).rarity;
   return `
     <li class="leaderboard-row${isYou ? ' leaderboard-row--you' : ''}${entry.rank <= 3 ? ' leaderboard-row--top' : ''}">
       <span class="leaderboard-row__rank" data-rank="${entry.rank}">${medal || `#${entry.rank}`}</span>
-      <span class="leaderboard-row__face">${avatarFaceMarkup(entry.avatar, entry.username)}</span>
+      <span class="leaderboard-row__face"${rarity ? ` data-rarity="${rarity}"` : ''}>${avatarFaceMarkup(entry.avatar, entry.username)}</span>
       <span class="leaderboard-row__body">
         <span class="leaderboard-row__name">${escapeHtml(entry.username)}${isYou ? ' <span class="leaderboard-row__you-tag">You</span>' : ''}</span>
         <span class="leaderboard-row__meta">Level ${entry.level} · ${entry.completedLessons} lessons completed</span>
