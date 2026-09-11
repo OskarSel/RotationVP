@@ -41,6 +41,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     case 'shop':
       initShopPage();
       break;
+    case 'leaderboard':
+      initLeaderboardPage();
+      break;
     default:
       break;
   }

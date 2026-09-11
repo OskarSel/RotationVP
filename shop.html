@@ -28,6 +28,7 @@
         <li><a href="index.html" data-page="home">Home</a></li>
         <li><a href="learn.html" data-page="learn">Learn</a></li>
         <li><a href="dashboard.html" data-page="dashboard">Progress</a></li>
+        <li><a href="leaderboard.html" data-page="leaderboard">Leaderboard</a></li>
         <li><a href="shop.html" data-page="shop">Shop</a></li>
         <li><a href="profile.html" data-page="profile">Profile</a></li>
         <li class="navbar__link--login"><a href="login.html" data-auth-link>Log in</a></li>
@@ -57,22 +58,28 @@
         </div>
         <p class="text-muted" style="margin-bottom: var(--sp-6); max-width: 56ch;">
           Pass a chapter test at 70% or higher to earn coins, then spend them here on the prize
-          wheel for collectible profile pictures — five commons, four rares, two epics and one
-          legendary.
+          wheel for collectible profile pictures — eight commons, seven rares, four epics and two
+          legendaries.
         </p>
 
-        <div class="stat-tile stat-tile--accent" style="margin-bottom: var(--sp-7);">
-          <div class="stat-tile__label">Your balance</div>
-          <div class="stat-tile__value" id="shop-coins">0<small> coins</small></div>
+        <div class="stat-tile stat-tile--accent stat-tile--chip" style="margin-bottom: var(--sp-7);">
+          <span class="stat-tile--chip__coin" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v10M9 9.5c0-1.5 1.3-2 3-2s3 .8 3 2-1.3 2-3 2-3 .5-3 2 1.3 2 3 2 3-.5 3-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+          <div>
+            <div class="stat-tile__label">Your balance</div>
+            <div class="stat-tile__value" id="shop-coins">0<small> coins</small></div>
+          </div>
         </div>
 
         <div class="wheel-panel">
           <div class="wheel-wrap">
             <div class="wheel-pointer" aria-hidden="true"></div>
             <svg id="wheel-svg" viewBox="0 0 280 280" width="280" height="280" aria-hidden="true"></svg>
+            <div class="wheel-hub" aria-hidden="true"></div>
           </div>
           <div class="wheel-panel__side">
-            <button class="btn btn--primary" id="spin-btn" type="button" disabled>Spin — 100 coins</button>
+            <button class="btn btn--primary btn--spin" id="spin-btn" type="button" disabled>Spin — 100 coins</button>
             <p class="text-muted" style="font-size: var(--fs-100); margin-top: var(--sp-3);">
               Odds: 55% common · 35% rare · 9% epic · 1% legendary.
               Already own the result? You'll get 50 coins back instead.

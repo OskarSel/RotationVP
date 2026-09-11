@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard — Rotation</title>
+  <meta name="description" content="See how your XP stacks up against every other Rotation learner.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="leaderboard">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="navbar">
+    <div class="wrap navbar__inner">
+      <a href="index.html" class="navbar__brand" aria-label="Rotation — home page">
+        <svg class="navbar__brand-mark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+          <circle cx="15" cy="15" r="12.5" stroke="#E8A33D" stroke-width="2"/>
+          <path d="M15 2.5c-5 4-5 21 0 25M4 10.5c5 3 17 3 22 0M4 19.5c5-3 17-3 22 0" stroke="#E8A33D" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        Rotation
+      </a>
+      <button class="navbar__toggle" aria-expanded="false" aria-controls="navbar-links" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="navbar__links" id="navbar-links">
+        <li><a href="index.html" data-page="home">Home</a></li>
+        <li><a href="learn.html" data-page="learn">Learn</a></li>
+        <li><a href="dashboard.html" data-page="dashboard">Progress</a></li>
+        <li><a href="leaderboard.html" data-page="leaderboard">Leaderboard</a></li>
+        <li><a href="shop.html" data-page="shop">Shop</a></li>
+        <li><a href="profile.html" data-page="profile">Profile</a></li>
+        <li class="navbar__link--login"><a href="login.html" data-auth-link>Log in</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <a href="login.html" class="btn btn--ghost-light btn--sm" data-auth-link>Log in</a>
+        <a href="dashboard.html" class="btn btn--ghost-light btn--sm">Progress</a>
+        <a href="learn.html" class="btn btn--primary btn--sm">Continue learning</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumbs">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb__sep" aria-hidden="true">/</span>
+        <span aria-current="page">Leaderboard</span>
+      </nav>
+    </div>
+
+    <section class="section section--tight" id="leaderboard-root">
+      <div class="wrap">
+
+        <div class="section-head" style="margin-bottom: var(--sp-2);">
+          <h1 style="font-size: var(--fs-600);">Leaderboard</h1>
+        </div>
+        <p class="text-muted" style="margin-bottom: var(--sp-6); max-width: 56ch;">
+          Ranked by total XP, earned from every lesson and chapter test you complete. Log in so your
+          progress counts toward your spot on the board.
+        </p>
+
+        <div id="leaderboard-you" hidden></div>
+
+        <div id="leaderboard-state" class="leaderboard-state">Loading leaderboard…</div>
+        <ol class="leaderboard-list" id="leaderboard-list" aria-label="Top learners by XP" hidden></ol>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-bottom">
+      <span>&copy; 2026 Rotation. Educational project.</span>
+      <a href="learn.html">Back to learning</a>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/leaderboard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

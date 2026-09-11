@@ -16,6 +16,7 @@ const url = require('node:url');
 
 const { handleRegister, handleLogin, handleLogout, handleMe } = require('./routes/auth-routes');
 const { handleGetProgress, handlePutProgress } = require('./routes/progress-routes');
+const { handleGetLeaderboard } = require('./routes/leaderboard-routes');
 const { sendJson } = require('./http-utils');
 
 const PORT = process.env.PORT || 3000;
@@ -41,6 +42,7 @@ const API_ROUTES = {
   'GET /api/auth/me': handleMe,
   'GET /api/progress': handleGetProgress,
   'PUT /api/progress': handlePutProgress,
+  'GET /api/leaderboard': handleGetLeaderboard,
 };
 
 // Deny-by-default allowlist: only these top-level entries are ever servable.
@@ -50,7 +52,7 @@ const API_ROUTES = {
 const ALLOWED_DIRS = new Set(['css', 'js', 'assets']);
 const ALLOWED_ROOT_FILES = new Set([
   'index.html', 'learn.html', 'chapter.html', 'lesson.html', 'dashboard.html',
-  'profile.html', 'shop.html', 'login.html', 'register.html',
+  'profile.html', 'shop.html', 'login.html', 'register.html', 'leaderboard.html',
 ]);
 
 function isServable(filePath) {

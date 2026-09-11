@@ -168,8 +168,32 @@ const AVATAR_DEFS = [
         <rect x="13" y="6" width="6.5" height="12" rx="3" stroke="currentColor" stroke-width="1.6"/>
         <path d="M4.5 12h6.5M13 12h6.5" stroke="currentColor" stroke-width="1.2"/>`, 24),
   },
+  {
+    id: 'whistle', label: "Ref's Whistle", rarity: 'common',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('whistle'),
+    face: iconFace(`<rect x="3" y="10" width="8" height="6" rx="3" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="16" cy="13" r="5" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="16" cy="13" r="1.3" fill="currentColor"/>
+        <path d="M9 10V8a2 2 0 012-2h1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`, 24),
+  },
+  {
+    id: 'clipboard', label: 'Game Plan', rarity: 'common',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('clipboard'),
+    face: iconFace(`<rect x="5" y="4" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/>
+        <rect x="9" y="2.5" width="6" height="3" rx="1" fill="currentColor"/>
+        <path d="M8 11h3M8 15h5M15 10l3 2-3 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`, 24),
+  },
+  {
+    id: 'water-bottle', label: 'Timeout Sip', rarity: 'common',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('water-bottle'),
+    face: iconFace(`<path d="M10 2h4v3l1.5 2v13a1.5 1.5 0 01-1.5 1.5h-4A1.5 1.5 0 018.5 20V7L10 5V2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+        <path d="M8.5 12h7" stroke="currentColor" stroke-width="1.3"/>`, 24),
+  },
 
-  // Rare (35% total, 8.75% each)
+  // Rare
   {
     id: 'setters-hands', label: "Setter's Hands", rarity: 'rare',
     hint: 'Win it on the Shop wheel.',
@@ -203,8 +227,30 @@ const AVATAR_DEFS = [
         <path d="M6 4h9l-2.5 3L15 10H6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
         <path d="M17 15l1.2 2.4 2.6.4-1.9 1.8.4 2.6-2.3-1.2-2.3 1.2.4-2.6-1.9-1.8 2.6-.4z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>`, 24),
   },
+  {
+    id: 'jump-serve', label: 'Jump Serve', rarity: 'rare',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('jump-serve'),
+    face: iconFace(`<circle cx="18" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M6 20l4-9 3-2 3-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        <path d="M3 20h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`, 24),
+  },
+  {
+    id: 'quick-set', label: 'Quick Set', rarity: 'rare',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('quick-set'),
+    face: iconFace(`<path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="none"/>`, 24),
+  },
+  {
+    id: 'pancake-dig', label: 'Pancake Dig', rarity: 'rare',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('pancake-dig'),
+    face: iconFace(`<ellipse cx="12" cy="19" rx="8" ry="2" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M4 14l6 3 10-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <circle cx="19" cy="8" r="1.8" stroke="currentColor" stroke-width="1.4"/>`, 24),
+  },
 
-  // Epic (9% total, 4.5% each)
+  // Epic
   {
     id: 'triple-block', label: 'Triple Block', rarity: 'epic',
     hint: 'Win it on the Shop wheel.',
@@ -223,8 +269,22 @@ const AVATAR_DEFS = [
         <circle cx="20" cy="13" r="1.3" fill="currentColor"/><circle cx="17" cy="19" r="1.3" fill="currentColor"/>
         <circle cx="11" cy="20.5" r="1.3" fill="currentColor"/><circle cx="6" cy="16" r="1.3" fill="currentColor"/>`, 24),
   },
+  {
+    id: 'five-set-thriller', label: 'Five-Set Thriller', rarity: 'epic',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('five-set-thriller'),
+    face: iconFace(`<path d="M18 4H9v7h4.5a3.5 3.5 0 110 7H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`, 24),
+  },
+  {
+    id: 'read-block', label: 'Read Block', rarity: 'epic',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('read-block'),
+    face: iconFace(`<path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
+        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M4 19l2-3M20 19l-2-3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`, 24),
+  },
 
-  // Legendary (1% total)
+  // Legendary
   {
     id: 'championship-spike', label: 'Championship Spike', rarity: 'legendary',
     hint: 'Win it on the Shop wheel.',
@@ -239,17 +299,33 @@ const AVATAR_DEFS = [
         <path d="M2 21h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
         <path d="M6 21v-6.5M6 15h5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>`, 24),
   },
+  {
+    id: 'golden-ace', label: 'Golden Ace', rarity: 'legendary',
+    hint: 'Win it on the Shop wheel.',
+    unlocked: () => ProgressStore.isAvatarUnlocked('golden-ace'),
+    face: iconFace(`<circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.5 4.5l2 2M17.5 17.5l2 2M4.5 19.5l2-2M17.5 6.5l2-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`, 24),
+  },
 ];
 
-/** Shop-wheel prize pool with per-item win chance (%). Must sum to 100. */
-const WHEEL_PRIZES = AVATAR_DEFS
-  .filter((a) => a.rarity)
-  .map((a) => ({
+/** Shop-wheel prize pool. Each rarity tier keeps a fixed total win chance
+ *  (55 / 35 / 9 / 1, summing to 100) split evenly across however many items
+ *  currently carry that rarity — so adding/removing wheel prizes later never
+ *  needs the odds recomputed by hand. */
+const RARITY_TOTAL_CHANCE = { common: 55, rare: 35, epic: 9, legendary: 1 };
+const WHEEL_PRIZES = (() => {
+  const prizes = AVATAR_DEFS.filter((a) => a.rarity);
+  const countByRarity = prizes.reduce((acc, a) => {
+    acc[a.rarity] = (acc[a.rarity] || 0) + 1;
+    return acc;
+  }, {});
+  return prizes.map((a) => ({
     id: a.id,
     label: a.label,
     rarity: a.rarity,
-    chance: { common: 11, rare: 8.75, epic: 4.5, legendary: 1 }[a.rarity],
+    chance: RARITY_TOTAL_CHANCE[a.rarity] / countByRarity[a.rarity],
   }));
+})();
 
 function getAvatarDef(avatarId) {
   return AVATAR_DEFS.find((a) => a.id === avatarId) || AVATAR_DEFS[0];

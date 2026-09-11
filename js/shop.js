@@ -39,7 +39,29 @@ function polarPoint(cx, cy, r, angleDeg) {
   return { x: cx + r * Math.sin(rad), y: cy - r * Math.cos(rad) };
 }
 
-/** Draws the 12 prize slices once. The wheel spins via CSS transform on
+/** Glossy per-rarity fills for the wheel slices — a light, off-center
+ *  highlight gives each slice a domed, "casino chip" look instead of a
+ *  flat color. Defined once and referenced by every slice of that rarity. */
+const SLICE_GRADIENTS = {
+  common: ['#f6f7f9', '#c7cbd1'],
+  rare: ['#eaf2ff', '#b9d3ff'],
+  epic: ['#f6eefe', '#d9bcf7'],
+  legendary: ['#fff3d6', '#f0c775'],
+};
+
+function renderWheelGradientDefs() {
+  const stops = Object.entries(SLICE_GRADIENTS)
+    .map(([rarity, [from, to]]) => `
+      <radialGradient id="sliceGrad-${rarity}" cx="35%" cy="30%" r="75%">
+        <stop offset="0%" stop-color="${from}"/>
+        <stop offset="100%" stop-color="${to}"/>
+      </radialGradient>
+    `)
+    .join('');
+  return `<defs>${stops}</defs>`;
+}
+
+/** Draws the prize slices once. The wheel spins via CSS transform on
  *  #wheel-disc — the slice markup itself never changes between spins. */
 function renderWheel() {
   const svg = document.getElementById('wheel-svg');
@@ -56,13 +78,13 @@ function renderWheel() {
 
     return `
       <path d="M${WHEEL_CENTER},${WHEEL_CENTER} L${p0.x},${p0.y} A${WHEEL_RADIUS},${WHEEL_RADIUS} 0 0 1 ${p1.x},${p1.y} Z"
-            class="wheel-slice" data-rarity="${prize.rarity}"></path>
+            class="wheel-slice" data-rarity="${prize.rarity}" fill="url(#sliceGrad-${prize.rarity})"></path>
       <g class="wheel-slice-icon" data-rarity="${prize.rarity}"
          transform="translate(${iconPoint.x - 11} ${iconPoint.y - 11})">${iconMarkup}</g>
     `;
   }).join('');
 
-  svg.innerHTML = `<g id="wheel-disc">${slices}</g>`;
+  svg.innerHTML = `${renderWheelGradientDefs()}<g id="wheel-disc">${slices}</g>`;
 }
 
 function pickWeightedPrize() {
@@ -119,6 +141,7 @@ function renderSpinResult(prize, alreadyOwned) {
   const panel = document.getElementById('spin-result');
   if (!panel) return;
 
+  panel.dataset.rarity = alreadyOwned ? '' : prize.rarity; // celebration glow only on a genuinely new win
   const def = getAvatarDef(prize.id);
   panel.innerHTML = `
     <span class="spin-result__face" data-rarity="${prize.rarity}">${def.face()}</span>
