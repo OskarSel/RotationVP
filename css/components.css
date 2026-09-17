@@ -209,6 +209,53 @@
   .court-line-draw circle { opacity: 1; animation: none; }
 }
 
+/* ---- "How it works" layout: steps + a decorative rotation diagram so
+   wide viewports don't leave the editorial column floating in empty space ---- */
+.how-it-works {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-7);
+}
+.how-it-works__steps { flex: 1 1 auto; }
+.how-it-works__visual { display: flex; }
+.rotation-diagram {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-5);
+  text-align: center;
+  background: radial-gradient(circle at 25% 12%, #223a68 0%, var(--color-court) 55%, #0c1220 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-8) var(--sp-7);
+  box-shadow: 0 30px 60px -25px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(232, 163, 61, 0.25);
+}
+.rotation-diagram::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.035) 0 2px, transparent 2px 26px);
+  pointer-events: none;
+}
+.rotation-diagram > * { position: relative; z-index: 1; }
+.rotation-diagram__label {
+  font-family: var(--font-display);
+  font-size: var(--fs-200);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+.rotation-diagram svg { width: 190px; height: 190px; }
+.rotation-diagram__caption {
+  color: rgba(239, 238, 234, 0.72);
+  font-size: var(--fs-200);
+  max-width: 26ch;
+}
+
 /* ---- "How it works" — editorial plan, not a uniform 3-col grid ---- */
 .plan {
   position: relative;
@@ -724,6 +771,27 @@
   padding-left: var(--sp-5);
   color: var(--color-ink);
 }
+.takeaway-heading { margin-top: var(--sp-7); font-size: var(--fs-400); }
+.takeaway-box { margin-top: var(--sp-3); }
+
+/* ---- Theory layout: text column + a "Key takeaway" side card, so wide
+   viewports don't leave a 62ch-wide paragraph floating in a much wider
+   .lesson-panel with dead space beside it. ---- */
+.theory-layout { display: flex; flex-direction: column; gap: var(--sp-6); }
+.theory-layout__takeaway:empty { display: none; }
+@media (min-width: 900px) {
+  .theory-layout { flex-direction: row; align-items: flex-start; gap: var(--sp-8); }
+  .theory-layout__text { flex: 1 1 62ch; min-width: 0; }
+  .theory-layout__takeaway { flex: 0 0 260px; position: sticky; top: var(--sp-6); }
+  .theory-layout__takeaway .takeaway-heading { margin-top: 0; }
+  .theory-layout__takeaway .takeaway-box {
+    margin-top: var(--sp-3);
+    background: linear-gradient(160deg, rgba(232, 163, 61, 0.12), rgba(232, 163, 61, 0.03));
+    border-radius: var(--radius-md);
+    padding: var(--sp-5);
+    border-left: 3px solid var(--color-gold);
+  }
+}
 
 .lesson-actions { display: flex; justify-content: flex-end; margin-bottom: var(--sp-8); }
 
@@ -841,10 +909,17 @@
 .complete-screen__actions { display: flex; flex-wrap: wrap; gap: var(--sp-4); }
 
 /* ---- Dashboard ---- */
-.stat-grid {
+/* .stat-grid holds the full-width accent tile (Experience/Course completion)
+   stacked above a row of secondary tiles. The row is its own nested grid
+   (.stat-grid__row) rather than sharing the accent tile's grid: a track
+   spanned by that accent tile in row 1 never counts as "empty", so
+   auto-fit's track-collapsing never kicked in when it shared one grid —
+   2 or 3 secondary tiles always left a dead column beside them. */
+.stat-grid { display: flex; flex-direction: column; gap: var(--sp-4); }
+.stat-grid__row {
   display: grid;
   gap: var(--sp-4);
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 .stat-tile {
   background: var(--color-line);
@@ -864,7 +939,6 @@
 .stat-tile--accent {
   background: var(--color-court);
   border-color: var(--color-court);
-  grid-column: 1 / -1;
   padding: var(--sp-6);
 }
 .stat-tile--accent .stat-tile__label { color: rgba(239, 238, 234, 0.6); }

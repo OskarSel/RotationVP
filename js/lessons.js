@@ -340,7 +340,7 @@ function renderLessonTheory(lesson) {
 
   if (takeawayEl) {
     takeawayEl.innerHTML = lesson.keyTakeaway
-      ? `<h3 style="margin-top: var(--sp-7); font-size: var(--fs-400);">Key takeaway</h3><p class="explainer-box" style="margin-top: var(--sp-3);">${lesson.keyTakeaway}</p>`
+      ? `<h3 class="takeaway-heading">Key takeaway</h3><p class="explainer-box takeaway-box">${lesson.keyTakeaway}</p>`
       : '';
   }
 }
