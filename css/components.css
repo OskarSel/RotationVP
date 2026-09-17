@@ -1757,18 +1757,6 @@ body[data-page="shop"] #main {
   background: radial-gradient(circle at 15% 0%, rgba(232, 163, 61, 0.07), transparent 45%),
     linear-gradient(180deg, var(--color-chalk) 0%, var(--color-chalk-dim) 100%);
 }
-#shop-root .section-head h1 {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-3);
-}
-#shop-root .section-head h1::before {
-  content: '';
-  width: 34px; height: 34px;
-  border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
-  box-shadow: 0 4px 10px rgba(232, 163, 61, 0.4);
-}
 .shop-collection-head {
   display: flex;
   align-items: baseline;
@@ -2034,3 +2022,181 @@ body[data-page="shop"] #main {
   .daily-login-day__reward { font-size: 10px; }
   .daily-login-modal { padding: var(--sp-6) var(--sp-4); }
 }
+
+/* ==========================================================================
+   PAGE HERO — a dark, textured banner reused at the top of every inner
+   page (Learn, Chapter, Lesson, Progress, Profile, Leaderboard) so the
+   whole site opens with the same premium first impression as the
+   homepage/Shop, instead of a plain white breadcrumb + heading. Same
+   gradient/texture recipe as .wheel-panel and the daily-login modal, kept
+   in one place so all three stay visually consistent.
+   ========================================================================== */
+.page-hero {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 18% 0%, #223a68 0%, var(--color-court) 55%, #0c1220 100%);
+  padding-block: var(--sp-5) var(--sp-8);
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.035) 0 2px, transparent 2px 26px);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+  background-image: radial-gradient(rgba(232, 163, 61, 0.4) 1px, transparent 1.6px);
+  background-size: 24px 24px;
+  -webkit-mask-image: linear-gradient(115deg, transparent 35%, black 100%);
+  mask-image: linear-gradient(115deg, transparent 35%, black 100%);
+  pointer-events: none;
+}
+.page-hero__court {
+  position: absolute;
+  right: -40px;
+  top: -30px;
+  width: 260px;
+  height: 260px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.page-hero > .wrap { position: relative; z-index: 1; }
+.page-hero .breadcrumb { color: rgba(239, 238, 234, 0.55); padding-block: 0 var(--sp-5); }
+.page-hero .breadcrumb a:hover { color: var(--color-chrome-text); }
+.page-hero .breadcrumb__sep { color: rgba(239, 238, 234, 0.25); }
+.page-hero .breadcrumb [aria-current="page"] { color: var(--color-chrome-text); }
+.page-hero .back-link { color: rgba(239, 238, 234, 0.75); margin-bottom: var(--sp-5); }
+.page-hero .back-link:hover { color: var(--color-chrome-text); }
+.page-hero .eyebrow { color: var(--color-gold); }
+.page-hero .eyebrow::before { background: var(--color-gold); }
+.page-hero h1 { color: var(--color-chrome-text); }
+.page-hero .lede { color: rgba(239, 238, 234, 0.75); }
+.page-hero .progress-bar { background: rgba(239, 238, 234, 0.14); }
+.page-hero .progress-row__pct { color: var(--color-gold); }
+.page-hero .lesson-header__num { color: var(--color-gold); }
+
+/* ---- Profile banner: the profile header lives inside the page-hero, so
+   the avatar + name read as a premium player card, not a plain row. ---- */
+.page-hero .profile-header { margin-bottom: 0; }
+.page-hero .profile-level { color: var(--color-gold); }
+
+/* ---- Reusable icon accent before a page's H1 (matches Shop's) ---- */
+.icon-accent-heading { display: inline-flex; align-items: center; gap: var(--sp-3); }
+.icon-accent-heading::before {
+  content: '';
+  width: 34px; height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+  box-shadow: 0 4px 10px rgba(232, 163, 61, 0.4);
+}
+
+/* ---- Richer chapter/lesson cards: top accent bar + deeper hover ---- */
+.chapter-card, .lesson-card {
+  position: relative;
+  box-shadow: 0 2px 8px rgba(20, 33, 61, 0.05);
+}
+.chapter-card::before, .lesson-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-dark));
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+.chapter-card--active::before, .chapter-card--completed::before,
+.lesson-node--current .lesson-card::before, .lesson-node--completed .lesson-card::before { opacity: 1; }
+.chapter-card:hover, .lesson-card:hover { box-shadow: 0 18px 34px -18px rgba(20, 33, 61, 0.3); }
+.chapter-card--locked:hover, .lesson-node--locked .lesson-card:hover { box-shadow: 0 2px 8px rgba(20, 33, 61, 0.05); }
+.lesson-node--current .lesson-node__dot { animation: courtDotBreathe 2.6s ease-in-out infinite; }
+
+/* ---- Stat tiles get a small icon accent + top hairline ---- */
+.stat-tile { position: relative; overflow: hidden; box-shadow: 0 2px 8px rgba(20, 33, 61, 0.05); }
+.stat-tile:not(.stat-tile--accent)::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold), transparent);
+}
+.stat-tile__icon {
+  width: 30px; height: 30px;
+  border-radius: var(--radius-sm);
+  background: var(--color-chalk-dim);
+  color: var(--color-gold-dark);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--sp-3);
+}
+.stat-tile__icon svg { width: 16px; height: 16px; }
+.stat-tile--accent .stat-tile__icon { background: rgba(232, 163, 61, 0.15); color: var(--color-gold); }
+
+/* ---- Achievements: richer unlocked state with a gold ring + shine ---- */
+.achievement { position: relative; overflow: hidden; transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+.achievement:not(.achievement--locked):hover { transform: translateY(-3px); box-shadow: 0 14px 26px -16px rgba(232, 163, 61, 0.45); }
+.achievement:not(.achievement--locked) .achievement__icon {
+  background: linear-gradient(135deg, #fff6e0, var(--color-gold) 55%, var(--color-gold-dark));
+  color: var(--color-ink);
+  box-shadow: 0 4px 10px rgba(232, 163, 61, 0.4);
+}
+
+/* ---- Continue panel: texture to match the page-hero family ---- */
+.continue-panel { position: relative; overflow: hidden; box-shadow: 0 20px 40px -24px rgba(20, 33, 61, 0.4); }
+.continue-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.03) 0 2px, transparent 2px 26px);
+  pointer-events: none;
+}
+.continue-panel > * { position: relative; z-index: 1; }
+
+/* ---- Auth side panel: same texture family, plus a decorative court motif ---- */
+.auth-side { position: relative; overflow: hidden; }
+.auth-side::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.035) 0 2px, transparent 2px 26px);
+  pointer-events: none;
+}
+.auth-side::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.45;
+  background-image: radial-gradient(rgba(232, 163, 61, 0.4) 1px, transparent 1.6px);
+  background-size: 24px 24px;
+  /* Concentrated in the top/middle empty space, faded out well before the
+     bottom-anchored copy so the dots never sit behind readable text. */
+  -webkit-mask-image: radial-gradient(circle at 65% 22%, black 0%, transparent 55%);
+  mask-image: radial-gradient(circle at 65% 22%, black 0%, transparent 55%);
+  pointer-events: none;
+}
+.auth-side__content { position: relative; z-index: 1; }
+.auth-side__court {
+  position: absolute;
+  right: -50px;
+  top: -50px;
+  width: 260px;
+  height: 260px;
+  opacity: 0.45;
+  pointer-events: none;
+}
+.auth-card { box-shadow: 0 24px 50px -30px rgba(20, 33, 61, 0.25); border-radius: var(--radius-lg); }
+
+/* ---- Footer: subtle texture so it doesn't feel like a flat afterthought ---- */
+.site-footer { position: relative; overflow: hidden; }
+.site-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.025) 0 2px, transparent 2px 26px);
+  pointer-events: none;
+}
+.site-footer > .wrap { position: relative; z-index: 1; }

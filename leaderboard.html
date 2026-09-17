@@ -42,24 +42,30 @@
   </header>
 
   <main id="main">
-    <div class="wrap">
-      <nav class="breadcrumb" aria-label="Breadcrumbs">
-        <a href="index.html">Home</a>
-        <span class="breadcrumb__sep" aria-hidden="true">/</span>
-        <span aria-current="page">Leaderboard</span>
-      </nav>
+    <div class="page-hero">
+      <svg class="page-hero__court" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+        <rect x="20" y="20" width="160" height="160" rx="4" stroke="rgba(232,163,61,0.5)" stroke-width="2"/>
+        <line x1="100" y1="20" x2="100" y2="180" stroke="rgba(232,163,61,0.3)" stroke-width="1.5"/>
+        <circle cx="100" cy="100" r="6" fill="#E8A33D"/>
+      </svg>
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Breadcrumbs">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb__sep" aria-hidden="true">/</span>
+          <span aria-current="page">Leaderboard</span>
+        </nav>
+        <div class="section-head" style="margin-bottom: 0;">
+          <h1 class="icon-accent-heading" style="font-size: var(--fs-600);">Leaderboard</h1>
+          <p class="lede" style="max-width: 56ch; font-size: var(--fs-300);">
+            Ranked by total XP, earned from every lesson and chapter test you complete. Log in so your
+            progress counts toward your spot on the board.
+          </p>
+        </div>
+      </div>
     </div>
 
     <section class="section section--tight" id="leaderboard-root">
       <div class="wrap">
-
-        <div class="section-head" style="margin-bottom: var(--sp-2);">
-          <h1 style="font-size: var(--fs-600);">Leaderboard</h1>
-        </div>
-        <p class="text-muted" style="margin-bottom: var(--sp-6); max-width: 56ch;">
-          Ranked by total XP, earned from every lesson and chapter test you complete. Log in so your
-          progress counts toward your spot on the board.
-        </p>
 
         <div id="leaderboard-you" hidden></div>
 

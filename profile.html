@@ -42,29 +42,36 @@
   </header>
 
   <main id="main">
-    <div class="wrap">
-      <nav class="breadcrumb" aria-label="Breadcrumbs">
-        <a href="index.html">Home</a>
-        <span class="breadcrumb__sep" aria-hidden="true">/</span>
-        <span aria-current="page">Profile</span>
-      </nav>
-    </div>
-
-    <section class="section section--tight" id="profile-root">
+    <div class="page-hero">
+      <svg class="page-hero__court" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+        <rect x="20" y="20" width="160" height="160" rx="4" stroke="rgba(232,163,61,0.5)" stroke-width="2"/>
+        <line x1="100" y1="20" x2="100" y2="180" stroke="rgba(232,163,61,0.3)" stroke-width="1.5"/>
+        <circle cx="100" cy="100" r="6" fill="#E8A33D"/>
+      </svg>
       <div class="wrap">
+        <nav class="breadcrumb" aria-label="Breadcrumbs">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb__sep" aria-hidden="true">/</span>
+          <span aria-current="page">Profile</span>
+        </nav>
 
-        <div class="profile-header" style="margin-bottom: var(--sp-8);">
+        <div class="profile-header">
           <div class="avatar" aria-hidden="true"><span id="profile-avatar-face">U</span></div>
           <div>
-            <h1 id="profile-username" style="font-size: var(--fs-600);">User</h1>
+            <h1 id="profile-username" class="text-on-dark" style="font-size: var(--fs-600);">User</h1>
             <p class="profile-level">
               <svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true"><path d="M12 3l2.4 5.1 5.6.6-4.2 3.8 1.2 5.5L12 15l-5 3 1.2-5.5-4.2-3.8 5.6-.6L12 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
               <span id="profile-level">Level 1</span>
             </p>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="stat-grid" style="margin-bottom: var(--sp-8);">
+    <section class="section section--tight" id="profile-root">
+      <div class="wrap">
+
+        <div class="stat-grid" style="margin-bottom: var(--sp-8); margin-top: var(--sp-7);">
           <div class="stat-tile stat-tile--accent">
             <div class="stat-tile__label">Experience</div>
             <div class="stat-tile__value" id="profile-xp">0 XP</div>
