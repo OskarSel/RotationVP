@@ -12,6 +12,8 @@ const DUPLICATE_REFUND = 50;
 const SEGMENT_DEG = 360 / WHEEL_PRIZES.length;
 const WHEEL_CENTER = 140;
 const WHEEL_RADIUS = 132;
+const SPIN_DURATION_MS = 4000; // must match #wheel-disc's transition duration in components.css
+const CONFETTI_COLORS = ['#E8A33D', '#C4801F', '#A855F7', '#4C8DFF', '#fff6e0'];
 
 let wheelRotation = 0; // running total so repeat spins keep spinning forward, never snap back
 let spinInProgress = false;
@@ -97,6 +99,63 @@ function pickWeightedPrize() {
   return WHEEL_PRIZES[WHEEL_PRIZES.length - 1]; // float-rounding safety net
 }
 
+function prefersReducedMotion() {
+  return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+/** Polls the disc's live (mid-transition) computed rotation and gives the
+ *  pointer a tiny mechanical "tick" nudge every time a slice boundary
+ *  passes under it — like a real prize wheel's clicker flapper. */
+function watchWheelTicks(disc, pointerEl) {
+  if (prefersReducedMotion()) return;
+  let lastSegment = null;
+  const start = performance.now();
+
+  function tick() {
+    pointerEl.classList.remove('wheel-pointer--tick');
+    // eslint-disable-next-line no-unused-expressions
+    pointerEl.offsetWidth; // restart the CSS animation even on rapid repeats
+    pointerEl.classList.add('wheel-pointer--tick');
+  }
+
+  function poll() {
+    const m = /matrix\(([^,]+),\s*([^,]+),/.exec(getComputedStyle(disc).transform);
+    if (m) {
+      const angle = (((Math.atan2(Number(m[2]), Number(m[1])) * 180) / Math.PI) + 360) % 360;
+      const seg = Math.floor(angle / SEGMENT_DEG);
+      if (lastSegment !== null && seg !== lastSegment) tick();
+      lastSegment = seg;
+    }
+    if (performance.now() - start < SPIN_DURATION_MS) requestAnimationFrame(poll);
+  }
+  requestAnimationFrame(poll);
+}
+
+/** A celebratory confetti burst for the rarer wins — pieces explode
+ *  outward from the wheel's center, then fall and fade. Radial (not a
+ *  straight rain) so it stays contained near the wheel instead of
+ *  needing a long fall distance the panel's rounded-corner clipping
+ *  would cut off. */
+function spawnConfetti(anchorEl, count) {
+  if (prefersReducedMotion()) return;
+  const burst = document.createElement('div');
+  burst.className = 'wheel-confetti';
+  for (let i = 0; i < count; i++) {
+    const piece = document.createElement('span');
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 55 + Math.random() * 85;
+    piece.style.background = CONFETTI_COLORS[i % CONFETTI_COLORS.length];
+    piece.style.setProperty('--tx', `${(Math.cos(angle) * dist).toFixed(1)}px`);
+    piece.style.setProperty('--ty', `${(Math.sin(angle) * dist - 30).toFixed(1)}px`);
+    piece.style.setProperty('--fall-delay', `${Math.random() * 140}ms`);
+    piece.style.setProperty('--fall-rot', `${Math.round(Math.random() * 520 - 260)}deg`);
+    if (Math.random() > 0.5) piece.classList.add('wheel-confetti__piece--round');
+    burst.appendChild(piece);
+  }
+  anchorEl.appendChild(burst);
+  setTimeout(() => burst.remove(), 2000);
+}
+
 function spin() {
   const spinBtn = document.getElementById('spin-btn');
   if (!spinBtn || spinBtn.disabled || spinInProgress) return;
@@ -118,18 +177,32 @@ function spin() {
   wheelRotation += 6 * 360 + delta;
 
   const disc = document.getElementById('wheel-disc');
+  const pointer = document.querySelector('.wheel-pointer');
   disc.style.transform = `rotate(${wheelRotation}deg)`;
+  if (pointer) watchWheelTicks(disc, pointer);
   disc.addEventListener('transitionend', () => onSpinComplete(prize), { once: true });
 }
 
 function onSpinComplete(prize) {
   spinInProgress = false;
 
+  const pointer = document.querySelector('.wheel-pointer');
+  if (pointer) {
+    pointer.classList.remove('wheel-pointer--tick');
+    pointer.classList.add('wheel-pointer--land');
+    pointer.addEventListener('animationend', () => pointer.classList.remove('wheel-pointer--land'), { once: true });
+  }
+
   const alreadyOwned = ProgressStore.isAvatarUnlocked(prize.id);
   if (alreadyOwned) {
     ProgressStore.addCoins(DUPLICATE_REFUND);
   } else {
     ProgressStore.unlockAvatar(prize.id);
+  }
+
+  if (!alreadyOwned && (prize.rarity === 'epic' || prize.rarity === 'legendary')) {
+    const wheelWrap = document.querySelector('.wheel-wrap');
+    if (wheelWrap) spawnConfetti(wheelWrap, prize.rarity === 'legendary' ? 46 : 28);
   }
 
   renderShopBalance();

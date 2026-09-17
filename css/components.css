@@ -15,10 +15,11 @@
   font-size: var(--fs-300);
   line-height: 1;
   border: 1.5px solid transparent;
-  transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+  transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease), opacity 260ms var(--ease), box-shadow var(--dur) var(--ease);
   white-space: nowrap;
 }
-.btn:active { transform: translateY(1px); }
+.btn:active:not(:disabled) { transform: translateY(1px) scale(0.98); }
+.btn:not(:disabled):not(.btn--ghost):not(.btn--ghost-light):hover { box-shadow: 0 6px 16px -8px rgba(20, 33, 61, 0.3); }
 
 .btn--primary {
   background: var(--color-gold);
@@ -649,15 +650,32 @@
 .media-controls__voice input { width: 16px; height: 16px; accent-color: var(--color-gold); }
 
 /* ---- Court diagram (real lesson animations) ---- */
-.court-svg { width: 100%; height: 100%; }
-.court-outline { fill: none; stroke: rgba(239, 238, 234, 0.3); stroke-width: 1; }
-.court-net { stroke: var(--color-gold); stroke-width: 1.6; }
-.court-attack-line { stroke: rgba(239, 238, 234, 0.25); stroke-width: 0.6; stroke-dasharray: 2 2; }
-.court-guide { stroke: rgba(232, 163, 61, 0.45); stroke-width: 0.6; stroke-dasharray: 1.5 1.5; fill: none; }
-.court-guide--ball { stroke: rgba(239, 238, 234, 0.35); }
-#court-arrowhead path { fill: rgba(232, 163, 61, 0.6); }
-.court-dot { transition: transform 1.9s var(--ease); }
-.court-dot circle { fill: rgba(239, 238, 234, 0.18); }
+.court-svg { width: 100%; height: 100%; overflow: visible; }
+
+/* Entrance: the court draws itself in the moment the panel enters view —
+   net first, then the boundary, then the attack line fades in behind
+   them — instead of the whole diagram just appearing. */
+.court-outline { fill: none; stroke: rgba(239, 238, 234, 0.3); stroke-width: 1; transition: stroke-dashoffset 900ms var(--ease-out-expo) 260ms; }
+.court-net { stroke: var(--color-gold); stroke-width: 1.6; transition: stroke-dashoffset 500ms var(--ease-out-expo); }
+.court-attack-line {
+  stroke: rgba(239, 238, 234, 0.25); stroke-width: 0.6; stroke-dasharray: 2 2;
+  opacity: 0;
+  transition: opacity 500ms var(--ease) 700ms;
+}
+.court-svg--drawn .court-net,
+.court-svg--drawn .court-outline { stroke-dashoffset: 0; }
+.court-svg--drawn .court-attack-line { opacity: 1; }
+
+.court-guide {
+  stroke: rgba(232, 163, 61, 0.55);
+  stroke-width: 0.7;
+  stroke-linecap: round;
+  fill: none;
+}
+.court-guide--ball { stroke: rgba(239, 238, 234, 0.45); }
+#court-arrowhead path { fill: rgba(232, 163, 61, 0.7); }
+
+.court-dot circle { fill: rgba(239, 238, 234, 0.18); transition: fill 200ms var(--ease); }
 .court-dot text {
   font-family: var(--font-display);
   font-weight: 700;
@@ -668,8 +686,38 @@
 }
 .court-dot--active circle { fill: var(--color-gold); }
 .court-dot--active text { fill: var(--color-feedback-ink); font-size: 4.2px; }
-.court-ball { transition: transform 1.3s var(--ease); }
-.court-ball circle { fill: #fff; }
+
+/* Soft breathing glow on the movers, before Play is pressed — draws the
+   eye toward what's about to happen. Settles once the diagram has run. */
+.court-dot--active circle { animation: courtDotBreathe 2.6s ease-in-out infinite; }
+.media-stage.is-played .court-dot--active circle { animation: none; }
+@keyframes courtDotBreathe {
+  0%, 100% { filter: drop-shadow(0 0 0.5px rgba(232, 163, 61, 0.4)); }
+  50% { filter: drop-shadow(0 0 3.5px rgba(232, 163, 61, 0.95)); }
+}
+
+.court-ball circle, .court-ball { fill: #fff; }
+
+/* One-shot arrival ring — spawned and removed by animation.js on every
+   waypoint touch, bigger and gold on the final contact. */
+.court-impact {
+  fill: none;
+  stroke-width: 1;
+  pointer-events: none;
+  animation: courtImpact 550ms var(--ease-out-expo) forwards;
+}
+.court-impact--gold { stroke: var(--color-gold); }
+.court-impact--white { stroke: rgba(239, 238, 234, 0.85); }
+.court-impact--lg { animation-duration: 700ms; }
+@keyframes courtImpact {
+  0% { transform: scale(0.4); opacity: 0.9; stroke-width: 1.6; }
+  100% { transform: scale(3.4); opacity: 0; stroke-width: 0.1; }
+}
+.court-impact--sm { animation-name: courtImpactSm; }
+@keyframes courtImpactSm {
+  0% { transform: scale(0.4); opacity: 0.7; stroke-width: 1.2; }
+  100% { transform: scale(2.2); opacity: 0; stroke-width: 0.1; }
+}
 
 .explainer-box {
   border-left: 3px solid var(--color-gold);
@@ -695,8 +743,9 @@
   padding: var(--sp-4) var(--sp-5);
   border: 1.5px solid var(--color-grey-light);
   border-radius: var(--radius-md);
-  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), transform var(--dur) var(--ease), opacity 260ms var(--ease), box-shadow var(--dur) var(--ease);
 }
+.quiz-option:not(:disabled):hover { border-color: var(--color-ink); transform: translateY(-1px); box-shadow: 0 6px 14px -8px rgba(20, 33, 61, 0.25); }
 .quiz-option__letter {
   font-family: var(--font-display);
   font-weight: 700;
@@ -706,14 +755,37 @@
   display: flex; align-items: center; justify-content: center;
   font-size: var(--fs-100);
   flex-shrink: 0;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), transform 320ms var(--ease-out-back);
 }
-.quiz-option:hover { border-color: var(--color-ink); }
+.quiz-option__letter svg { width: 13px; height: 13px; }
 .quiz-option[aria-pressed="true"] { border-color: var(--color-gold); background: #FBEAD2; color: var(--color-feedback-ink); }
-.quiz-option[aria-pressed="true"] .quiz-option__letter { border-color: var(--color-gold); background: var(--color-gold); color: var(--color-feedback-ink); }
-.quiz-option.is-correct { border-color: var(--color-green); background: var(--color-green-dim); color: var(--color-feedback-ink); }
-.quiz-option.is-correct .quiz-option__letter { border-color: var(--color-green); background: var(--color-green); color: #fff; }
-.quiz-option.is-incorrect { border-color: #C4483A; background: #F7E2DE; color: var(--color-feedback-ink); }
-.quiz-option.is-incorrect .quiz-option__letter { color: var(--color-feedback-ink); }
+.quiz-option[aria-pressed="true"] .quiz-option__letter { border-color: var(--color-gold); background: var(--color-gold); color: var(--color-feedback-ink); transform: scale(1.1); }
+
+.quiz-option.is-dim { opacity: 0.55; }
+
+.quiz-option.is-correct {
+  border-color: var(--color-green); background: var(--color-green-dim); color: var(--color-feedback-ink);
+  animation: quizCorrectPop 480ms var(--ease-out-back);
+}
+.quiz-option.is-correct .quiz-option__letter { border-color: var(--color-green); background: var(--color-green); color: #fff; transform: scale(1.15); }
+.quiz-option.is-incorrect {
+  border-color: #C4483A; background: #F7E2DE; color: var(--color-feedback-ink);
+  animation: quizIncorrectShake 460ms var(--ease);
+}
+.quiz-option.is-incorrect .quiz-option__letter { border-color: #C4483A; background: #C4483A; color: #fff; }
+
+@keyframes quizCorrectPop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.025); }
+  100% { transform: scale(1); }
+}
+@keyframes quizIncorrectShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(2px); }
+}
 
 .quiz-progress {
   font-family: var(--font-display);
@@ -931,12 +1003,57 @@
   top: -12px;
   left: 50%;
   transform: translateX(-50%);
+  transform-origin: 50% 0%;
   width: 26px;
   height: 30px;
   background: linear-gradient(160deg, #fff6e0, var(--color-gold) 55%, var(--color-gold-dark));
   clip-path: polygon(50% 100%, 0 22%, 20% 0, 80% 0, 100% 22%);
   z-index: 4;
   filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.4));
+}
+/* A tiny mechanical nudge every time a slice passes underneath, like a
+   real prize wheel's clicker flapper. */
+.wheel-pointer--tick { animation: wheelPointerTick 110ms var(--ease); }
+@keyframes wheelPointerTick {
+  0% { transform: translateX(-50%) rotate(0deg) translateY(0); }
+  35% { transform: translateX(-50%) rotate(11deg) translateY(2px); }
+  100% { transform: translateX(-50%) rotate(0deg) translateY(0); }
+}
+/* A bigger settle-bounce the instant the wheel actually stops. */
+.wheel-pointer--land { animation: wheelPointerLand 520ms var(--ease-out-back); }
+@keyframes wheelPointerLand {
+  0% { transform: translateX(-50%) translateY(0) scale(1); }
+  30% { transform: translateX(-50%) translateY(4px) scale(1.12); }
+  60% { transform: translateX(-50%) translateY(-2px) scale(0.96); }
+  100% { transform: translateX(-50%) translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wheel-pointer--tick, .wheel-pointer--land { animation: none; }
+}
+
+/* Confetti burst — spawned by shop.js on an epic/legendary win. */
+.wheel-confetti {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 5;
+}
+.wheel-confetti span {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 7px; height: 12px;
+  margin: -6px 0 0 -3.5px;
+  opacity: 0;
+  animation: confettiBurst 1.5s cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
+  animation-delay: var(--fall-delay, 0ms);
+}
+.wheel-confetti span.wheel-confetti__piece--round { border-radius: 50%; width: 8px; height: 8px; margin: -4px 0 0 -4px; }
+@keyframes confettiBurst {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  12% { opacity: 1; }
+  45% { transform: translate(var(--tx), var(--ty)) rotate(calc(var(--fall-rot) * 0.4)); opacity: 1; }
+  100% { transform: translate(var(--tx), calc(var(--ty) + 120px)) rotate(var(--fall-rot)); opacity: 0; }
 }
 #wheel-svg {
   position: relative;
@@ -1386,7 +1503,10 @@
   box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.55);
   animation: floatY 6s ease-in-out infinite;
 }
-@keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes floatY {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(0.6deg); }
+}
 @media (prefers-reduced-motion: reduce) { .hero__mock { animation: none; } }
 .hero__mock-head { display: flex; align-items: center; gap: var(--sp-2); margin-bottom: var(--sp-5); }
 .hero__mock-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(239, 238, 234, 0.22); }
@@ -1532,6 +1652,30 @@
   transition: opacity 700ms var(--ease), transform 700ms var(--ease);
 }
 .js-reveal [data-reveal].is-revealed { opacity: 1; transform: none; }
+
+/* Staggered child reveal for the grid-shaped sections — cards arrive one
+   after another instead of all popping in at once. */
+.js-reveal .proof-strip > *,
+.js-reveal .bento-grid > *,
+.js-reveal .track > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 520ms var(--ease-out-expo), transform 520ms var(--ease-out-expo);
+}
+[data-reveal].is-revealed .proof-strip > *,
+[data-reveal].is-revealed .bento-grid > *,
+[data-reveal].is-revealed .track > * {
+  opacity: 1;
+  transform: none;
+}
+.proof-strip > *:nth-child(1), .bento-grid > *:nth-child(1), .track > *:nth-child(1) { transition-delay: 0ms; }
+.proof-strip > *:nth-child(2), .bento-grid > *:nth-child(2), .track > *:nth-child(2) { transition-delay: 70ms; }
+.proof-strip > *:nth-child(3), .bento-grid > *:nth-child(3), .track > *:nth-child(3) { transition-delay: 140ms; }
+.proof-strip > *:nth-child(4), .bento-grid > *:nth-child(4), .track > *:nth-child(4) { transition-delay: 210ms; }
+.bento-grid > *:nth-child(5), .track > *:nth-child(5) { transition-delay: 280ms; }
+.bento-grid > *:nth-child(6), .track > *:nth-child(6) { transition-delay: 350ms; }
+.track > *:nth-child(7) { transition-delay: 420ms; }
+.track > *:nth-child(8) { transition-delay: 490ms; }
 
 /* ==========================================================================
    PRESTIGE ICONS — epic/legendary avatars render as a painted gradient
@@ -1697,8 +1841,8 @@ body[data-page="shop"] #main {
   padding: var(--sp-7) var(--sp-6);
   color: var(--color-chrome-text);
   box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(232, 163, 61, 0.3);
-  transform: translateY(16px) scale(0.97);
-  transition: transform 260ms var(--ease);
+  transform: translateY(28px) scale(0.92);
+  transition: transform 420ms var(--ease-out-back);
 }
 .daily-login-overlay.is-open .daily-login-modal { transform: translateY(0) scale(1); }
 .daily-login-modal::before {

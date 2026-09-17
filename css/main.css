@@ -62,6 +62,8 @@
   --radius-lg: 14px;
   --radius-full: 999px;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1); /* gentle overshoot-and-settle for arrivals */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); /* fast start, long soft settle */
   --dur: 180ms;
 
   --content-max: 1180px;

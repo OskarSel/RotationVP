@@ -452,10 +452,21 @@ function initQuiz(lesson) {
 
         const hasExplanations = answers.some((a) => a.explanation);
 
+        const CHECK_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        const CROSS_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>';
+
         options.forEach((o) => {
           const a = answers[Number(o.dataset.index)];
-          if (a.correct) o.classList.add('is-correct');
-          else if (o === selected) o.classList.add('is-incorrect');
+          const letter = o.querySelector('.quiz-option__letter');
+          if (a.correct) {
+            o.classList.add('is-correct');
+            if (letter) letter.innerHTML = CHECK_ICON;
+          } else if (o === selected) {
+            o.classList.add('is-incorrect');
+            if (letter) letter.innerHTML = CROSS_ICON;
+          } else {
+            o.classList.add('is-dim');
+          }
 
           if (hasExplanations && a.explanation) {
             const expl = document.createElement('p');
