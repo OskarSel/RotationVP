@@ -171,7 +171,7 @@ function renderCourtAnimation(lesson) {
   stage.innerHTML = `
     <svg class="court-svg" viewBox="0 -14 100 114" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Top-down diagram of a volleyball court half showing player positions">
       <defs>
-        <marker id="court-arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <marker id="court-arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 Z"/>
         </marker>
       </defs>

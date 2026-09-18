@@ -5606,7 +5606,7 @@ const CHAPTER_5_LESSONS = [
       caption: "With the setter (R) in the back row, they tuck toward a corner — away from where the serve is likely to land — so a teammate takes the first contact instead.",
       activeZones: [1, 6, 5],
       labels: { 1: "R", 6: "P", 5: "L" },
-      motions: { 1: { dx: 6, dy: 5 } },
+      motions: { 1: { dx: 13, dy: 9 } },
       ball: { path: [{ x: 50, y: -8 }, { x: 50, y: 76 }, { x: 45, y: 30 }] },
     },
     quiz: [
@@ -5819,7 +5819,7 @@ const CHAPTER_5_LESSONS = [
   },
   {
     id: 4,
-    title: "Rotation 2: Snap to Base",
+    title: "Rotation 2: Closing the Net",
     summary: "The team has just served and the setter's zone is 6 — the first look at a base-defense shape.",
     durationMin: 7,
     theory: [
@@ -5836,7 +5836,7 @@ const CHAPTER_5_LESSONS = [
       caption: "Right after the serve, the front row closes toward the net into a blocking line while the back row spreads to cover the court.",
       activeZones: [4, 3, 2, 6, 5, 1],
       labels: { 6: "R", 5: "P", 4: "Ś", 3: "A", 2: "P", 1: "L" },
-      motions: { 4: { dx: 0, dy: -6 }, 3: { dx: 0, dy: -6 }, 2: { dx: 0, dy: -6 }, 5: { dx: -4, dy: 4 }, 1: { dx: 4, dy: 4 } },
+      motions: { 4: { dx: 0, dy: -14 }, 3: { dx: 0, dy: -14 }, 2: { dx: 0, dy: -14 }, 5: { dx: -10, dy: 8 }, 1: { dx: 10, dy: 8 } },
       ball: null,
     },
     quiz: [
@@ -5934,7 +5934,7 @@ const CHAPTER_5_LESSONS = [
   },
   {
     id: 5,
-    title: "Rotation 3: Snap to Base",
+    title: "Rotation 3: The One-Zone Shift",
     summary: "One more rotation forward, the setter's zone is now 5 — the same base-defense idea, in a new spot.",
     durationMin: 7,
     theory: [
@@ -5951,7 +5951,7 @@ const CHAPTER_5_LESSONS = [
       caption: "The whole six-player shape has slid one zone over from the last rotation, but the base-defense idea is exactly the same.",
       activeZones: [4, 3, 2, 5, 1, 6],
       labels: { 5: "R", 4: "P", 3: "Ś", 2: "A", 1: "P", 6: "L" },
-      motions: { 4: { dx: 0, dy: -6 }, 3: { dx: 0, dy: -6 }, 2: { dx: 0, dy: -6 }, 1: { dx: 4, dy: 4 }, 6: { dx: 0, dy: 4 } },
+      motions: { 4: { dx: 0, dy: -14 }, 3: { dx: 0, dy: -14 }, 2: { dx: 0, dy: -14 }, 1: { dx: 10, dy: 8 }, 6: { dx: 0, dy: 10 } },
       ball: null,
     },
     quiz: [
@@ -6049,7 +6049,7 @@ const CHAPTER_5_LESSONS = [
   },
   {
     id: 6,
-    title: "Rotation 4: Snap to Base",
+    title: "Rotation 4: Crossing to the Front",
     summary: "The setter crosses into the front row for the first time — still base defense, but right at the net this time.",
     durationMin: 7,
     theory: [
@@ -6066,7 +6066,7 @@ const CHAPTER_5_LESSONS = [
       caption: "For the first time in this chapter, the setter is right there in the blocking line — no long release run needed.",
       activeZones: [4, 3, 2, 1, 6, 5],
       labels: { 4: "R", 3: "P", 2: "Ś", 1: "A", 6: "P", 5: "L" },
-      motions: { 4: { dx: 0, dy: -6 }, 3: { dx: 0, dy: -6 }, 2: { dx: 0, dy: -6 }, 1: { dx: 4, dy: 4 }, 5: { dx: -4, dy: 4 } },
+      motions: { 4: { dx: 0, dy: -14 }, 3: { dx: 0, dy: -14 }, 2: { dx: 0, dy: -14 }, 1: { dx: 10, dy: 8 }, 5: { dx: -10, dy: 8 } },
       ball: null,
     },
     quiz: [
@@ -6164,7 +6164,7 @@ const CHAPTER_5_LESSONS = [
   },
   {
     id: 7,
-    title: "Rotation 5: Holding the Line",
+    title: "Rotation 5: No Corner to Hide",
     summary: "The opponent is serving again, but this time the setter is already front row — so the 'hiding spot' rule doesn't even apply.",
     durationMin: 7,
     theory: [
@@ -6279,7 +6279,7 @@ const CHAPTER_5_LESSONS = [
   },
   {
     id: 8,
-    title: "Rotation 6: Snap to Base",
+    title: "Rotation 6: Closing the Circle",
     summary: "The last stop before the cycle repeats — base defense again, with the setter on the front right.",
     durationMin: 7,
     theory: [
@@ -6296,7 +6296,7 @@ const CHAPTER_5_LESSONS = [
       caption: "The last base-defense picture in the cycle — after this, the whole sequence loops back to Rotation 1.",
       activeZones: [2, 4, 3, 1, 6, 5],
       labels: { 2: "R", 4: "P", 3: "Ś", 1: "P", 6: "L", 5: "A" },
-      motions: { 2: { dx: 0, dy: -6 }, 4: { dx: 0, dy: -6 }, 3: { dx: 0, dy: -6 }, 1: { dx: 4, dy: 4 }, 5: { dx: -4, dy: 4 } },
+      motions: { 2: { dx: 0, dy: -14 }, 4: { dx: 0, dy: -14 }, 3: { dx: 0, dy: -14 }, 1: { dx: 10, dy: 8 }, 5: { dx: -10, dy: 8 } },
       ball: null,
     },
     quiz: [
@@ -6411,7 +6411,7 @@ const CHAPTER_5_LESSONS = [
       caption: "The arrows are the transition: the pass traveling forward, the front row closing toward the net, the back row spreading to cover space.",
       activeZones: [4, 3, 2, 1, 6, 5],
       labels: {},
-      motions: { 4: { dx: 0, dy: -6 }, 3: { dx: 0, dy: -6 }, 2: { dx: 0, dy: -6 }, 1: { dx: 4, dy: 4 }, 5: { dx: -4, dy: 4 } },
+      motions: { 4: { dx: 0, dy: -14 }, 3: { dx: 0, dy: -14 }, 2: { dx: 0, dy: -14 }, 1: { dx: 10, dy: 8 }, 5: { dx: -10, dy: 8 } },
       ball: { path: [{ x: 50, y: -8 }, { x: 50, y: 76 }, { x: 45, y: 30 }] },
     },
     quiz: [
