@@ -731,8 +731,8 @@
   text-anchor: middle;
   pointer-events: none;
 }
-.court-dot--active circle { fill: var(--color-gold); }
-.court-dot--active text { fill: var(--color-feedback-ink); font-size: 4.2px; }
+.court-dot--active circle { fill: var(--color-gold); stroke: rgba(12, 18, 32, 0.4); stroke-width: 0.6; }
+.court-dot--active text { fill: var(--color-feedback-ink); font-size: 4.8px; font-weight: 800; }
 
 /* Soft breathing glow on the movers, before Play is pressed — draws the
    eye toward what's about to happen. Settles once the diagram has run. */

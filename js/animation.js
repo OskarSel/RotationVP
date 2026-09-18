@@ -143,7 +143,7 @@ function renderCourtAnimation(lesson) {
     dots += `
       <g class="court-dot${isActive ? ' court-dot--active' : ''}" data-zone="${zone}"
          style="transform: translate(0px,0px);" data-dx="${motion ? motion.dx : 0}" data-dy="${motion ? motion.dy : 0}">
-        <circle cx="${pos.x}" cy="${pos.y}" r="${isActive ? 7 : 4.5}"/>
+        <circle cx="${pos.x}" cy="${pos.y}" r="${isActive ? 8.2 : 4.5}"/>
         <text x="${pos.x}" y="${pos.y}" dy="0.35em">${label}</text>
       </g>`;
   });
