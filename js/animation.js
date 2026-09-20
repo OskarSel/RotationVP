@@ -123,30 +123,46 @@ function renderCourtAnimation(lesson) {
   const motions = scene.motions || {};
   const labels = scene.labels || {};
 
+  // A static reference formation (this chapter's rotation diagrams): exact
+  // hand-placed positions copied from the source diagram, rather than the
+  // fixed six-zone grid every other animation uses. No motion, no ball —
+  // just where everyone stands.
+  const customLayout = scene.customLayout || null;
+
   let guides = '';
   let dots = '';
 
-  Object.keys(COURT_ZONES).forEach((zoneKey) => {
-    const zone = Number(zoneKey);
-    const pos = COURT_ZONES[zone];
-    const isActive = active.includes(zone);
-    const motion = motions[zone];
-    const label = labels[zone] || String(zone);
+  if (customLayout) {
+    customLayout.forEach((p, i) => {
+      dots += `
+        <g class="court-dot court-dot--active court-dot--static" data-zone="custom-${i}">
+          <circle cx="${p.x}" cy="${p.y}" r="8.2"/>
+          <text x="${p.x}" y="${p.y}" dy="0.35em">${p.label}</text>
+        </g>`;
+    });
+  } else {
+    Object.keys(COURT_ZONES).forEach((zoneKey) => {
+      const zone = Number(zoneKey);
+      const pos = COURT_ZONES[zone];
+      const isActive = active.includes(zone);
+      const motion = motions[zone];
+      const label = labels[zone] || String(zone);
 
-    if (isActive && motion) {
-      const len = Math.hypot(motion.dx, motion.dy) || 1;
-      guides += `<line class="court-guide" data-zone-guide="${zone}"
-          x1="${pos.x}" y1="${pos.y}" x2="${pos.x + motion.dx}" y2="${pos.y + motion.dy}"
-          marker-end="url(#court-arrowhead)" stroke-dasharray="${len}" stroke-dashoffset="${len}"/>`;
-    }
+      if (isActive && motion) {
+        const len = Math.hypot(motion.dx, motion.dy) || 1;
+        guides += `<line class="court-guide" data-zone-guide="${zone}"
+            x1="${pos.x}" y1="${pos.y}" x2="${pos.x + motion.dx}" y2="${pos.y + motion.dy}"
+            marker-end="url(#court-arrowhead)" stroke-dasharray="${len}" stroke-dashoffset="${len}"/>`;
+      }
 
-    dots += `
-      <g class="court-dot${isActive ? ' court-dot--active' : ''}" data-zone="${zone}"
-         style="transform: translate(0px,0px);" data-dx="${motion ? motion.dx : 0}" data-dy="${motion ? motion.dy : 0}">
-        <circle cx="${pos.x}" cy="${pos.y}" r="${isActive ? 8.2 : 4.5}"/>
-        <text x="${pos.x}" y="${pos.y}" dy="0.35em">${label}</text>
-      </g>`;
-  });
+      dots += `
+        <g class="court-dot${isActive ? ' court-dot--active' : ''}" data-zone="${zone}"
+           style="transform: translate(0px,0px);" data-dx="${motion ? motion.dx : 0}" data-dy="${motion ? motion.dy : 0}">
+          <circle cx="${pos.x}" cy="${pos.y}" r="${isActive ? 8.2 : 4.5}"/>
+          <text x="${pos.x}" y="${pos.y}" dy="0.35em">${label}</text>
+        </g>`;
+    });
+  }
 
   // Ball path: an array of 2+ waypoints, e.g. pass -> set -> attack away.
   // Rendered as one guide segment per leg (each draws in as the ball
@@ -187,6 +203,15 @@ function renderCourtAnimation(lesson) {
 
   const svg = stage.querySelector('.court-svg');
   initCourtEntrance(svg);
+
+  if (customLayout) {
+    // A static reference formation has nothing to play — the controls
+    // bar (play button, narration toggle) doesn't apply here. Inline
+    // style, since .media-controls' own display:flex (an author rule)
+    // otherwise beats the `hidden` attribute (a user-agent-level rule).
+    controls.style.display = 'none';
+    return;
+  }
 
   const playBtn = controls.querySelector('.media-controls__play');
   const scrub = controls.querySelector('.media-controls__scrub');

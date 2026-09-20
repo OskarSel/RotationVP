@@ -738,6 +738,7 @@
    eye toward what's about to happen. Settles once the diagram has run. */
 .court-dot--active circle { animation: courtDotBreathe 2.6s ease-in-out infinite; }
 .media-stage.is-played .court-dot--active circle { animation: none; }
+.court-dot--static circle { animation: none; }
 @keyframes courtDotBreathe {
   0%, 100% { filter: drop-shadow(0 0 0.5px rgba(232, 163, 61, 0.4)); }
   50% { filter: drop-shadow(0 0 3.5px rgba(232, 163, 61, 0.95)); }

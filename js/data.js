@@ -5718,11 +5718,15 @@ const CHAPTER_5_LESSONS = [
     showAnimation: true,
     isTest: false,
     animation: {
-      caption: "The pass comes in to the back row while S stays tucked in the back-right corner, then releases forward toward the target near the net.",
-      activeZones: [1, 6, 5, 4, 3, 2],
-      labels: { 1: "S", 6: "L", 5: "H", 4: "O", 3: "M", 2: "H" },
-      motions: {},
-      ball: null,
+      caption: "The setter (S) stays tucked in the back-right corner, close behind the outside hitter (H) at front-right — exactly the copy this rotation's diagram shows.",
+      customLayout: [
+        { label: "O", x: 18, y: 20 },
+        { label: "M", x: 50, y: 26 },
+        { label: "H", x: 80, y: 38 },
+        { label: "H", x: 18, y: 82 },
+        { label: "L", x: 50, y: 76 },
+        { label: "S", x: 80, y: 58 },
+      ],
     },
     quiz: [
       {
@@ -5833,11 +5837,15 @@ const CHAPTER_5_LESSONS = [
     showAnimation: true,
     isTest: false,
     animation: {
-      caption: "Right after the serve, the front row closes toward the net into a blocking line while the back row spreads to cover the court.",
-      activeZones: [4, 3, 2, 6, 5, 1],
-      labels: { 6: "S", 5: "H", 4: "M", 3: "O", 2: "H", 1: "L" },
-      motions: { 4: { dx: 0, dy: -14 }, 3: { dx: 0, dy: -14 }, 2: { dx: 0, dy: -14 }, 5: { dx: -10, dy: 8 }, 1: { dx: 10, dy: 8 } },
-      ball: null,
+      caption: "Right after the serve, the front row (M, O, H) forms the blocking line at the net while S, an outside hitter and the libero spread across the back row.",
+      customLayout: [
+        { label: "M", x: 18, y: 20 },
+        { label: "O", x: 50, y: 26 },
+        { label: "H", x: 80, y: 22 },
+        { label: "H", x: 18, y: 80 },
+        { label: "S", x: 50, y: 76 },
+        { label: "L", x: 80, y: 82 },
+      ],
     },
     quiz: [
       {
@@ -5949,10 +5957,14 @@ const CHAPTER_5_LESSONS = [
     isTest: false,
     animation: {
       caption: "The whole six-player shape has slid one zone over from the last rotation, but the base-defense idea is exactly the same.",
-      activeZones: [4, 3, 2, 5, 1, 6],
-      labels: { 5: "S", 4: "H", 3: "M", 2: "O", 1: "H", 6: "L" },
-      motions: { 4: { dx: 0, dy: -14 }, 3: { dx: 0, dy: -14 }, 2: { dx: 0, dy: -14 }, 1: { dx: 10, dy: 8 }, 6: { dx: 0, dy: 10 } },
-      ball: null,
+      customLayout: [
+        { label: "H", x: 18, y: 22 },
+        { label: "M", x: 50, y: 20 },
+        { label: "O", x: 80, y: 26 },
+        { label: "S", x: 18, y: 76 },
+        { label: "L", x: 50, y: 82 },
+        { label: "H", x: 80, y: 78 },
+      ],
     },
     quiz: [
       {
@@ -6064,10 +6076,14 @@ const CHAPTER_5_LESSONS = [
     isTest: false,
     animation: {
       caption: "For the first time in this chapter, the setter is right there in the blocking line — no long release run needed.",
-      activeZones: [4, 3, 2, 1, 6, 5],
-      labels: { 4: "S", 3: "H", 2: "M", 1: "O", 6: "H", 5: "L" },
-      motions: { 4: { dx: 0, dy: -14 }, 3: { dx: 0, dy: -14 }, 2: { dx: 0, dy: -14 }, 1: { dx: 10, dy: 8 }, 5: { dx: -10, dy: 8 } },
-      ball: null,
+      customLayout: [
+        { label: "S", x: 18, y: 24 },
+        { label: "H", x: 50, y: 20 },
+        { label: "M", x: 80, y: 26 },
+        { label: "L", x: 18, y: 80 },
+        { label: "H", x: 50, y: 76 },
+        { label: "O", x: 80, y: 82 },
+      ],
     },
     quiz: [
       {
@@ -6170,19 +6186,23 @@ const CHAPTER_5_LESSONS = [
     theory: [
       "Rotation 5 brings back a serve-receive shape — the opponent is serving again — but with a twist from Lesson 2: the setter's zone this time is Zone 3, front middle. S is in the front row, so the hiding-spot rule simply doesn't apply here at all.",
       "Since serve receive is strictly a back-row job, a front-row setter was never going to be a receiving option in the first place. There's no need to tuck S into a corner — they can stand exactly where they'll be needed, right at the net, from the very start of the rally.",
-      "That means the back-row receiving trio looks different from Rotation 1 too: the libero (L) covers back-right, the opposite (O) covers back-middle, and an outside hitter (H) covers back-left. Notice that O is now one of the two main passers — a role it didn't have in Rotation 1.",
-      "Up front alongside S, an outside hitter (H) covers front-right and the middle (M) covers front-left, both free to prepare their attacking approach exactly the way the front row was free back in Rotation 1 — just with different roles standing in those spots.",
+      "That means the back-row receiving trio looks different from Rotation 1 too: the libero (L) covers back-right, while the two outside hitters (H) share back-left and back-middle between them. Notice that both outside hitters are now receiving — a split they didn't have in Rotation 1.",
+      "Up front alongside S, the middle (M) covers front-left and the opposite (O) covers front-right, both free to prepare their attacking approach exactly the way the front row was free back in Rotation 1 — just with different roles standing in those spots.",
       "Comparing Rotations 1 and 5 side by side is one of the clearest ways to see this chapter's whole point: same six roles, same underlying rules, but a genuinely different-looking picture depending on exactly where the setter's rotation happens to place them.",
     ],
-    keyTakeaway: "In Rotation 5, the setter is already front row, so the hiding-spot rule from Lesson 2 doesn't apply — the libero, the opposite and an outside hitter handle the back-row passing instead, while S stands ready at the net from the start.",
+    keyTakeaway: "In Rotation 5, the setter is already front row, so the hiding-spot rule from Lesson 2 doesn't apply — the libero and both outside hitters handle the back-row passing instead, while S stands ready at the net from the start.",
     showAnimation: true,
     isTest: false,
     animation: {
-      caption: "With the setter already front row, there's no corner to hide in — the back-row trio (L, O, H) handles the pass instead.",
-      activeZones: [3, 2, 4, 1, 6, 5],
-      labels: { 3: "S", 2: "H", 4: "M", 1: "L", 6: "O", 5: "H" },
-      motions: {},
-      ball: null,
+      caption: "With the setter already front row, there's no corner to hide in — the back-row trio (L, H, H) handles the pass instead.",
+      customLayout: [
+        { label: "M", x: 18, y: 22 },
+        { label: "S", x: 50, y: 34 },
+        { label: "O", x: 80, y: 22 },
+        { label: "H", x: 18, y: 80 },
+        { label: "H", x: 50, y: 58 },
+        { label: "L", x: 80, y: 80 },
+      ],
     },
     quiz: [
       {
@@ -6207,27 +6227,27 @@ const CHAPTER_5_LESSONS = [
         question: "Who covers back-right in Rotation 5?",
         answers: [
           { text: "The libero (L)", correct: true, explanation: "Correct — the libero covers back-right in this rotation." },
-          { text: "An outside hitter (H)", correct: false, explanation: "The outside hitter is on back-left in this rotation, not back-right." },
-          { text: "The opposite (O)", correct: false, explanation: "The opposite is on back-middle in this rotation, not back-right." },
+          { text: "An outside hitter (H)", correct: false, explanation: "The outside hitters are on back-left and back-middle in this rotation, not back-right." },
+          { text: "The opposite (O)", correct: false, explanation: "The opposite is front row in this rotation, not back-right." },
           { text: "The setter (S)", correct: false, explanation: "The setter is front row in this rotation." },
         ],
       },
       {
         question: "Who covers back-middle in Rotation 5?",
         answers: [
-          { text: "The opposite (O)", correct: true, explanation: "Correct — the opposite covers back-middle in this rotation." },
+          { text: "An outside hitter (H)", correct: true, explanation: "Correct — one of the two outside hitters covers back-middle in this rotation." },
           { text: "The libero (L)", correct: false, explanation: "The libero is on back-right in this rotation, not back-middle." },
-          { text: "An outside hitter (H)", correct: false, explanation: "The outside hitter here is on back-left, not back-middle." },
+          { text: "The opposite (O)", correct: false, explanation: "The opposite is front row in this rotation, not back-middle." },
           { text: "The middle (M)", correct: false, explanation: "The middle is front row in this rotation." },
         ],
       },
       {
-        question: "What's different about the opposite's (O) role here compared with Rotation 1?",
+        question: "What's different about the two outside hitters' (H) roles here compared with Rotation 1?",
         answers: [
-          { text: "In Rotation 5, O is one of the main back-row passers; in Rotation 1, O was front row and not receiving", correct: true, explanation: "Correct — this is exactly the contrast this lesson draws out." },
-          { text: "O is not on the court at all in Rotation 5", correct: false, explanation: "The opposite is on the court, covering back-middle." },
-          { text: "O becomes the setter in Rotation 5", correct: false, explanation: "The opposite never takes over the setter's role." },
-          { text: "There is no difference at all", correct: false, explanation: "The opposite's row — and receiving duty — clearly changes between the two rotations." },
+          { text: "In Rotation 5, both outside hitters are back row and receiving; in Rotation 1, one was front row instead", correct: true, explanation: "Correct — this is exactly the contrast this lesson draws out." },
+          { text: "Neither outside hitter is on the court in Rotation 5", correct: false, explanation: "Both outside hitters are on the court, covering back-left and back-middle." },
+          { text: "One outside hitter becomes the setter in Rotation 5", correct: false, explanation: "Neither outside hitter ever takes over the setter's role." },
+          { text: "There is no difference at all", correct: false, explanation: "Which rows the two outside hitters occupy clearly changes between the two rotations." },
         ],
       },
       {
@@ -6294,10 +6314,14 @@ const CHAPTER_5_LESSONS = [
     isTest: false,
     animation: {
       caption: "The last base-defense picture in the cycle — after this, the whole sequence loops back to Rotation 1.",
-      activeZones: [2, 4, 3, 1, 6, 5],
-      labels: { 2: "S", 4: "H", 3: "M", 1: "H", 6: "L", 5: "O" },
-      motions: { 2: { dx: 0, dy: -14 }, 4: { dx: 0, dy: -14 }, 3: { dx: 0, dy: -14 }, 1: { dx: 10, dy: 8 }, 5: { dx: -10, dy: 8 } },
-      ball: null,
+      customLayout: [
+        { label: "H", x: 18, y: 20 },
+        { label: "M", x: 50, y: 26 },
+        { label: "S", x: 80, y: 22 },
+        { label: "O", x: 18, y: 82 },
+        { label: "L", x: 50, y: 76 },
+        { label: "H", x: 80, y: 80 },
+      ],
     },
     quiz: [
       {
