@@ -140,6 +140,13 @@ function renderCourtAnimation(lesson) {
           <text x="${p.x}" y="${p.y}" dy="0.35em">${p.label}</text>
         </g>`;
     });
+    // Static reference formations draw their own arrows directly (no
+    // reveal animation, no Play interaction) — fully visible the moment
+    // the diagram renders, matching a printed coaching diagram.
+    (scene.customArrows || []).forEach((a) => {
+      const dash = a.dashed ? ' stroke-dasharray="2 2"' : '';
+      guides += `<line class="court-guide court-guide--static" x1="${a.x1}" y1="${a.y1}" x2="${a.x2}" y2="${a.y2}" marker-end="url(#court-arrowhead)"${dash}/>`;
+    });
   } else {
     Object.keys(COURT_ZONES).forEach((zoneKey) => {
       const zone = Number(zoneKey);
