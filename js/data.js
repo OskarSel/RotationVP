@@ -5463,6 +5463,694 @@ const CHAPTER_4_TEST = {
   ],
 };
 
+const CHAPTER_5_LESSONS = [
+  {
+    id: 1,
+    title: "Rotation 1 — Defensive Formation",
+    summary: "The team's base defensive shape with the setter about to serve from the back row.",
+    durationMin: 7,
+    theory: [
+      "<strong>Position key for this chapter:</strong> S = Setter, O = Opposite, M = Middle Blocker, H = Outside Hitter (an on-court \"Hitter\"), L = Libero.",
+      "This is one of six base defensive formations a team sets up in — one for each of the six rotations created by the service-order rule you learned in earlier chapters. The photo below is an actual coaching diagram, showing where each role stands and which way they move to cover the net or the floor.",
+      "In Rotation 1, the front row (zones 4, 3, 2 — left to right along the net) is the opposite (O), the middle blocker (M), and an outside hitter (H): the three players responsible for blocking. The back row (zones 5, 6, 1) holds the other outside hitter (H), the libero (L), and the setter (S), who is standing in the back-right zone about to serve.",
+      "The arrows on the diagram show each front-row player's blocking footwork, and the curved line with the ball shows the serve itself. Studying a diagram like this one, rotation after rotation, is how a team learns to find its defensive shape quickly without having to think it through from scratch every time.",
+    ],
+    keyTakeaway: "In Rotation 1, the setter (S) serves from the back row while the opposite (O), middle blocker (M) and an outside hitter (H) form the front-row block.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "Rotation 1 — the base defensive formation, from a real coaching diagram.",
+      image: "assets/images/rotations/rotation-1.png",
+      imageAlt: "Rotation 1 defensive formation diagram with S, O, M, H and L positions and movement arrows",
+    },
+    quiz: [
+      {
+        question: "Which three roles make up the front-row block in this rotation?",
+        answers: [
+          { text: "Opposite (O), Middle Blocker (M), Outside Hitter (H)", correct: true, explanation: "Correct — those three zones (4, 3, 2) hold the block here." },
+          { text: "Setter (S), Libero (L), Outside Hitter (H)", correct: false, explanation: "The libero never plays front row, and the setter is back row in this rotation." },
+          { text: "Setter (S), Opposite (O), Middle Blocker (M)", correct: false, explanation: "The setter is in the back row in this particular rotation." },
+          { text: "Both outside hitters (H) and the libero (L)", correct: false, explanation: "The libero is never front row, and only one outside hitter is front row here." },
+        ],
+      },
+      {
+        question: "Which role is standing in the back-right zone, about to serve?",
+        answers: [
+          { text: "The Setter (S)", correct: true, explanation: "Correct — the setter rotates through the serving zone just like every other player." },
+          { text: "The Libero (L)", correct: false, explanation: "The libero holds a different back-row zone in this rotation." },
+          { text: "The Opposite (O)", correct: false, explanation: "The opposite is front row in this rotation." },
+          { text: "An Outside Hitter (H)", correct: false, explanation: "The outside hitter in the back row is in a different zone this time." },
+        ],
+      },
+      {
+        question: "What does \"L\" stand for in these diagrams?",
+        answers: [
+          { text: "Libero", correct: true, explanation: "Correct." },
+          { text: "Left side", correct: false, explanation: "L is a role abbreviation, not a side of the court." },
+          { text: "Line player", correct: false, explanation: "That's not a standard volleyball role label." },
+          { text: "Leader", correct: false, explanation: "L refers to the libero position, not a team captaincy." },
+        ],
+      },
+      {
+        question: "What does \"M\" stand for?",
+        answers: [
+          { text: "Middle Blocker", correct: true, explanation: "Correct." },
+          { text: "Main attacker", correct: false, explanation: "That's closer to the opposite or outside hitter's job." },
+          { text: "Mid-court judge", correct: false, explanation: "That's not a player role at all." },
+          { text: "Manager", correct: false, explanation: "M refers to the middle blocker position on court." },
+        ],
+      },
+      {
+        question: "What does \"H\" stand for?",
+        answers: [
+          { text: "Outside Hitter (an on-court \"Hitter\")", correct: true, explanation: "Correct." },
+          { text: "Half-back defender", correct: false, explanation: "That's not a volleyball position." },
+          { text: "Home-side player", correct: false, explanation: "H labels a specific attacking role, not a side of the court." },
+          { text: "High blocker", correct: false, explanation: "H refers to the outside hitter, not a blocking height description." },
+        ],
+      },
+      {
+        question: "What does \"O\" stand for?",
+        answers: [
+          { text: "Opposite", correct: true, explanation: "Correct." },
+          { text: "Outside hitter", correct: false, explanation: "That role is labeled H in this chapter, not O." },
+          { text: "Offense captain", correct: false, explanation: "That's not a formal volleyball role." },
+          { text: "Overlap violation", correct: false, explanation: "O labels the opposite hitter position, not a rules term." },
+        ],
+      },
+      {
+        question: "Is the libero in the front row or back row in this rotation?",
+        answers: [
+          { text: "Back row", correct: true, explanation: "Correct — the libero can never play in the front row, by rule." },
+          { text: "Front row", correct: false, explanation: "The libero is restricted to the back row at all times." },
+          { text: "Right at the net", correct: false, explanation: "The libero never plays at the net." },
+          { text: "It depends on the rotation", correct: false, explanation: "The libero is always a back-row player, in every rotation." },
+        ],
+      },
+      {
+        question: "Why does a team study a diagram like this one for every rotation?",
+        answers: [
+          { text: "So every player knows their defensive job immediately, no matter which of the six rotations the team is currently in", correct: true, explanation: "Correct — that's the whole point of drilling base formations." },
+          { text: "Because the rules require a printed diagram for each rotation", correct: false, explanation: "There's no such rule — this is a coaching and training tool." },
+          { text: "Because each rotation uses a completely different set of six players", correct: false, explanation: "The same six players rotate through all six zones; the roles don't change." },
+          { text: "Because the formation is randomly different every single rally", correct: false, explanation: "A rotation's base formation is consistent — that's exactly what makes it worth learning." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Rotation 2 — Defensive Formation",
+    summary: "The setter has rotated into the back-middle zone, no longer serving but still back row.",
+    durationMin: 7,
+    theory: [
+      "<strong>Position key:</strong> S = Setter, O = Opposite, M = Middle Blocker, H = Outside Hitter, L = Libero.",
+      "After the team wins the serve back and rotates one position, the setter (S) moves from the back-right serving zone into the back-middle zone. The rest of the lineup shifts with it, giving the team a new base defensive shape to settle into.",
+      "Here the front row (zones 4, 3, 2) is an outside hitter (H), the opposite (O), and the middle blocker (M). The back row (zones 5, 6, 1) holds the libero (L), the setter (S), and the other outside hitter (H).",
+      "Notice that the setter is still a back-row player in this rotation — it takes one more rotation before the setter moves all the way up to the front row and starts blocking instead of running the offense from behind the attack line.",
+    ],
+    keyTakeaway: "In Rotation 2, the setter (S) has moved to the back-middle zone, while an outside hitter (H), the opposite (O) and the middle blocker (M) hold the front-row block.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "Rotation 2 — the base defensive formation, one step on from Rotation 1.",
+      image: "assets/images/rotations/rotation-2.png",
+      imageAlt: "Rotation 2 defensive formation diagram with S, O, M, H and L positions and movement arrows",
+    },
+    quiz: [
+      {
+        question: "Which zone has the setter (S) moved into for this rotation?",
+        answers: [
+          { text: "Back-middle", correct: true, explanation: "Correct — one rotation on from serving in the back-right zone." },
+          { text: "Front-middle", correct: false, explanation: "The setter is still in the back row at this point." },
+          { text: "Back-right, still serving", correct: false, explanation: "That was Rotation 1 — the team has since rotated once." },
+          { text: "Front-right", correct: false, explanation: "The setter doesn't reach the front row until a couple of rotations later." },
+        ],
+      },
+      {
+        question: "Which three roles hold the front-row block in Rotation 2?",
+        answers: [
+          { text: "Outside Hitter (H), Opposite (O), Middle Blocker (M)", correct: true, explanation: "Correct." },
+          { text: "Setter (S), Libero (L), Opposite (O)", correct: false, explanation: "Neither the setter nor the libero is front row here." },
+          { text: "Both outside hitters (H)", correct: false, explanation: "Only one outside hitter is front row; the other is in the back row." },
+          { text: "Setter (S), Middle Blocker (M), Outside Hitter (H)", correct: false, explanation: "The setter is back row in this rotation, not front row." },
+        ],
+      },
+      {
+        question: "Can the libero (L) ever be found in the front row, in any rotation?",
+        answers: [
+          { text: "No — the libero always plays in the back row only", correct: true, explanation: "Correct — this is a fixed rule, not something that changes rotation to rotation." },
+          { text: "Yes, whenever the setter is serving", correct: false, explanation: "The libero's restriction to the back row doesn't depend on who's serving." },
+          { text: "Yes, in exactly one of the six rotations", correct: false, explanation: "The libero never plays front row, in any rotation." },
+          { text: "Only if the middle blocker is injured", correct: false, explanation: "That's not how the libero rule works at all." },
+        ],
+      },
+      {
+        question: "What does \"S\" stand for in this chapter's diagrams?",
+        answers: [
+          { text: "Setter", correct: true, explanation: "Correct." },
+          { text: "Server", correct: false, explanation: "S labels the setter position generally, not only when that player happens to be serving." },
+          { text: "Side-out", correct: false, explanation: "That's a scoring term, not a player role." },
+          { text: "Substitute", correct: false, explanation: "S refers to the setter, a starting position, not a substitution." },
+        ],
+      },
+      {
+        question: "What does \"O\" stand for?",
+        answers: [
+          { text: "Opposite", correct: true, explanation: "Correct." },
+          { text: "On-court captain", correct: false, explanation: "That's not a formal position label." },
+          { text: "Outside hitter", correct: false, explanation: "That role is labeled H in these diagrams." },
+          { text: "Over-the-net violation", correct: false, explanation: "O labels the opposite hitter, not a rules term." },
+        ],
+      },
+      {
+        question: "What does \"H\" stand for?",
+        answers: [
+          { text: "Outside Hitter", correct: true, explanation: "Correct." },
+          { text: "Half-court player", correct: false, explanation: "Not a real volleyball term." },
+          { text: "Head coach's pick", correct: false, explanation: "H labels a specific on-court attacking role." },
+          { text: "Hard-driven serve", correct: false, explanation: "H refers to the outside hitter position, not a type of serve." },
+        ],
+      },
+      {
+        question: "What does \"M\" stand for?",
+        answers: [
+          { text: "Middle Blocker", correct: true, explanation: "Correct." },
+          { text: "Match point", correct: false, explanation: "That's a scoring term, not a position." },
+          { text: "Most valuable player", correct: false, explanation: "M labels the middle blocker role on court." },
+          { text: "Men's division", correct: false, explanation: "Not related to this role label." },
+        ],
+      },
+      {
+        question: "Why does the team's defensive shape change between Rotation 1 and Rotation 2?",
+        answers: [
+          { text: "Because every player shifts one zone when the team rotates, so the whole lineup's front/back split changes too", correct: true, explanation: "Correct — this is the same six-zone rotation rule from earlier chapters." },
+          { text: "Because the coach swaps in different players for each rotation", correct: false, explanation: "The same six players rotate through zones; nobody is swapped out just for this." },
+          { text: "Because the court itself is reconfigured between rotations", correct: false, explanation: "The court never changes — only the players' positions on it do." },
+          { text: "It doesn't actually change — it only looks different in the diagram", correct: false, explanation: "The formation genuinely changes because the personnel in each zone changes." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "Rotation 3 — Defensive Formation",
+    summary: "The setter reaches the back-left zone — the last stop before the front row.",
+    durationMin: 7,
+    theory: [
+      "<strong>Position key:</strong> S = Setter, O = Opposite, M = Middle Blocker, H = Outside Hitter, L = Libero.",
+      "One more rotation on, and the setter (S) has reached the back-left zone. This is the last back-row stop before the setter rotates into the front row and starts blocking instead of running the offense from deep.",
+      "The front row (zones 4, 3, 2) in Rotation 3 is the middle blocker (M), an outside hitter (H), and the opposite (O). The back row (zones 5, 6, 1) holds the setter (S), the other outside hitter (H), and the libero (L).",
+      "Because the setter is still back row here, the team's offense is still being run from behind the attack line — the setter has to get to the target zone to set without ever stepping on or over that line while the ball is live.",
+    ],
+    keyTakeaway: "In Rotation 3, the setter (S) is in the back-left zone — one rotation away from becoming a front-row blocker — while the middle blocker (M), an outside hitter (H) and the opposite (O) hold the net.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "Rotation 3 — the base defensive formation, with the setter nearly through the back row.",
+      image: "assets/images/rotations/rotation-3.png",
+      imageAlt: "Rotation 3 defensive formation diagram with S, O, M, H and L positions and movement arrows",
+    },
+    quiz: [
+      {
+        question: "Which zone is the setter (S) in during Rotation 3?",
+        answers: [
+          { text: "Back-left", correct: true, explanation: "Correct — the last back-row zone before the setter becomes front row." },
+          { text: "Front-left", correct: false, explanation: "The setter is still back row in this rotation." },
+          { text: "Back-right, serving", correct: false, explanation: "That described Rotation 1 specifically." },
+          { text: "Front-middle", correct: false, explanation: "The setter doesn't reach the front row until the next rotation." },
+        ],
+      },
+      {
+        question: "Which three roles make up the front-row block in Rotation 3?",
+        answers: [
+          { text: "Middle Blocker (M), Outside Hitter (H), Opposite (O)", correct: true, explanation: "Correct." },
+          { text: "Setter (S), Libero (L), Opposite (O)", correct: false, explanation: "The setter is back row here, and the libero is never front row." },
+          { text: "Setter (S), Middle Blocker (M), Outside Hitter (H)", correct: false, explanation: "The setter hasn't reached the front row yet in this rotation." },
+          { text: "Both outside hitters (H) and the libero (L)", correct: false, explanation: "Only one outside hitter is front row, and the libero never is." },
+        ],
+      },
+      {
+        question: "Why does it matter whether the setter is front row or back row in a given rotation?",
+        answers: [
+          { text: "A back-row setter can't attack above net height near the net and must run from behind the attack line; a front-row setter blocks at the net instead", correct: true, explanation: "Correct — this is exactly why coaches track the setter's row rotation to rotation." },
+          { text: "It doesn't matter — the setter's job is identical in every rotation", correct: false, explanation: "The setter's row changes what they're allowed to do and where they operate from." },
+          { text: "A back-row setter isn't allowed to set at all", correct: false, explanation: "The setter still runs the offense from the back row — the restriction is about attacking, not setting." },
+          { text: "It only matters for the libero's substitution timing", correct: false, explanation: "It affects the setter's own role, separately from the libero." },
+        ],
+      },
+      {
+        question: "What does \"L\" stand for?",
+        answers: [
+          { text: "Libero", correct: true, explanation: "Correct." },
+          { text: "Last line of defense", correct: false, explanation: "Not a formal position name, even though it's descriptive." },
+          { text: "Low pass", correct: false, explanation: "L is a player role, not a type of pass." },
+          { text: "Left-back", correct: false, explanation: "The libero isn't tied to one specific zone — it's a role, not a fixed zone label." },
+        ],
+      },
+      {
+        question: "What does \"O\" stand for?",
+        answers: [
+          { text: "Opposite", correct: true, explanation: "Correct." },
+          { text: "Outside blocker", correct: false, explanation: "That's not the role O refers to in this chapter." },
+          { text: "On-ball defender", correct: false, explanation: "Not a standard volleyball role label." },
+          { text: "Open attack", correct: false, explanation: "O labels a player position, not a play type." },
+        ],
+      },
+      {
+        question: "What does \"M\" stand for?",
+        answers: [
+          { text: "Middle Blocker", correct: true, explanation: "Correct." },
+          { text: "Mid-set hitter", correct: false, explanation: "Close, but not the actual term used here." },
+          { text: "Match official", correct: false, explanation: "M refers to a player position, not an official." },
+          { text: "Momentum player", correct: false, explanation: "Not a real volleyball role." },
+        ],
+      },
+      {
+        question: "What does \"H\" stand for?",
+        answers: [
+          { text: "Outside Hitter", correct: true, explanation: "Correct." },
+          { text: "Half-set", correct: false, explanation: "H is a player role, not a type of set." },
+          { text: "High ball", correct: false, explanation: "Not what H refers to in these diagrams." },
+          { text: "Home team", correct: false, explanation: "H labels the outside hitter position specifically." },
+        ],
+      },
+      {
+        question: "Across Rotations 1 through 3, which role has moved from back-right, to back-middle, to back-left?",
+        answers: [
+          { text: "The Setter (S)", correct: true, explanation: "Correct — tracking the setter's path through the back row is a useful way to follow a rotation sequence." },
+          { text: "The Libero (L)", correct: false, explanation: "The libero's zone also shifts, but this particular path belongs to the setter." },
+          { text: "The Opposite (O)", correct: false, explanation: "The opposite has been front row across these three rotations." },
+          { text: "The Middle Blocker (M)", correct: false, explanation: "The middle blocker has also been front row across these three rotations." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: "Rotation 4 — Defensive Formation",
+    summary: "The setter reaches the front row and blocks instead of running the offense from deep.",
+    durationMin: 7,
+    theory: [
+      "<strong>Position key:</strong> S = Setter, O = Opposite, M = Middle Blocker, H = Outside Hitter, L = Libero.",
+      "In Rotation 4, the setter (S) has finally rotated all the way into the front row — specifically the front-left zone. This changes the setter's job for this rotation: instead of running the offense from behind the attack line, the setter is now part of the block at the net.",
+      "The front row (zones 4, 3, 2) is the setter (S), the middle blocker (M), and an outside hitter (H). The back row (zones 5, 6, 1) holds the other outside hitter (H), the libero (L), and the opposite (O).",
+      "This is a genuinely different defensive puzzle for a team to solve: a front-row setter can still set, but is also expected to help block, which is a very different physical job than digging and directing traffic from the back row.",
+    ],
+    keyTakeaway: "In Rotation 4, the setter (S) is front row for the first time in the cycle, blocking alongside the middle blocker (M) and an outside hitter (H).",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "Rotation 4 — the base defensive formation, with a front-row setter for the first time.",
+      image: "assets/images/rotations/rotation-4.png",
+      imageAlt: "Rotation 4 defensive formation diagram with S, O, M, H and L positions and movement arrows",
+    },
+    quiz: [
+      {
+        question: "What's different about the setter's (S) job in Rotation 4 compared to Rotations 1–3?",
+        answers: [
+          { text: "The setter is now front row, so they also help block at the net instead of running the offense purely from the back row", correct: true, explanation: "Correct — this is the key contrast this lesson introduces." },
+          { text: "The setter no longer sets in this rotation", correct: false, explanation: "The setter still sets — they just also block, since they're now front row." },
+          { text: "The setter is substituted out for the libero", correct: false, explanation: "The libero never substitutes for the setter specifically — only for back-row players." },
+          { text: "Nothing changes — the setter's job is identical in every rotation", correct: false, explanation: "Front row vs. back row genuinely changes what a setter does on defense." },
+        ],
+      },
+      {
+        question: "Which zone is the setter (S) in during Rotation 4?",
+        answers: [
+          { text: "Front-left", correct: true, explanation: "Correct." },
+          { text: "Back-left", correct: false, explanation: "That described the setter's zone one rotation earlier." },
+          { text: "Front-right", correct: false, explanation: "The setter reaches a different front zone in a later rotation." },
+          { text: "Back-right", correct: false, explanation: "That described the setter's serving zone, several rotations earlier." },
+        ],
+      },
+      {
+        question: "Which role is in the back row here but was front row in Rotation 1?",
+        answers: [
+          { text: "The Opposite (O)", correct: true, explanation: "Correct — roles cycle between front and back row as the team keeps rotating." },
+          { text: "The Libero (L)", correct: false, explanation: "The libero is always back row, in every rotation, by rule." },
+          { text: "The Middle Blocker (M)", correct: false, explanation: "The middle blocker is front row in this rotation too." },
+          { text: "The Setter (S)", correct: false, explanation: "The setter has moved the other way — from back row into front row." },
+        ],
+      },
+      {
+        question: "What does \"O\" stand for?",
+        answers: [
+          { text: "Opposite", correct: true, explanation: "Correct." },
+          { text: "On-court leader", correct: false, explanation: "Not a formal position label." },
+          { text: "Off-speed hitter", correct: false, explanation: "O refers to a specific position, not a shot type." },
+          { text: "Outside defender", correct: false, explanation: "That's not the role O labels in this chapter." },
+        ],
+      },
+      {
+        question: "What does \"H\" stand for?",
+        answers: [
+          { text: "Outside Hitter", correct: true, explanation: "Correct." },
+          { text: "Hard block", correct: false, explanation: "H is a player role, not a type of block." },
+          { text: "Half-rotation", correct: false, explanation: "Not what H refers to here." },
+          { text: "Hand-set", correct: false, explanation: "H labels the outside hitter position specifically." },
+        ],
+      },
+      {
+        question: "What does \"M\" stand for?",
+        answers: [
+          { text: "Middle Blocker", correct: true, explanation: "Correct." },
+          { text: "Main setter", correct: false, explanation: "The setter is labeled S, not M." },
+          { text: "Match ball", correct: false, explanation: "Not a player role." },
+          { text: "Mobile defender", correct: false, explanation: "M refers specifically to the middle blocker." },
+        ],
+      },
+      {
+        question: "Can the libero (L) ever take over for the setter when the setter is in the back row?",
+        answers: [
+          { text: "No — the libero is a defined, separate role; it doesn't substitute in for whichever player happens to be back row", correct: true, explanation: "Correct — the libero has its own fixed spot in the rotation, not a roaming one." },
+          { text: "Yes, automatically, every single rotation", correct: false, explanation: "The libero's position in the lineup is fixed by the team's rotation, not by who else is back row." },
+          { text: "Only during the serve", correct: false, explanation: "That's not how the libero's role works." },
+          { text: "Only if the setter asks for a substitution", correct: false, explanation: "Libero substitutions follow their own rule, unrelated to the setter's row." },
+        ],
+      },
+      {
+        question: "Why is it useful to compare a team's Rotation 1 and Rotation 4 formations side by side?",
+        answers: [
+          { text: "It shows clearly how the same six roles swap between blocking at the net and covering the back row as the rotation cycles", correct: true, explanation: "Correct — that contrast is exactly the point of working through all six rotations." },
+          { text: "Because those two rotations use completely different sets of players", correct: false, explanation: "The same six players are involved — only their zones change." },
+          { text: "Because Rotation 4 has no back row at all", correct: false, explanation: "Every rotation has both a front row and a back row of three players each." },
+          { text: "It isn't useful — each rotation should be studied in total isolation", correct: false, explanation: "Comparing rotations is exactly how the whole six-zone cycle makes sense." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "Rotation 5 — Defensive Formation",
+    summary: "The setter holds the front-middle zone, right in the center of the block.",
+    durationMin: 7,
+    theory: [
+      "<strong>Position key:</strong> S = Setter, O = Opposite, M = Middle Blocker, H = Outside Hitter, L = Libero.",
+      "One more rotation on, and the setter (S) has moved from front-left into the front-middle zone. The setter is still a front-row blocker here, just standing in a different net position than in Rotation 4.",
+      "The front row (zones 4, 3, 2) in Rotation 5 is an outside hitter (H), the setter (S), and the middle blocker (M). The back row (zones 5, 6, 1) holds the libero (L), the opposite (O), and the other outside hitter (H).",
+      "Notice the opposite (O) is now in the back row — a mirror image of Rotation 1, where the opposite was front row and the setter was serving from the back. Comparing rotations like this is a good way to see the whole six-zone cycle as one connected pattern, rather than six unrelated diagrams.",
+    ],
+    keyTakeaway: "In Rotation 5, the setter (S) blocks from the front-middle zone, while the opposite (O) has rotated into the back row.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "Rotation 5 — the base defensive formation, with the setter now front-middle.",
+      image: "assets/images/rotations/rotation-5.png",
+      imageAlt: "Rotation 5 defensive formation diagram with S, O, M, H and L positions and movement arrows",
+    },
+    quiz: [
+      {
+        question: "Which zone is the setter (S) in during Rotation 5?",
+        answers: [
+          { text: "Front-middle", correct: true, explanation: "Correct." },
+          { text: "Front-left", correct: false, explanation: "That described the setter's zone one rotation earlier." },
+          { text: "Back-middle", correct: false, explanation: "The setter is front row by this point in the cycle." },
+          { text: "Front-right", correct: false, explanation: "The setter reaches that zone in the next rotation instead." },
+        ],
+      },
+      {
+        question: "Where is the opposite (O) in this rotation — front row or back row?",
+        answers: [
+          { text: "Back row", correct: true, explanation: "Correct — a contrast with Rotation 1, where the opposite was front row." },
+          { text: "Front row", correct: false, explanation: "The opposite has rotated into the back row by this point." },
+          { text: "Right at the net, blocking", correct: false, explanation: "That describes a front-row role, not the opposite's position here." },
+          { text: "The opposite isn't on court in this rotation", correct: false, explanation: "All six roles are on court in every rotation — only their zones change." },
+        ],
+      },
+      {
+        question: "Which three roles hold the front-row block in Rotation 5?",
+        answers: [
+          { text: "Outside Hitter (H), Setter (S), Middle Blocker (M)", correct: true, explanation: "Correct." },
+          { text: "Setter (S), Opposite (O), Middle Blocker (M)", correct: false, explanation: "The opposite is back row in this particular rotation." },
+          { text: "Libero (L), Setter (S), Outside Hitter (H)", correct: false, explanation: "The libero is never a front-row player." },
+          { text: "Both outside hitters (H) and the setter (S)", correct: false, explanation: "Only one outside hitter is front row; the other is back row." },
+        ],
+      },
+      {
+        question: "What does \"L\" stand for?",
+        answers: [
+          { text: "Libero", correct: true, explanation: "Correct." },
+          { text: "Lateral block", correct: false, explanation: "Not a player role." },
+          { text: "Lineup card", correct: false, explanation: "L is a position label, not a piece of paperwork." },
+          { text: "Long rally", correct: false, explanation: "L refers specifically to the libero position." },
+        ],
+      },
+      {
+        question: "What does \"H\" stand for?",
+        answers: [
+          { text: "Outside Hitter", correct: true, explanation: "Correct." },
+          { text: "Hustle player", correct: false, explanation: "Not a formal volleyball role." },
+          { text: "Half-block", correct: false, explanation: "H labels a player position, not a type of block." },
+          { text: "Hand signal", correct: false, explanation: "H refers to the outside hitter specifically." },
+        ],
+      },
+      {
+        question: "What does \"M\" stand for?",
+        answers: [
+          { text: "Middle Blocker", correct: true, explanation: "Correct." },
+          { text: "Multi-position player", correct: false, explanation: "Not the actual term used for this role." },
+          { text: "Match setter", correct: false, explanation: "The setter is labeled S, not M." },
+          { text: "Minor rotation", correct: false, explanation: "M refers to the middle blocker position." },
+        ],
+      },
+      {
+        question: "By the time a team reaches Rotation 5, how many rotations has the setter spent in the front row so far (including this one)?",
+        answers: [
+          { text: "Two", correct: true, explanation: "Correct — the setter moved to front row in Rotation 4, and is still there in Rotation 5." },
+          { text: "Zero", correct: false, explanation: "The setter was already front row in the previous rotation too." },
+          { text: "Five", correct: false, explanation: "The setter didn't reach front row until partway through the six-rotation cycle." },
+          { text: "One", correct: false, explanation: "Rotation 4 already had the setter front row, so this makes two in a row." },
+        ],
+      },
+      {
+        question: "Why is comparing a rotation to the ones before and after it useful, rather than studying each one alone?",
+        answers: [
+          { text: "Because the six formations are all one connected cycle — each role's zone shifts by exactly one step every rotation, so the pattern becomes predictable once you see a few in sequence", correct: true, explanation: "Correct — that connectedness is the real payoff of working through all six." },
+          { text: "Because only the first and last rotations in the cycle actually matter", correct: false, explanation: "Every rotation matters — a team has to defend in all six." },
+          { text: "Because each rotation uses a completely unrelated lineup", correct: false, explanation: "The same six players and roles carry through every rotation." },
+          { text: "It isn't useful — rotations are unpredictable from one to the next", correct: false, explanation: "The six-zone rotation rule makes the sequence entirely predictable." },
+        ],
+      },
+    ],
+  },
+  {
+    id: 6,
+    title: "Rotation 6 — Defensive Formation",
+    summary: "The setter's last stop in the front row, right before the cycle restarts at Rotation 1.",
+    durationMin: 7,
+    theory: [
+      "<strong>Position key:</strong> S = Setter, O = Opposite, M = Middle Blocker, H = Outside Hitter, L = Libero.",
+      "This is the sixth and final formation in the cycle. The setter (S) has rotated into the front-right zone — the last front-row stop before the team rotates one more time and lands right back in Rotation 1, with the setter serving from the back row again.",
+      "The front row (zones 4, 3, 2) in Rotation 6 is the middle blocker (M), an outside hitter (H), and the setter (S). The back row (zones 5, 6, 1) holds the opposite (O), the other outside hitter (H), and the libero (L).",
+      "Once the team rotates again from here, every role moves one zone forward and the whole pattern repeats from Rotation 1. Working through all six rotations, in order, is what turns \"the rotation rule\" from an abstract idea into something you can actually picture on court.",
+    ],
+    keyTakeaway: "Rotation 6 is the last formation in the cycle — the setter (S) blocks from the front-right zone before the team rotates once more back into Rotation 1.",
+    showAnimation: true,
+    isTest: false,
+    animation: {
+      caption: "Rotation 6 — the base defensive formation, the last step before the cycle repeats.",
+      image: "assets/images/rotations/rotation-6.png",
+      imageAlt: "Rotation 6 defensive formation diagram with S, O, M, H and L positions and movement arrows",
+    },
+    quiz: [
+      {
+        question: "Which zone is the setter (S) in during Rotation 6?",
+        answers: [
+          { text: "Front-right", correct: true, explanation: "Correct — the last front-row zone before the cycle restarts." },
+          { text: "Front-middle", correct: false, explanation: "That described the setter's zone one rotation earlier." },
+          { text: "Back-right, serving", correct: false, explanation: "That's where the setter ends up next, once the cycle restarts at Rotation 1." },
+          { text: "Back-left", correct: false, explanation: "The setter is front row throughout this part of the cycle." },
+        ],
+      },
+      {
+        question: "What happens to the formation once the team rotates one more time from here?",
+        answers: [
+          { text: "It becomes the Rotation 1 formation again — the six-rotation cycle restarts", correct: true, explanation: "Correct — the rotation order loops, it doesn't keep going forever." },
+          { text: "The team permanently stays in the Rotation 6 shape", correct: false, explanation: "Every time a team wins the serve back, it rotates again — the shape keeps changing." },
+          { text: "A seventh, entirely new formation appears", correct: false, explanation: "There are only six zones, so there are only six possible base formations." },
+          { text: "The libero is removed from the lineup", correct: false, explanation: "The libero's substitution pattern isn't tied to completing a six-rotation cycle." },
+        ],
+      },
+      {
+        question: "Which three roles hold the front-row block in Rotation 6?",
+        answers: [
+          { text: "Middle Blocker (M), Outside Hitter (H), Setter (S)", correct: true, explanation: "Correct." },
+          { text: "Setter (S), Opposite (O), Libero (L)", correct: false, explanation: "The opposite is back row here, and the libero is never front row." },
+          { text: "Both outside hitters (H) and the middle blocker (M)", correct: false, explanation: "Only one outside hitter is front row; the other is back row." },
+          { text: "Opposite (O), Middle Blocker (M), Libero (L)", correct: false, explanation: "The opposite is back row in this rotation, and the libero is never front row." },
+        ],
+      },
+      {
+        question: "What does \"O\" stand for?",
+        answers: [
+          { text: "Opposite", correct: true, explanation: "Correct." },
+          { text: "Outside the rotation", correct: false, explanation: "Not a real term — every player is part of the rotation." },
+          { text: "Overhand serve", correct: false, explanation: "O is a position label, not a serving technique." },
+          { text: "On-deck player", correct: false, explanation: "O refers to the opposite hitter position specifically." },
+        ],
+      },
+      {
+        question: "What does \"H\" stand for?",
+        answers: [
+          { text: "Outside Hitter", correct: true, explanation: "Correct." },
+          { text: "Height advantage", correct: false, explanation: "Not what H refers to in these diagrams." },
+          { text: "Hand set", correct: false, explanation: "H labels a player position, not a technique." },
+          { text: "Home row", correct: false, explanation: "H refers specifically to the outside hitter position." },
+        ],
+      },
+      {
+        question: "What does \"L\" stand for?",
+        answers: [
+          { text: "Libero", correct: true, explanation: "Correct." },
+          { text: "Last rotation", correct: false, explanation: "L is a player role, not a description of where you are in the cycle." },
+          { text: "Low dig", correct: false, explanation: "L refers to the libero position specifically." },
+          { text: "Left-back zone", correct: false, explanation: "The libero isn't tied to one fixed zone — it's a role that moves with the back row." },
+        ],
+      },
+      {
+        question: "Across all six rotations in this chapter, which role is the one constant that never plays front row?",
+        answers: [
+          { text: "The Libero (L)", correct: true, explanation: "Correct — the libero is restricted to the back row in every single rotation, by rule." },
+          { text: "The Setter (S)", correct: false, explanation: "The setter is front row in several of the six rotations." },
+          { text: "The Opposite (O)", correct: false, explanation: "The opposite is front row in some rotations and back row in others." },
+          { text: "The Middle Blocker (M)", correct: false, explanation: "The middle blocker is front row in every rotation, not excluded from it." },
+        ],
+      },
+      {
+        question: "What's the main lesson from working through all six rotation diagrams in this chapter?",
+        answers: [
+          { text: "A team's defensive shape isn't random — it's one predictable, repeating pattern created directly by the six-zone rotation rule", correct: true, explanation: "Correct — that's the thread connecting every lesson in this chapter." },
+          { text: "Each of the six rotations is a completely independent formation with no relationship to the others", correct: false, explanation: "The opposite is true — each one flows directly from the last." },
+          { text: "Only the first rotation actually matters in a real match", correct: false, explanation: "A team has to defend competently in every rotation it's served into." },
+          { text: "Coaches invent a new formation for every single rally", correct: false, explanation: "The six base formations repeat; they aren't reinvented rally by rally." },
+        ],
+      },
+    ],
+  },
+];
+
+const CHAPTER_5_TEST = {
+  id: 7,
+  title: "Chapter 5 Test",
+  summary: "Check your understanding of all six base defensive formations before moving on.",
+  durationMin: 10,
+  theory: null,
+  keyTakeaway: null,
+  showAnimation: false,
+  isTest: true,
+  quiz: [
+    {
+      question: "What does \"S\" stand for in this chapter's diagrams?",
+      answers: [
+        { text: "Setter", correct: true, explanation: "Correct." },
+        { text: "Server", correct: false, explanation: "S labels the setter position generally, not only the moment they serve." },
+        { text: "Substitute", correct: false, explanation: "S refers to a starting position, not a substitution." },
+        { text: "Side-out", correct: false, explanation: "That's a scoring term, not a player role." },
+      ],
+    },
+    {
+      question: "What does \"O\" stand for?",
+      answers: [
+        { text: "Opposite", correct: true, explanation: "Correct." },
+        { text: "Outside hitter", correct: false, explanation: "That role is labeled H in this chapter." },
+        { text: "Offense captain", correct: false, explanation: "Not a formal volleyball role." },
+        { text: "Overlap", correct: false, explanation: "O labels the opposite hitter position, not a rules term." },
+      ],
+    },
+    {
+      question: "What does \"M\" stand for?",
+      answers: [
+        { text: "Middle Blocker", correct: true, explanation: "Correct." },
+        { text: "Main attacker", correct: false, explanation: "That's closer to the opposite or outside hitter's job." },
+        { text: "Match point", correct: false, explanation: "That's a scoring term, not a position." },
+        { text: "Manager", correct: false, explanation: "M refers to the middle blocker position." },
+      ],
+    },
+    {
+      question: "What does \"H\" stand for?",
+      answers: [
+        { text: "Outside Hitter (an on-court \"Hitter\")", correct: true, explanation: "Correct." },
+        { text: "Half-back defender", correct: false, explanation: "Not a real volleyball position." },
+        { text: "Hard block", correct: false, explanation: "H is a player role, not a type of block." },
+        { text: "Home-side player", correct: false, explanation: "H labels a specific attacking role, not a side of the court." },
+      ],
+    },
+    {
+      question: "What does \"L\" stand for?",
+      answers: [
+        { text: "Libero", correct: true, explanation: "Correct." },
+        { text: "Left-back zone", correct: false, explanation: "The libero is a role, not a fixed zone label." },
+        { text: "Last line of defense", correct: false, explanation: "Descriptive, but not the actual term used here." },
+        { text: "Leader", correct: false, explanation: "L refers to the libero position specifically." },
+      ],
+    },
+    {
+      question: "In Rotation 1, which role is about to serve from the back-right zone?",
+      answers: [
+        { text: "The Setter (S)", correct: true, explanation: "Correct." },
+        { text: "The Libero (L)", correct: false, explanation: "The libero holds a different back-row zone in Rotation 1." },
+        { text: "The Opposite (O)", correct: false, explanation: "The opposite is front row in Rotation 1." },
+        { text: "The Middle Blocker (M)", correct: false, explanation: "The middle blocker is front row in Rotation 1." },
+      ],
+    },
+    {
+      question: "In which rotation does the setter (S) first become a front-row blocker?",
+      answers: [
+        { text: "Rotation 4", correct: true, explanation: "Correct — the setter spends Rotations 1–3 in the back row, then reaches front-left in Rotation 4." },
+        { text: "Rotation 1", correct: false, explanation: "The setter is back row (serving) in Rotation 1." },
+        { text: "Rotation 2", correct: false, explanation: "The setter is still back row in Rotation 2." },
+        { text: "Rotation 6", correct: false, explanation: "By Rotation 6 the setter has already been front row for a few rotations." },
+      ],
+    },
+    {
+      question: "Which role is restricted to the back row in every single one of the six rotations?",
+      answers: [
+        { text: "The Libero (L)", correct: true, explanation: "Correct — this is a fixed rule, not something that varies by rotation." },
+        { text: "The Opposite (O)", correct: false, explanation: "The opposite moves between front row and back row across the six rotations." },
+        { text: "The Setter (S)", correct: false, explanation: "The setter spends some rotations front row and some back row." },
+        { text: "An Outside Hitter (H)", correct: false, explanation: "Both outside hitters move between front and back row across the cycle." },
+      ],
+    },
+    {
+      question: "Which role holds the front row in every single one of the six rotations, just in a different zone each time?",
+      answers: [
+        { text: "The Middle Blocker (M)", correct: true, explanation: "Correct — a middle blocker is always part of the front-row block." },
+        { text: "The Libero (L)", correct: false, explanation: "The libero is never front row, in any rotation." },
+        { text: "The Opposite (O)", correct: false, explanation: "The opposite rotates between front row and back row." },
+        { text: "The Setter (S)", correct: false, explanation: "The setter spends roughly half the cycle in the back row." },
+      ],
+    },
+    {
+      question: "What happens to a team's base defensive formation once it completes all six rotations?",
+      answers: [
+        { text: "It loops back to the Rotation 1 formation and the six-step cycle repeats", correct: true, explanation: "Correct — there are only six zones, so there are only six possible base formations." },
+        { text: "The team starts a brand-new, seventh formation", correct: false, explanation: "With only six zones, there's no seventh base formation to rotate into." },
+        { text: "The formation stays fixed at whatever Rotation 6 looked like", correct: false, explanation: "The team keeps rotating every time it wins back the serve." },
+        { text: "The libero and setter swap roles permanently", correct: false, explanation: "Those are two separate, fixed roles — they don't swap identities." },
+      ],
+    },
+    {
+      question: "Why does a coaching diagram for each rotation typically include movement arrows, not just starting positions?",
+      answers: [
+        { text: "Because the diagram is showing each player's blocking footwork and the serve's path, not just where everyone happens to be standing still", correct: true, explanation: "Correct — the arrows capture movement, which is what actually matters in a live rally." },
+        { text: "Because the starting positions themselves are unimportant", correct: false, explanation: "The starting zones are exactly what defines each rotation's formation." },
+        { text: "Because players are required by rule to move along drawn arrows", correct: false, explanation: "There's no such rule — the arrows are a coaching and teaching aid." },
+        { text: "Because every rotation diagram is actually identical", correct: false, explanation: "Each of the six rotations has its own distinct formation and movement." },
+      ],
+    },
+    {
+      question: "What is the main point of studying all six rotations' defensive formations, rather than just one?",
+      answers: [
+        { text: "It shows the full, repeating pattern created by the six-zone rotation rule, so a team (and a viewer) can recognize any rotation's shape on sight", correct: true, explanation: "Correct — that recognition is the real goal of this chapter." },
+        { text: "Only the final rotation in the cycle is actually used in real matches", correct: false, explanation: "A team must defend competently in every rotation, not just the last one." },
+        { text: "Each rotation uses a totally different group of players", correct: false, explanation: "The same six players and roles carry through the entire cycle." },
+        { text: "There is no real connection between the six rotations", correct: false, explanation: "Each rotation flows directly from the previous one via the same rotation rule." },
+      ],
+    },
+  ],
+};
+
 /**
  * Builds the course structure. Chapters 1–2 use the real content above;
  * Chapters 3–8 remain placeholder-only until their content is written.
@@ -5507,6 +6195,16 @@ function buildChapters() {
         title: "Serve Receive",
         summary: "Passing formations, targets and seams — turning the opponent's serve into a clean first contact.",
         lessons: [...CHAPTER_4_LESSONS, CHAPTER_4_TEST],
+      });
+      continue;
+    }
+
+    if (c === 5) {
+      chapters.push({
+        id: 5,
+        title: "Defensive Formations",
+        summary: "A team's base defensive shape in each of the six rotations, straight from real coaching diagrams.",
+        lessons: [...CHAPTER_5_LESSONS, CHAPTER_5_TEST],
       });
       continue;
     }

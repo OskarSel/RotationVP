@@ -652,6 +652,17 @@
 .media-stage__placeholder svg { width: 48px; height: 48px; color: var(--color-gold); }
 .media-stage__placeholder strong { font-family: var(--font-display); color: var(--color-chrome-text); font-size: var(--fs-300); }
 
+/* A real reference photo (coach's rotation diagrams) shown in place of the
+   SVG court — contained and padded so its own cream background reads as a
+   framed photo rather than clipped edge-to-edge. */
+.court-photo {
+  max-width: 94%;
+  max-height: 94%;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
 .media-controls {
   display: flex;
   align-items: center;

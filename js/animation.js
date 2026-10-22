@@ -119,6 +119,14 @@ function renderCourtAnimation(lesson) {
 
   if (caption) caption.textContent = scene.caption;
 
+  // A real reference photo (this chapter's rotation diagrams) — shown as-is
+  // instead of an SVG court. No motion, no Play controls, just the image.
+  if (scene.image) {
+    stage.innerHTML = `<img class="court-photo" src="${scene.image}" alt="${scene.imageAlt || scene.caption || ''}">`;
+    controls.style.display = 'none';
+    return;
+  }
+
   const active = scene.activeZones || [];
   const motions = scene.motions || {};
   const labels = scene.labels || {};
