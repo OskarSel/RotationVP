@@ -292,14 +292,18 @@
 .plan-step__body h3 { margin-bottom: var(--sp-2); }
 .plan-step__body p { color: var(--color-ink); }
 .plan-step--accent {
-  background: var(--color-ink);
+  /* Fixed dark-chrome colors (like the navbar/hero/footer), not the
+     ink/chalk tokens — those flip brightness under the dark theme, which
+     would turn this "pop" card into a near-white one sitting awkwardly
+     in an already-dark page instead of staying a raised dark accent. */
+  background: var(--color-court-light);
   border-radius: var(--radius-lg);
   padding: var(--sp-6);
   margin-left: var(--sp-7);
 }
 .plan-step--accent .plan-step__index { color: var(--color-gold); }
 .plan-step--accent .plan-step__body h3,
-.plan-step--accent .plan-step__body p { color: var(--color-chalk); }
+.plan-step--accent .plan-step__body p { color: var(--color-chrome-text); }
 .plan-step--accent .plan-step__body p { opacity: 0.8; }
 .plan-step--accent::before { content: none; }
 
