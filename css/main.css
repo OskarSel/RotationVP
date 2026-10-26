@@ -88,6 +88,23 @@
 :root[data-theme="dark"] .bento-card p,
 :root[data-theme="dark"] .chapter-card__meta { color: #B7BAC4; }
 
+/* .plan-step--accent keeps a fixed light-on-accent card (its own h3/p
+   color: var(--color-chalk) rule) in both themes, but the dim-grey rule
+   above outranks it on specificity and was winning anyway — same text-
+   loses-contrast-on-its-own-card bug as the .btn--dark one. */
+:root[data-theme="dark"] .plan-step--accent .plan-step__body p { color: var(--color-chalk); }
+
+/* .btn--dark is defined as `background: var(--color-ink); color:
+   var(--color-chalk);` — in light mode that's a dark button with light
+   text, but --color-ink and --color-chalk both flip under the dark theme,
+   which flips the button itself into a near-white surface with dark text
+   instead of staying a solid, clearly-a-button dark surface. This affects
+   every "Start/Continue/Review" chapter CTA, every "Start/Review test",
+   and the quiz Check/Retry buttons — fixed colors restore the intended
+   look regardless of theme. */
+:root[data-theme="dark"] .btn--dark { background: var(--color-court-light); color: #F5F4EF; }
+:root[data-theme="dark"] .btn--dark:hover { background: #324b7d; }
+
 /* ---- Reset ---- */
 *, *::before, *::after { box-sizing: border-box; }
 html, body, h1, h2, h3, h4, p, figure, blockquote, dl, dd, ul, ol { margin: 0; }

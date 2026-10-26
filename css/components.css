@@ -581,7 +581,7 @@
   z-index: 1;
 }
 .lesson-node--completed .lesson-node__dot { background: var(--color-green); border-color: var(--color-green); color: #fff; }
-.lesson-node--current .lesson-node__dot { background: var(--color-gold); border-color: var(--color-gold); color: var(--color-ink); box-shadow: 0 0 0 5px rgba(232, 163, 61, 0.22); }
+.lesson-node--current .lesson-node__dot { background: var(--color-gold); border-color: var(--color-gold); color: var(--color-feedback-ink); box-shadow: 0 0 0 5px rgba(232, 163, 61, 0.22); }
 .lesson-node--available .lesson-node__dot { border-color: var(--color-court); color: var(--color-ink); }
 
 .lesson-card {
@@ -1582,7 +1582,7 @@
   position: relative;
   max-width: 380px;
   margin-inline: auto;
-  background: var(--color-ink);
+  background: var(--color-court);
   border: 1px solid rgba(239, 238, 234, 0.12);
   border-radius: var(--radius-lg);
   padding: var(--sp-5);
@@ -1625,7 +1625,7 @@
 }
 .hero__mock-icon svg { width: 14px; height: 14px; }
 .hero__mock-row--done .hero__mock-icon { background: var(--color-green); color: #fff; }
-.hero__mock-row--active .hero__mock-icon { background: var(--color-gold); color: var(--color-ink); }
+.hero__mock-row--active .hero__mock-icon { background: var(--color-gold); color: var(--color-feedback-ink); }
 .hero__mock-text { flex: 1; min-width: 0; }
 .hero__mock-text strong {
   display: block;
@@ -1994,7 +1994,7 @@ body[data-page="shop"] #main {
   transform: scale(1.06);
   box-shadow: 0 0 0 1px rgba(232, 163, 61, 0.5), 0 10px 22px -12px rgba(232, 163, 61, 0.6);
 }
-.daily-login-day--current .daily-login-day__icon { background: var(--color-gold); color: var(--color-ink); }
+.daily-login-day--current .daily-login-day__icon { background: var(--color-gold); color: var(--color-feedback-ink); }
 .daily-login-day--current .daily-login-day__label { color: var(--color-gold); }
 
 .daily-login-day--locked { opacity: 0.5; }
